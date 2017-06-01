@@ -1,0 +1,403 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions">
+
+<h:head>
+	<h:outputStylesheet library="css" name="standard.css" />
+</h:head>
+
+
+<h:body>
+	<h:form prependId="false" id="growlForm">
+		<p:growl id="growl" showDetail="false" />
+	</h:form>
+	<h:form id="dataForm">
+	<p:panel id="ingerdientsTable">
+	<f:facet name="header">
+          <h:outputText value="Standard Food List" />
+        </f:facet>	
+         <p:dataTable id="ingedientsTable" widgetVar="ingedientsTable" var="ingerdients" resizableColumns="true"
+         			selectionMode="single" selection="#{mealBean.selectedStandardIngerdients}"
+			         rowKey="#{ingerdients.getId()}" value="#{mealBean.allIngerdients}" rowsPerPageTemplate="5,10,25,50" rows="50"
+			         paginator="true" style="padding-top:10px;padding-bottom:10px" tableStyle="table-layout: auto"
+			         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown} ">
+			         
+			        <p:column headerText="Food Type" sortBy="#{ingerdients.name}" filterBy="#{ingerdients.name}"><h:outputText value="#{ingerdients.name}" /></p:column>
+			        <p:column headerText="Protein(gm)" sortBy="#{ingerdients.containedProtiens}" filterBy="#{ingerdients.containedProtiens}"><h:outputText value="#{ingerdients.containedProtiens}" /></p:column>
+			        <p:column headerText="Carbs(gm)" sortBy="#{ingerdients.containedCarbs}" filterBy="#{ingerdients.containedCarbs}"><h:outputText value="#{ingerdients.containedCarbs}" /></p:column>
+			        <p:column headerText="Fats(gm)" sortBy="#{ingerdientscontainedFats}" filterBy="#{ingerdientscontainedFats}"><h:outputText value="#{ingerdients.containedFats}" /></p:column>
+			        <p:column headerText="Total Calories" sortBy="#{ingerdients.totalCalories}" filterBy="#{ingerdients.totalCalories}"><h:outputText value="#{ingerdients.totalCalories}" /></p:column>
+					<p:column styleClass="action-column">
+						<f:facet name="header">
+							<h:outputText value="Actions" />
+						</f:facet>
+						<p:commandButton id="addToMeal" value="Add To Meal" icon="ui-icon-create" update="addToMealDialog"
+							action="#{mealBean.showIngerdientsToMealDialog(ingerdients)}" immediate="true"
+							title="Add To meal" ajax="true">
+						</p:commandButton>
+						<p:tooltip for="addToMeal" value="Add To Meal"
+							showEffect="fade" hideEffect="fade" />
+							</p:column>
+			        </p:dataTable>
+		</p:panel>
+		 <p:panelGrid styleClass="noBorderGrid">
+    	   	<p:row> 
+    	   	  <p:column style="text-align:center;">
+ 				<p:commandButton id="saveButton" style="width:10%;height:40px;" value="Add Ingerdient" icon="ui-icon-create" action="#{mealBean.showAddIngerdientsDialog()}" update="AddIngerdientsDialog"/>
+ 				<p:commandButton id="deleteButton"  style="width:10%;height:40px;" value="Delete Ingerdient" icon="ui-icon-trash" action="#{mealBean.deleteIngerdient}" ajax="false"/>
+			  </p:column>
+			</p:row>
+		</p:panelGrid>
+		
+		<br></br><br></br>
+		<h:panelGrid id="mealsPanel" columns="4"  styleClass="noBorderGrid" >
+			<p:panel id="meal1Panel" style="height:300px;width:350px;">
+				<f:facet name="header">
+         			 <h:outputText value="Meal 1" />
+        		</f:facet>	
+        		 <p:dataTable  id="meal1Table" widgetVar="meal1Table" var="subMeal"
+			         rowKey="#{subMeal.Id}" value="#{mealBean.meal1}" rows="4" paginator="true"
+			        style="padding-top:10px;padding-bottom:10px" tableStyle="width:auto; table-layout: auto" >
+			         
+			        <p:column headerText="Food Type"><h:outputText value="#{subMeal.standardIngerdients.name}" /></p:column>
+			        <p:column headerText="Portion(gm)"><h:outputText value="#{subMeal.ingerdientPortion}" /></p:column>
+					<p:column styleClass="action-column">
+						<f:facet name="header">
+							<h:outputText value="Actions" />
+						</f:facet>
+						<p:commandButton id="removeMeal" value="Remove" icon="ui-icon-trash"
+							action="#{mealBean.removeSubMealFromMealList1(subMeal)}" immediate="true"
+							title="Remove" ajax="false">
+						</p:commandButton>
+						<p:tooltip for="removeMeal" value="Reomve"
+							showEffect="fade" hideEffect="fade" />
+							</p:column>
+			        </p:dataTable>
+			   </p:panel>
+			   <p:panel id="meal2Panel" style="height:300px;width:350px;">
+				<f:facet name="header">
+         			 <h:outputText value="Meal 2" />
+        		</f:facet>	
+        		 <p:dataTable  id="meal2Table" widgetVar="meal2Table" var="subMeal"
+			         rowKey="#{subMeal.Id}" value="#{mealBean.meal2}" rows="4" paginator="true"
+			          style="padding-top:10px;padding-bottom:10px" tableStyle="width:auto; table-layout: auto" >
+			         
+			        <p:column headerText="Food Type"><h:outputText value="#{subMeal.standardIngerdients.name}" /></p:column>
+			        <p:column headerText="Portion(gm)"><h:outputText value="#{subMeal.ingerdientPortion}" /></p:column>
+					<p:column styleClass="action-column">
+						<f:facet name="header">
+							<h:outputText value="Actions" />
+						</f:facet>
+						<p:commandButton id="removeMeal2" value="Remove" icon="ui-icon-trash"
+							action="#{mealBean.removeSubMealFromMealList2(subMeal)}" immediate="true"
+							title="Remove" ajax="false">
+						</p:commandButton>
+						<p:tooltip for="removeMeal2" value="Reomve"
+							showEffect="fade" hideEffect="fade" />
+							</p:column>
+			        </p:dataTable>
+			   </p:panel>
+			   
+			   <p:panel id="meal3Panel" style="height:300px;width:350px;">
+				<f:facet name="header">
+         			 <h:outputText value="Meal 3" />
+        		</f:facet>	
+        		 <p:dataTable  id="meal3Table" widgetVar="meal3Table" var="subMeal"
+			         rowKey="#{subMeal.Id}" value="#{mealBean.meal3}" rows="4" paginator="true"
+			          style="padding-top:10px;padding-bottom:10px" tableStyle="width:auto; table-layout: auto" >
+			         
+			        <p:column headerText="Food Type"><h:outputText value="#{subMeal.standardIngerdients.name}" /></p:column>
+			        <p:column headerText="Portion(gm)"><h:outputText value="#{subMeal.ingerdientPortion}" /></p:column>
+					<p:column styleClass="action-column">
+						<f:facet name="header">
+							<h:outputText value="Actions" />
+						</f:facet>
+						<p:commandButton id="removeMeal3" value="Remove" icon="ui-icon-trash"
+							action="#{mealBean.removeSubMealFromMealList3(subMeal)}" immediate="true"
+							title="Remove" ajax="false">
+						</p:commandButton>
+						<p:tooltip for="removeMeal3" value="Reomve"
+							showEffect="fade" hideEffect="fade" />
+							</p:column>
+			        </p:dataTable>
+			   </p:panel>
+			   
+			      <p:panel id="meal4Panel" style="height:300px;width:350px;">
+				<f:facet name="header">
+         			 <h:outputText value="Meal 4" />
+        		</f:facet>	
+        		 <p:dataTable  id="meal4Table" widgetVar="meal4Table" var="subMeal" 
+			         rowKey="#{subMeal.Id}" value="#{mealBean.meal4}" rows="4" paginator="true"
+			          style="padding-top:10px;padding-bottom:10px" tableStyle="width:auto; table-layout: auto" >
+			         
+			        <p:column headerText="Food Type"><h:outputText value="#{subMeal.standardIngerdients.name}" /></p:column>
+			        <p:column headerText="Portion(gm)"><h:outputText value="#{subMeal.ingerdientPortion}" /></p:column>
+					<p:column styleClass="action-column">
+						<f:facet name="header">
+							<h:outputText value="Actions" />
+						</f:facet>
+						<p:commandButton id="removeMeal4" value="Remove" icon="ui-icon-trash"
+							action="#{mealBean.removeSubMealFromMealList4(subMeal)}" immediate="true"
+							title="Remove" ajax="false">
+						</p:commandButton>
+						<p:tooltip for="removeMeal4" value="Reomve"
+							showEffect="fade" hideEffect="fade" />
+							</p:column>
+			        </p:dataTable>
+			   </p:panel>
+		</h:panelGrid>
+		<br></br><br></br><br></br>
+		<h:panelGrid id="nutritionCalculatedInfoPanel" styleClass="nobordergrid" columns="4">
+		<p:panelGrid columns="2" style="width:350px">
+			<p:panel id="mealInfo1"  style="height:250px;width:300px;">
+			<f:facet name="header">
+         			 <h:outputText value="Meal1 Calc. Info" />
+        		</f:facet>	
+        		<p:row>
+				<p:outputLabel value="Calc. Protein"></p:outputLabel><br></br>
+				<p:inputNumber value="#{mealBean.proteinCounter1}" style="width: 72%;" disabled="true" decimalSeparator="." thousandSeparator=""/>
+				</p:row>
+				<p:row>
+				<p:outputLabel value="Calc. Carbs" ></p:outputLabel><br></br>
+				<p:inputNumber value="#{mealBean.carbsCounter1}" style="width: 72%;" disabled="true" decimalSeparator="." thousandSeparator=""/>
+				</p:row>
+				<p:outputLabel value="Calc. Fats"></p:outputLabel><br></br>
+				<p:inputNumber value="#{mealBean.fatsnCounter1}" style="width: 72%;" disabled="true" decimalSeparator="." thousandSeparator=""/>
+				
+				<p:outputLabel value="Calc. Total"></p:outputLabel><br></br>
+				<p:inputNumber value="#{mealBean.totalCounter1}" style="width: 72%;" disabled="true" decimalSeparator="." thousandSeparator=""/>
+			</p:panel>
+			</p:panelGrid>
+			
+			
+			
+			
+		<p:panelGrid columns="2" style="width:350px">
+			<p:panel id="mealInfo2"  style="height:250px;width:300px;">
+			<f:facet name="header">
+         			 <h:outputText value="Meal 2 Calc. Info" />
+        		</f:facet>	
+        		<p:row>
+				<p:outputLabel value="Calc. Protein"></p:outputLabel><br></br>
+				<p:inputNumber value="#{mealBean.proteinCounter2}" style="width: 72%;" disabled="true" decimalSeparator="." thousandSeparator=""/>
+				</p:row>
+				<p:row>
+				<p:outputLabel value="Calc. Carbs" ></p:outputLabel><br></br>
+				<p:inputNumber value="#{mealBean.carbsCounter2}" style="width: 72%;" disabled="true" decimalSeparator="." thousandSeparator=""/>
+				</p:row>
+				<p:outputLabel value="Calc. Fats"></p:outputLabel><br></br>
+				<p:inputNumber value="#{mealBean.fatsnCounter2}" style="width: 72%;" disabled="true" decimalSeparator="." thousandSeparator=""/>
+				
+				<p:outputLabel value="Calc. Total"></p:outputLabel><br></br>
+				<p:inputNumber value="#{mealBean.totalCounter2}" style="width: 72%;" disabled="true" decimalSeparator="." thousandSeparator=""/>
+			</p:panel>
+			</p:panelGrid>
+			
+			<p:panelGrid columns="2" style="width:350px">
+			<p:panel id="mealInfo3"  style="height:250px;width:300px;">
+			<f:facet name="header">
+         			 <h:outputText value="Meal 3 Calc. Info" />
+        		</f:facet>	
+        		<p:row>
+				<p:outputLabel value="Calc. Protein"></p:outputLabel><br></br>
+				<p:inputNumber value="#{mealBean.proteinCounter3}" style="width: 72%;" disabled="true" decimalSeparator="." thousandSeparator=""/>
+				</p:row>
+				<p:row>
+				<p:outputLabel value="Calc. Carbs" ></p:outputLabel><br></br>
+				<p:inputNumber value="#{mealBean.carbsCounter3}" style="width: 72%;" disabled="true" decimalSeparator="." thousandSeparator=""/>
+				</p:row>
+				<p:outputLabel value="Calc. Fats"></p:outputLabel><br></br>
+				<p:inputNumber value="#{mealBean.fatsnCounter3}" style="width: 72%;" disabled="true" decimalSeparator="." thousandSeparator=""/>
+				
+				<p:outputLabel value="Calc. Total"></p:outputLabel><br></br>
+				<p:inputNumber value="#{mealBean.totalCounter3}" style="width: 72%;" disabled="true" decimalSeparator="." thousandSeparator=""/>
+			</p:panel>
+			</p:panelGrid>
+			
+			<p:panelGrid columns="2" style="width:350px">
+			<p:panel id="mealInfo4"  style="height:250px;width:300px;">
+			<f:facet name="header">
+         			 <h:outputText value="Meal 4 Calc. Info" />
+        		</f:facet>	
+        		<p:row>
+				<p:outputLabel value="Calc. Protein"></p:outputLabel><br></br>
+				<p:inputNumber value="#{mealBean.proteinCounter4}" style="width: 72%;" disabled="true" decimalSeparator="." thousandSeparator=""/>
+				</p:row>
+				<p:row>
+				<p:outputLabel value="Calc. Carbs" ></p:outputLabel><br></br>
+				<p:inputNumber value="#{mealBean.carbsCounter4}" style="width: 72%;" disabled="true" decimalSeparator="." thousandSeparator=""/>
+				</p:row>
+				<p:outputLabel value="Calc. Fats"></p:outputLabel><br></br>
+				<p:inputNumber value="#{mealBean.fatsnCounter4}" style="width: 72%;" disabled="true" decimalSeparator="." thousandSeparator=""/>
+				
+				<p:outputLabel value="Calc. Total"></p:outputLabel><br></br>
+				<p:inputNumber value="#{mealBean.totalCounter4}" style="width: 72%;" disabled="true" decimalSeparator="." thousandSeparator=""/>
+			</p:panel>
+			</p:panelGrid>
+			</h:panelGrid>
+			<br></br><br></br><br></br>
+			<p:panelGrid  id="totalnutritionCalculatedInfoPanel" columns="2" style="height:250px;width:1600px;">
+			<p:panel style="height:250px;width:800px;">
+			<f:facet name="header">
+         			 <h:outputText value="Total Meal Stats" />
+        		</f:facet>
+				<p:outputLabel value="Protein"></p:outputLabel><br></br>
+				<p:inputNumber value="#{mealBean.mealStatProtein}" style="width: 72%;" disabled="true" decimalSeparator="." thousandSeparator=""/>
+				<p:outputLabel value="Carbs" ></p:outputLabel><br></br>
+				<p:inputNumber value="#{mealBean.mealStatCarbs}" style="width: 75%;" disabled="true" decimalSeparator="." thousandSeparator=""/>
+				<p:outputLabel value="Fats"></p:outputLabel><br></br>
+				<p:inputNumber value="#{mealBean.mealStatFats}" style="width: 72%;" disabled="true" decimalSeparator="." thousandSeparator=""/>
+				<p:outputLabel value="Total Calories"></p:outputLabel><br></br>
+				<p:inputNumber value="#{mealBean.mealStatTotalCalories}" style="width: 72%;" disabled="true" decimalSeparator="." thousandSeparator=""/>
+			</p:panel>
+			<p:panel style="height:250px;width:800px;">
+			<f:facet name="header">
+         			 <h:outputText value="Target" />
+        		</f:facet>
+				<p:outputLabel value="Protein"></p:outputLabel><br></br>
+				<p:inputNumber value="#{mealBean.targetProteinCounter}" style="width: 72%;" disabled="true" decimalSeparator="." thousandSeparator=""/>
+				<p:outputLabel value="Carbs" ></p:outputLabel><br></br>
+				<p:inputNumber value="#{mealBean.targetCarbsCounter}" style="width: 75%;" disabled="true" decimalSeparator="." thousandSeparator=""/>
+				<p:outputLabel value="Fats"></p:outputLabel><br></br>
+				<p:inputNumber value="#{mealBean.targetFatsnCounter}" style="width: 72%;" disabled="true" decimalSeparator="." thousandSeparator=""/>
+			</p:panel>
+			
+			</p:panelGrid>
+			<p:panelGrid styleClass="noBorderGrid">
+    	   	<p:row> 
+    	   	  <p:column style="text-align:center;">
+ 				<p:commandButton id="generateReportButton" value="Generate Report" icon="ui-icon-pencil" actionListener="#{mealBean.saveMeals()}" ajax="false"  style="width:10%;height:40px;">
+ 					<p:fileDownload value="#{mealBean.fileManager.downloadedFile}" />
+ 				</p:commandButton>
+ 				<p:commandButton id="backButton" value="Back" action="clientInfo" ajax="false" immediate="true"  style="width:10%;height:40px;"/>
+ 				<p:commandButton id="gotoHome" value="Home" action="home" style="width:10%;height:40px;"
+						ajax="false" immediate="true"/>
+			  </p:column>
+			</p:row>
+		</p:panelGrid>
+			<p:blockUI block="dataForm" trigger="generateReportButton"> LOADING<br />
+		</p:blockUI>
+	</h:form>
+	
+	<p:dialog id="addToMealDialog"
+			header="Add To Meal List" modal="true"
+			widgetVar="addToMealDialog" dynamic="true" resizable="true"
+			maximizable="true" showEffect="fade" hideEffect="explode">
+			<p:outputPanel id="addToMealPanel">
+				<h:form id="addToMealForm" enctype="multipart/form-data">
+					<h:panelGrid id="addToMealPanelGrid">
+						<p:row>
+						<p:column>
+							<p:outputLabel value="Portion(gm)" for="portionInput" />
+						</p:column>
+						<p:column>
+							<p:inputNumber id="portionInput" value="#{mealBean.selectedSubMeal.ingerdientPortion}" decimalPlaces="1" thousandSeparator="" decimalSeparator="." requiredMessage="please enter portion field to add" required="true"></p:inputNumber>
+						</p:column>
+						</p:row>
+						
+						<p:row>
+						<p:column>
+							<p:outputLabel value="Select Meal" /><br></br>
+						</p:column>
+						<p:column>
+							<p:selectOneMenu id="selectMeal" value="#{mealBean.selectedSubMeal.meal.id}" style="width:150px" required="true" requiredMessage="please select a meal to add">
+              				<f:selectItem itemLabel="Select Meal" itemValue="" noSelectionOption="true" />
+               				<f:selectItems value="#{mealBean.mealList}"
+										var="mealVar" itemValue="#{mealVar.id}"
+										itemLabel="#{mealVar.mealDescription}" />
+          					</p:selectOneMenu>
+						</p:column>
+						</p:row>
+					</h:panelGrid>
+					<p:commandButton id="addMealButton"
+						value="Add"
+						action="#{mealBean.addIngerdientsToMeal()}" ajax="false"/>
+					<p:commandButton id="closeButton"
+						value="Close"
+						onclick="PF('addToMealDialog').hide()" type="button" />
+				</h:form>
+			</p:outputPanel>
+		</p:dialog>
+		
+		
+		
+		<p:dialog id="AddIngerdientsDialog"
+			header="Add Ingerdient per 100 gm" modal="true"
+			widgetVar="AddIngerdientsDialog" dynamic="true" resizable="true"
+			maximizable="true" showEffect="fade" hideEffect="explode">
+			<p:outputPanel id="addIngerdientPanel">
+				<h:form id="addIngerdientForm" enctype="multipart/form-data">
+					<h:panelGrid id="addIngerdientPanelGrid">
+					
+					<p:row>			
+						<p:column>
+							<p:outputLabel value="Food Name" for="foodNameInput" />
+						</p:column>
+						<p:column>
+						<p:inputText id="foodNameInput" value="#{mealBean.selectedStandardIngerdients.name}" required="true" requiredMessage="please enter food name to add"></p:inputText>
+						</p:column>
+						</p:row>
+					
+						<p:row>			
+						<p:column>
+							<p:outputLabel value="Protiens" for="proteinsInput"/>
+						</p:column>
+						<p:column>
+							<p:inputNumber id="proteinsInput" value="#{mealBean.selectedStandardIngerdients.containedProtiens}" decimalPlaces="1" thousandSeparator="" decimalSeparator="." required="true" requiredMessage="please enter protein field to add"></p:inputNumber>
+						</p:column>
+						</p:row>
+						
+						<p:row>			
+						<p:column>
+							<p:outputLabel value="Carbs" for="carbsInput" />
+						</p:column>
+						<p:column>
+							<p:inputNumber id="carbsInput" value="#{mealBean.selectedStandardIngerdients.containedCarbs}" decimalPlaces="1" thousandSeparator="" decimalSeparator="." required="true" requiredMessage="please enter carbs field to add"></p:inputNumber>
+						</p:column>
+						</p:row>
+						
+						
+						<p:row>			
+						<p:column>
+							<p:outputLabel value="Fats" for="fatsInput" />
+						</p:column>
+						<p:column>
+							<p:inputNumber id="fatsInput" value="#{mealBean.selectedStandardIngerdients.containedFats}" decimalPlaces="1" thousandSeparator="" decimalSeparator="." required="true" requiredMessage="please enter fats field to add"></p:inputNumber>
+						</p:column>
+						</p:row>
+						
+						<p:row>			
+						<p:column>
+							<p:outputLabel value="Total Calories" for="totalCaloriesInput" />
+						</p:column>
+						<p:column>
+							<p:inputNumber id="totalCaloriesInput" value="#{mealBean.selectedStandardIngerdients.totalCalories}" decimalPlaces="1" thousandSeparator="" decimalSeparator="." required="true" requiredMessage="please enter totalCalories field to add"></p:inputNumber>
+						</p:column>
+						</p:row>
+					</h:panelGrid>
+					<br></br>
+					<p:fileUpload id="chooseLink" label="Browse Imgae"
+						fileUploadListener="#{mealBean.handleFileUpload}"
+						dragDropSupport="false" mode="advanced" skinSimple="true"
+						allowTypes="/(\.|\/)(gif|jpe?g|png)$/" fileLimit="1"
+						process="@this" update=":growlForm:growl @this"
+						uploadLabel="Upload"
+						cancelLabel="Cancel">
+					</p:fileUpload>
+					<p:commandButton id="addMealButton"
+						value="Add"
+						action="#{mealBean.saveIngerdients()}" ajax="false" />
+					<p:commandButton id="closeButton"
+						value="Close"
+						onclick="PF('AddIngerdientsDialog').hide()" type="button" />
+				</h:form>
+			</p:outputPanel>
+		</p:dialog>
+	
+</h:body>
+</html>

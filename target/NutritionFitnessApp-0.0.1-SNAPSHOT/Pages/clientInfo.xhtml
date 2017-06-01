@@ -1,0 +1,274 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions">
+
+
+<h:head>
+	<h:outputStylesheet library="css" name="standard.css" />
+
+</h:head>
+<h:body>
+	<h:form prependId="false" id="growlForm">
+		<p:growl id="growl" showDetail="false" />
+	</h:form>
+	<h:form id="dataForm">
+		<p:panelGrid style="table-layout:fixed; text-align:left">
+			<p:panel>
+				<f:facet name="header">
+					<h:outputText value="Client Personal Info" />
+				</f:facet>
+				<p:row>
+					<p:column>
+						<p:outputLabel for="firstName" value="First Name"></p:outputLabel>
+					</p:column>
+					<p:column>
+						<p:inputText id="firstName" value="#{clientBean.client.firstName}"></p:inputText>
+					</p:column>
+					<p:column>
+						<p:outputLabel for="lastName" value="Last Name"></p:outputLabel>
+					</p:column>
+					<p:column>
+						<p:inputText id="lastName" value="#{clientBean.client.lastName}"></p:inputText>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column>
+						<p:outputLabel for="email" value="Email"></p:outputLabel>
+					</p:column>
+					<p:column>
+						<p:inputText id="email" value="#{clientBean.client.email}"
+							required="true"
+							requiredMessage="Email Required Field To Save Client"
+							validatorMessage="Invalid email format">
+							<f:validateRegex
+								pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+						</p:inputText>
+						<p:watermark for="email" value="Email Address *" />
+					</p:column>
+					<p:column>
+						<p:outputLabel for="phoneNumber" value="Phone Number"></p:outputLabel>
+					</p:column>
+					<p:column>
+						<p:inputText id="phoneNumber"
+							value="#{clientBean.client.phoneNumber}"></p:inputText>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column>
+						<p:outputLabel for="age" value="Age"></p:outputLabel>
+					</p:column>
+					<p:column>
+						<p:inputText id="age" value="#{clientBean.client.age}"></p:inputText>
+					</p:column>
+					<p:column>
+						<p:outputLabel for="gender" value="Gender"></p:outputLabel>
+					</p:column>
+					<p:column>
+						<p:selectOneRadio id="gender" value="#{clientBean.client.gender}">
+							<f:selectItem itemLabel="Male" itemValue="M" />
+							<f:selectItem itemLabel="Female" itemValue="F" />
+						</p:selectOneRadio>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column>
+						<p:outputLabel for="height" value="Height"></p:outputLabel>
+					</p:column>
+					<p:column>
+						<p:inputNumber id="height" decimalSeparator="."
+							thousandSeparator=""
+							value="#{clientBean.client.nutritionInfo.height}" required="true"
+							requiredMessage="Height Required Field To Save Client"></p:inputNumber>
+					</p:column>
+
+					<p:column>
+						<p:outputLabel for="weight" value="Weight"></p:outputLabel>
+					</p:column>
+					<p:column>
+						<p:inputNumber id="weight"
+							value="#{clientBean.client.nutritionInfo.weight}" required="true"
+							requiredMessage="Weight Required Field To Save Client"></p:inputNumber>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column>
+						<p:outputLabel for="bodyFat" value="Body Fat"></p:outputLabel>
+					</p:column>
+					<p:column>
+						<p:inputNumber id="bodyFat" decimalPlaces="0" thousandSeparator=""
+							symbol="%" symbolPosition="s" emptyValue="sign"
+							value="#{clientBean.client.nutritionInfo.bodyFat}"
+							required="true"
+							requiredMessage="Body Fat Required Field To Save Client"></p:inputNumber>
+					</p:column>
+					<p:column>
+						<p:outputLabel for="goal" value="Goal"></p:outputLabel>
+					</p:column>
+					<p:column>
+						<p:selectOneRadio id="goal"
+							value="#{clientBean.client.nutritionInfo.goal}" required="true"
+							requiredMessage="Goal Required Field To Save Client">
+							<f:selectItem itemLabel="To Cut" itemValue="0" />
+							<f:selectItem itemLabel="To Bulk" itemValue="1" />
+							<p:ajax event="click" process="@this"
+								listener="#{clientBean.checkGoal()}"
+								update="toCutPanel toBulkPanel leanMass BMR TEE TACN"></p:ajax>
+						</p:selectOneRadio>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column>
+						<p:outputLabel for="activityRate" value="Activity Rate"></p:outputLabel>
+					</p:column>
+					<p:column>
+						<p:inputNumber id="activityRate" decimalPlaces="1"
+							decimalSeparator="." thousandSeparator=""
+							value="#{clientBean.client.nutritionInfo.activityRate}"
+							required="true"
+							requiredMessage="Activity Rate Required Field To Save Client"></p:inputNumber>
+					</p:column>
+				</p:row>
+
+				<p:panelGrid styleClass="noBorderGrid">
+					<p:row>
+						<p:column style="text-align:center;">
+							<p:commandButton value="Calculate"
+								action="#{clientBean.calculateClientNutritionInfo()}"
+								ajax="false"></p:commandButton>
+						</p:column>
+					</p:row>
+				</p:panelGrid>
+
+			</p:panel>
+		</p:panelGrid>
+		<p:panelGrid>
+			<p:panel id="calculatedValues">
+				<f:facet name="header">
+					<h:outputText value="Calculated Nutrition Values" />
+				</f:facet>
+				<p:row>
+					<p:column>
+						<p:outputLabel for="leanMass" value="Lean Mass"></p:outputLabel>
+						<br></br>
+						<p:inputNumber id="leanMass" decimalSeparator="."
+							style="width: 20%;" thousandSeparator="" readonly="true"
+							value="#{clientBean.client.nutritionInfo.leanMass}" />
+					</p:column>
+					<p:column>
+						<p:outputLabel for="BMR" value="BMR"></p:outputLabel>
+						<br></br>
+						<p:inputNumber id="BMR" decimalSeparator="." thousandSeparator=""
+							style="width: 20%;" readonly="true"
+							value="#{clientBean.client.nutritionInfo.BMR}" />
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column>
+						<p:outputLabel for="TEE" value="TEE"></p:outputLabel>
+						<br></br>
+						<p:inputNumber id="TEE" decimalSeparator="." thousandSeparator=""
+							style="width: 20%;" readonly="true"
+							value="#{clientBean.client.nutritionInfo.TEE}" />
+					</p:column>
+					<p:column>
+						<p:outputLabel for="TACN" value="TACN"></p:outputLabel>
+						<br></br>
+						<p:inputNumber id="TACN" decimalSeparator="." thousandSeparator=""
+							style="width: 20%;" readonly="true"
+							value="#{clientBean.client.nutritionInfo.TACN}" />
+					</p:column>
+				</p:row>
+			</p:panel>
+		</p:panelGrid>
+		<p:outputPanel autoUpdate="true">
+			<p:panel id="toCutPanel" rendered="#{clientBean.toCutFlag}">
+				<f:facet name="header">
+					<h:outputText value="To Cut Values" />
+				</f:facet>
+				<p:row>
+					<p:column>
+						<p:outputLabel for="proteinToCut" value="Protein To Cut"></p:outputLabel>
+						<br></br>
+						<p:inputNumber id="proteinToCut" decimalSeparator="."
+							thousandSeparator="" readonly="true" disabled="true"
+							style="width: 10%;"
+							value="#{clientBean.client.nutritionInfo.proteinToCut}" />
+					</p:column>
+
+					<p:column>
+						<p:outputLabel for="fatsToCut" value="Fats To Cut"></p:outputLabel>
+						<br></br>
+						<p:inputNumber id="fatsToCut" decimalSeparator="."
+							thousandSeparator="" readonly="true" disabled="true"
+							style="width: 10%;"
+							value="#{clientBean.client.nutritionInfo.fatsToCut}" />
+					</p:column>
+
+					<p:column>
+						<p:outputLabel for="carbsTocut" value="Carbs To cut"></p:outputLabel>
+						<br></br>
+						<p:inputNumber id="carbsTocut" decimalSeparator="."
+							thousandSeparator="" readonly="true" disabled="true"
+							style="width: 10%;"
+							value="#{clientBean.client.nutritionInfo.carbsTocut}" />
+					</p:column>
+				</p:row>
+			</p:panel>
+		</p:outputPanel>
+
+		<p:outputPanel autoUpdate="true">
+			<p:panel id="toBulkPanel" rendered="#{!clientBean.toCutFlag}">
+				<f:facet name="header">
+					<h:outputText value="To Bulk Values" />
+				</f:facet>
+				<p:row>
+					<p:column>
+						<p:outputLabel for="proteinToBulk" value="Protein To Bulk"></p:outputLabel>
+						<br></br>
+						<p:inputNumber id="proteinToBulk" decimalSeparator="."
+							thousandSeparator="" readonly="true" disabled="true"
+							style="width: 10%;"
+							value="#{clientBean.client.nutritionInfo.proteinToBulk}" />
+					</p:column>
+					<p:column>
+						<p:outputLabel for="fatsToBulk" value="Fats To Bulk"></p:outputLabel>
+						<br></br>
+						<p:inputNumber id="fatsToBulk" decimalSeparator="."
+							thousandSeparator="" readonly="true" disabled="true"
+							style="width: 10%;"
+							value="#{clientBean.client.nutritionInfo.fatsToBulk}" />
+					</p:column>
+					<p:column>
+						<p:outputLabel for="carbsToBulk" value="Carbs To Bulk"></p:outputLabel>
+						<br></br>
+						<p:inputNumber id="carbsToBulk" decimalSeparator="."
+							thousandSeparator="" readonly="true" disabled="true"
+							style="width: 10%;"
+							value="#{clientBean.client.nutritionInfo.carbsToBulk}" />
+					</p:column>
+				</p:row>
+
+			</p:panel>
+		</p:outputPanel>
+		<p:panelGrid styleClass="noBorderGrid">
+			<p:row>
+				<p:column style="text-align:center;">
+					<p:commandButton id="editSaveButton" value="Save"
+						icon="ui-icon-pencil" actionListener="#{clientBean.saveClient()}" action="#{mealBean.initMealSelection(clientBean.goToMealInfo)}"
+						update=":growlForm:growl" />
+					<p:commandButton id="gotoHome" value="Home" action="home"
+						ajax="false" immediate="true" />
+				</p:column>
+			</p:row>
+		</p:panelGrid>
+		<p:blockUI block="dataForm" trigger="editSaveButton"> LOADING<br />
+		</p:blockUI>
+
+	</h:form>
+</h:body>
+</html>

@@ -1,0 +1,100 @@
+body { 
+    background-color:#4d4d4d!important; 
+}
+td {
+    font-family:  Verdana, Geneva, sans-serif;
+    font-size: 9pt!important;
+}
+
+table, form{
+	margin: 0px;
+	width: 100%;
+} 
+
+.ui-growl{
+    position: fixed;
+    top: 10%;
+    right: 10%;
+    width: auto;
+}
+
+.ui-growl-info{
+    background-color: #8ef09d!important;
+}
+
+.ui-growl-error{
+    background-color: #ff6c6c!important;
+}
+
+.ui-growl-message {
+    padding: 0 0 5px 0;
+    width: 95%;
+    float: left;
+    font-size: 9pt!important;
+}
+
+.ui-dialog .ui-dialog-content {
+    overflow: hidden!important; 
+    width: auto!important;
+    padding: .2em 2em;
+}
+
+.noBorderGrid.ui-panelgrid>*>tr,
+.noBorderGrid.ui-panelgrid>*>tr>td {
+    border: none;
+    text-align: left;
+    background:none;
+}
+     
+}
+
+.ui-panelgrid{
+	border: none;
+    table-layout:fixed;
+    text-align: left; 
+}
+input {
+     width: 100%;
+}
+
+.ui-inputfield, .ui-widget-content .ui-inputfield, .ui-widget-header .ui-inputfield{
+	box-shadow: none!important;	
+}
+
+.ui-inputfield{
+	margin-top: 3pt!important;
+}
+
+.ui-panelgrid .ui-panelgrid-cell{
+	padding: 4pt 10pt!important;
+} 
+
+.ui-widget-header{
+	font-size: 10pt!important;
+}
+
+.ui-widget .ui-widget{
+	font-size: 0.9em!important;
+}
+
+.ui-widget .ui-widget .ui-widget{
+	font-size: 10pt!important;
+}
+
+.ui-panelgrid .ui-panelgrid-cell {
+    font-size: 9pt !important;
+}
+
+.ui-datatable .ui-paginator, .ui-datatable .ui-paginator {
+    font-size: 8pt !important;
+}
+
+.ui-button.ui-widget.ui-state-default.ui-corner-all.ui-button-text-icon-left {
+    margin-right: 0.6em;
+    font-size: 10pt!important;
+    background-color:#f08080!important;
+}
+
+.ui-fieldset, .ui-fieldset .ui-fieldset-legend {
+    margin-bottom: 10pt !important;
+}

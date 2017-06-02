@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions">
+
+<h:head>
+	<h:outputStylesheet library="css" name="standard.css" />
+</h:head>
+<h:body>
+<h:form prependId="false" id="growlForm">
+		<p:growl id="growl" showDetail="false" />
+	</h:form>
+	<h:form>
+		<p:dataTable id="clientsTable" widgetVar="clientsTable" value="#{clientBean.allClients}"
+			rows="50" resizableColumns="true" selectionMode="single" var="client"
+			rowKey="#{client.getClientId()}" selection="#{clientBean.client}" tableStyle="table-layout: auto"
+			style="padding-top:10px;padding-bottom:10px" paginator="true" 
+			paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
+			<p:column headerText="Fisrt Name" sortBy="#{client.firstName}"
+				filterBy="#{client.firstName}">
+				<h:outputText value="#{client.firstName}" />
+			</p:column>
+			<p:column headerText="Last Name" sortBy="#{client.lastName}"
+				filterBy="#{client.lastName}">
+				<h:outputText value="#{client.lastName}" />
+			</p:column>
+			<p:column headerText="Email" sortBy="#{client.email}"
+				filterBy="#{client.email}">
+				<h:outputText value="#{client.email}" />
+			</p:column>
+		</p:dataTable>
+
+
+		<p:panelGrid styleClass="noBorderGrid">
+			<p:row>
+				<p:column style="text-align:center;">
+					<p:commandButton action="#{clientBean.goToEditClient()}"
+						value="Edit" icon="ui-icon-pencil" ajax="false"
+						style="width:10%;height:40px;"></p:commandButton>
+					<p:commandButton id="gotoHome" value="Back" action="home" style="width:10%;height:40px;"
+						ajax="false" immediate="true"/>
+				</p:column>
+			</p:row>
+		</p:panelGrid>
+
+
+	</h:form>
+</h:body>
+</html>

@@ -48,8 +48,8 @@
 		 <p:panelGrid styleClass="noBorderGrid">
     	   	<p:row> 
     	   	  <p:column style="text-align:center;">
- 				<p:commandButton id="saveButton" value="Add Ingerdient" icon="ui-icon-create" action="#{mealBean.showAddIngerdientsDialog()}" update="AddIngerdientsDialog"/>
- 				<p:commandButton id="deleteButton" value="Delete Ingerdient" icon="ui-icon-trash" action="#{mealBean.deleteIngerdient}" ajax="false"/>
+ 				<p:commandButton id="saveButton" style="width:10%;height:40px;" value="Add Ingerdient" icon="ui-icon-create" action="#{mealBean.showAddIngerdientsDialog()}" update="AddIngerdientsDialog"/>
+ 				<p:commandButton id="deleteButton"  style="width:10%;height:40px;" value="Delete Ingerdient" icon="ui-icon-trash" action="#{mealBean.deleteIngerdient}" ajax="false"/>
 			  </p:column>
 			</p:row>
 		</p:panelGrid>
@@ -72,7 +72,7 @@
 						</f:facet>
 						<p:commandButton id="removeMeal" value="Remove" icon="ui-icon-trash"
 							action="#{mealBean.removeSubMealFromMealList1(subMeal)}" immediate="true"
-							title="Reomve" ajax="false">
+							title="Remove" ajax="false">
 						</p:commandButton>
 						<p:tooltip for="removeMeal" value="Reomve"
 							showEffect="fade" hideEffect="fade" />
@@ -95,7 +95,7 @@
 						</f:facet>
 						<p:commandButton id="removeMeal2" value="Remove" icon="ui-icon-trash"
 							action="#{mealBean.removeSubMealFromMealList2(subMeal)}" immediate="true"
-							title="Reomve" ajax="false">
+							title="Remove" ajax="false">
 						</p:commandButton>
 						<p:tooltip for="removeMeal2" value="Reomve"
 							showEffect="fade" hideEffect="fade" />
@@ -119,7 +119,7 @@
 						</f:facet>
 						<p:commandButton id="removeMeal3" value="Remove" icon="ui-icon-trash"
 							action="#{mealBean.removeSubMealFromMealList3(subMeal)}" immediate="true"
-							title="Reomve" ajax="false">
+							title="Remove" ajax="false">
 						</p:commandButton>
 						<p:tooltip for="removeMeal3" value="Reomve"
 							showEffect="fade" hideEffect="fade" />
@@ -143,7 +143,7 @@
 						</f:facet>
 						<p:commandButton id="removeMeal4" value="Remove" icon="ui-icon-trash"
 							action="#{mealBean.removeSubMealFromMealList4(subMeal)}" immediate="true"
-							title="Reomve" ajax="false">
+							title="Remove" ajax="false">
 						</p:commandButton>
 						<p:tooltip for="removeMeal4" value="Reomve"
 							showEffect="fade" hideEffect="fade" />
@@ -154,7 +154,7 @@
 		<br></br><br></br><br></br>
 		<h:panelGrid id="nutritionCalculatedInfoPanel" styleClass="nobordergrid" columns="4">
 		<p:panelGrid columns="2" style="width:350px">
-			<p:panel id="mealInfo1"  style="height:250px;width:150px;">
+			<p:panel id="mealInfo1"  style="height:250px;width:300px;">
 			<f:facet name="header">
          			 <h:outputText value="Meal1 Calc. Info" />
         		</f:facet>	
@@ -172,24 +172,13 @@
 				<p:outputLabel value="Calc. Total"></p:outputLabel><br></br>
 				<p:inputNumber value="#{mealBean.totalCounter1}" style="width: 72%;" disabled="true" decimalSeparator="." thousandSeparator=""/>
 			</p:panel>
-			<p:panel style="height:250px;width:150px;">
-			<f:facet name="header">
-         			 <h:outputText value="Target" />
-        		</f:facet>
-				<p:outputLabel value="Protein"></p:outputLabel><br></br>
-				<p:inputNumber value="#{mealBean.targetProteinCounter}" style="width: 72%;" disabled="true" decimalSeparator="." thousandSeparator=""/>
-				<p:outputLabel value="Carbs" ></p:outputLabel><br></br>
-				<p:inputNumber value="#{mealBean.targetCarbsCounter}" style="width: 75%;" disabled="true" decimalSeparator="." thousandSeparator=""/>
-				<p:outputLabel value="Fats"></p:outputLabel><br></br>
-				<p:inputNumber value="#{mealBean.targetFatsnCounter}" style="width: 72%;" disabled="true" decimalSeparator="." thousandSeparator=""/>
-			</p:panel>
 			</p:panelGrid>
 			
 			
 			
 			
 		<p:panelGrid columns="2" style="width:350px">
-			<p:panel id="mealInfo2"  style="height:250px;width:150px;">
+			<p:panel id="mealInfo2"  style="height:250px;width:300px;">
 			<f:facet name="header">
          			 <h:outputText value="Meal 2 Calc. Info" />
         		</f:facet>	
@@ -207,21 +196,10 @@
 				<p:outputLabel value="Calc. Total"></p:outputLabel><br></br>
 				<p:inputNumber value="#{mealBean.totalCounter2}" style="width: 72%;" disabled="true" decimalSeparator="." thousandSeparator=""/>
 			</p:panel>
-			<p:panel style="height:250px;width:150px;">
-			<f:facet name="header">
-         			 <h:outputText value="Target" />
-        		</f:facet>
-				<p:outputLabel value="Protein"></p:outputLabel><br></br>
-				<p:inputNumber value="#{mealBean.targetProteinCounter}" style="width: 72%;" disabled="true" decimalSeparator="." thousandSeparator=""/>
-				<p:outputLabel value="Carbs" ></p:outputLabel><br></br>
-				<p:inputNumber value="#{mealBean.targetCarbsCounter}" style="width: 75%;" disabled="true" decimalSeparator="." thousandSeparator=""/>
-				<p:outputLabel value="Fats"></p:outputLabel><br></br>
-				<p:inputNumber value="#{mealBean.targetFatsnCounter}" style="width: 72%;" disabled="true" decimalSeparator="." thousandSeparator=""/>
-			</p:panel>
 			</p:panelGrid>
 			
 			<p:panelGrid columns="2" style="width:350px">
-			<p:panel id="mealInfo3"  style="height:250px;width:150px;">
+			<p:panel id="mealInfo3"  style="height:250px;width:300px;">
 			<f:facet name="header">
          			 <h:outputText value="Meal 3 Calc. Info" />
         		</f:facet>	
@@ -239,22 +217,10 @@
 				<p:outputLabel value="Calc. Total"></p:outputLabel><br></br>
 				<p:inputNumber value="#{mealBean.totalCounter3}" style="width: 72%;" disabled="true" decimalSeparator="." thousandSeparator=""/>
 			</p:panel>
-			<p:panel style="height:250px;width:150px;">
-			<f:facet name="header">
-         			 <h:outputText value="Target" />
-        		</f:facet>
-				<p:outputLabel value="Protein"></p:outputLabel><br></br>
-				<p:inputNumber value="#{mealBean.targetProteinCounter}" style="width: 72%;" disabled="true" decimalSeparator="." thousandSeparator=""/>
-				<p:outputLabel value="Carbs" ></p:outputLabel><br></br>
-				<p:inputNumber value="#{mealBean.targetCarbsCounter}" style="width: 75%;" disabled="true" decimalSeparator="." thousandSeparator=""/>
-				<p:outputLabel value="Fats"></p:outputLabel><br></br>
-				<p:inputNumber value="#{mealBean.targetFatsnCounter}" style="width: 72%;" disabled="true" decimalSeparator="." thousandSeparator=""/>
-				
-			</p:panel>
 			</p:panelGrid>
 			
 			<p:panelGrid columns="2" style="width:350px">
-			<p:panel id="mealInfo4"  style="height:250px;width:150px;">
+			<p:panel id="mealInfo4"  style="height:250px;width:300px;">
 			<f:facet name="header">
          			 <h:outputText value="Meal 4 Calc. Info" />
         		</f:facet>	
@@ -272,7 +238,24 @@
 				<p:outputLabel value="Calc. Total"></p:outputLabel><br></br>
 				<p:inputNumber value="#{mealBean.totalCounter4}" style="width: 72%;" disabled="true" decimalSeparator="." thousandSeparator=""/>
 			</p:panel>
-			<p:panel style="height:250px;width:150px;">
+			</p:panelGrid>
+			</h:panelGrid>
+			<br></br><br></br><br></br>
+			<p:panelGrid  id="totalnutritionCalculatedInfoPanel" columns="2" style="height:250px;width:1600px;">
+			<p:panel style="height:250px;width:800px;">
+			<f:facet name="header">
+         			 <h:outputText value="Total Meal Stats" />
+        		</f:facet>
+				<p:outputLabel value="Protein"></p:outputLabel><br></br>
+				<p:inputNumber value="#{mealBean.mealStatProtein}" style="width: 72%;" disabled="true" decimalSeparator="." thousandSeparator=""/>
+				<p:outputLabel value="Carbs" ></p:outputLabel><br></br>
+				<p:inputNumber value="#{mealBean.mealStatCarbs}" style="width: 75%;" disabled="true" decimalSeparator="." thousandSeparator=""/>
+				<p:outputLabel value="Fats"></p:outputLabel><br></br>
+				<p:inputNumber value="#{mealBean.mealStatFats}" style="width: 72%;" disabled="true" decimalSeparator="." thousandSeparator=""/>
+				<p:outputLabel value="Total Calories"></p:outputLabel><br></br>
+				<p:inputNumber value="#{mealBean.mealStatTotalCalories}" style="width: 72%;" disabled="true" decimalSeparator="." thousandSeparator=""/>
+			</p:panel>
+			<p:panel style="height:250px;width:800px;">
 			<f:facet name="header">
          			 <h:outputText value="Target" />
         		</f:facet>
@@ -282,19 +265,23 @@
 				<p:inputNumber value="#{mealBean.targetCarbsCounter}" style="width: 75%;" disabled="true" decimalSeparator="." thousandSeparator=""/>
 				<p:outputLabel value="Fats"></p:outputLabel><br></br>
 				<p:inputNumber value="#{mealBean.targetFatsnCounter}" style="width: 72%;" disabled="true" decimalSeparator="." thousandSeparator=""/>
-				
 			</p:panel>
+			
 			</p:panelGrid>
-			</h:panelGrid>
 			<p:panelGrid styleClass="noBorderGrid">
     	   	<p:row> 
     	   	  <p:column style="text-align:center;">
- 				<p:commandButton id="generateReportButton" value="Generate Report" icon="ui-icon-pencil" action="#{mealBean.saveMeals()}" update=":growlForm:growl"/>
- 				<p:commandButton id="backButton" value="Back" action="clientInfo" ajax="false" immediate="true"/>
+ 				<p:commandButton id="generateReportButton" value="Generate Report" icon="ui-icon-pencil" actionListener="#{mealBean.saveMeals()}" ajax="false"  style="width:10%;height:40px;">
+ 					<p:fileDownload value="#{mealBean.fileManager.downloadedFile}" />
+ 				</p:commandButton>
+ 				<p:commandButton id="backButton" value="Back" action="clientInfo" ajax="false" immediate="true"  style="width:10%;height:40px;"/>
+ 				<p:commandButton id="gotoHome" value="Home" action="home" style="width:10%;height:40px;"
+						ajax="false" immediate="true"/>
 			  </p:column>
 			</p:row>
 		</p:panelGrid>
-			
+			<p:blockUI block="dataForm" trigger="generateReportButton"> LOADING<br />
+		</p:blockUI>
 	</h:form>
 	
 	<p:dialog id="addToMealDialog"

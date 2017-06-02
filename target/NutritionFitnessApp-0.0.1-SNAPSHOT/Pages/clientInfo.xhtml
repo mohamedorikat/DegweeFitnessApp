@@ -27,13 +27,13 @@
 						<p:outputLabel for="firstName" value="First Name"></p:outputLabel>
 					</p:column>
 					<p:column>
-						<p:inputText id="firstName" value="#{clientBean.client.firstName}"></p:inputText>
+						<p:inputText id="firstName" value="#{clientBean.client.firstName}" required="true" requiredMessage="First Name Required Field To Save Client"></p:inputText>
 					</p:column>
 					<p:column>
 						<p:outputLabel for="lastName" value="Last Name"></p:outputLabel>
 					</p:column>
 					<p:column>
-						<p:inputText id="lastName" value="#{clientBean.client.lastName}"></p:inputText>
+						<p:inputText id="lastName" value="#{clientBean.client.lastName}" required="true" requiredMessage="Last Name Required Field To Save Client "></p:inputText>
 					</p:column>
 				</p:row>
 				<p:row>
@@ -137,7 +137,7 @@
 				<p:panelGrid styleClass="noBorderGrid">
 					<p:row>
 						<p:column style="text-align:center;">
-							<p:commandButton value="Calculate"
+							<p:commandButton value="Calculate" style="height:100px;width:5%;"
 								action="#{clientBean.calculateClientNutritionInfo()}"
 								ajax="false"></p:commandButton>
 						</p:column>
@@ -146,8 +146,9 @@
 
 			</p:panel>
 		</p:panelGrid>
-		<p:panelGrid>
-			<p:panel id="calculatedValues">
+
+		<p:panel id="calculatedValues">
+			<p:panelGrid columns="2">
 				<f:facet name="header">
 					<h:outputText value="Calculated Nutrition Values" />
 				</f:facet>
@@ -160,7 +161,7 @@
 							value="#{clientBean.client.nutritionInfo.leanMass}" />
 					</p:column>
 					<p:column>
-						<p:outputLabel for="BMR" value="BMR"></p:outputLabel>
+						<p:outputLabel for="BMR" value="Basic Metabolic rate"></p:outputLabel>
 						<br></br>
 						<p:inputNumber id="BMR" decimalSeparator="." thousandSeparator=""
 							style="width: 20%;" readonly="true"
@@ -169,100 +170,99 @@
 				</p:row>
 				<p:row>
 					<p:column>
-						<p:outputLabel for="TEE" value="TEE"></p:outputLabel>
+						<p:outputLabel for="TEE" value="Total Energy Expendature"></p:outputLabel>
 						<br></br>
 						<p:inputNumber id="TEE" decimalSeparator="." thousandSeparator=""
 							style="width: 20%;" readonly="true"
 							value="#{clientBean.client.nutritionInfo.TEE}" />
 					</p:column>
 					<p:column>
-						<p:outputLabel for="TACN" value="TACN"></p:outputLabel>
+						<p:outputLabel for="TACN" value="Total Calories Needed"></p:outputLabel>
 						<br></br>
 						<p:inputNumber id="TACN" decimalSeparator="." thousandSeparator=""
 							style="width: 20%;" readonly="true"
 							value="#{clientBean.client.nutritionInfo.TACN}" />
 					</p:column>
 				</p:row>
-			</p:panel>
-		</p:panelGrid>
+			</p:panelGrid>
+		</p:panel>
+
 		<p:outputPanel autoUpdate="true">
 			<p:panel id="toCutPanel" rendered="#{clientBean.toCutFlag}">
-				<f:facet name="header">
-					<h:outputText value="To Cut Values" />
-				</f:facet>
-				<p:row>
-					<p:column>
-						<p:outputLabel for="proteinToCut" value="Protein To Cut"></p:outputLabel>
-						<br></br>
-						<p:inputNumber id="proteinToCut" decimalSeparator="."
-							thousandSeparator="" readonly="true" disabled="true"
-							style="width: 10%;"
-							value="#{clientBean.client.nutritionInfo.proteinToCut}" />
-					</p:column>
+				<p:panelGrid columns="3">
+					<f:facet name="header">
+						<h:outputText value="To Cut Values" />
+					</f:facet>
+					<p:row>
+						<p:column>
+							<p:outputLabel for="proteinToCut" value="Protein To Cut"></p:outputLabel>
+							<br></br>
+							<p:inputNumber id="proteinToCut" decimalSeparator="."
+								thousandSeparator="" readonly="true" style="width: 20%;"
+								value="#{clientBean.client.nutritionInfo.proteinToCut}" />
+						</p:column>
 
-					<p:column>
-						<p:outputLabel for="fatsToCut" value="Fats To Cut"></p:outputLabel>
-						<br></br>
-						<p:inputNumber id="fatsToCut" decimalSeparator="."
-							thousandSeparator="" readonly="true" disabled="true"
-							style="width: 10%;"
-							value="#{clientBean.client.nutritionInfo.fatsToCut}" />
-					</p:column>
+						<p:column>
+							<p:outputLabel for="fatsToCut" value="Fats To Cut"></p:outputLabel>
+							<br></br>
+							<p:inputNumber id="fatsToCut" decimalSeparator="."
+								thousandSeparator="" readonly="true" style="width: 20%;"
+								value="#{clientBean.client.nutritionInfo.fatsToCut}" />
+						</p:column>
 
-					<p:column>
-						<p:outputLabel for="carbsTocut" value="Carbs To cut"></p:outputLabel>
-						<br></br>
-						<p:inputNumber id="carbsTocut" decimalSeparator="."
-							thousandSeparator="" readonly="true" disabled="true"
-							style="width: 10%;"
-							value="#{clientBean.client.nutritionInfo.carbsTocut}" />
-					</p:column>
-				</p:row>
+						<p:column>
+							<p:outputLabel for="carbsTocut" value="Carbs To cut"></p:outputLabel>
+							<br></br>
+							<p:inputNumber id="carbsTocut" decimalSeparator="."
+								thousandSeparator="" readonly="true" style="width: 20%;"
+								value="#{clientBean.client.nutritionInfo.carbsTocut}" />
+						</p:column>
+					</p:row>
+				</p:panelGrid>
 			</p:panel>
 		</p:outputPanel>
 
 		<p:outputPanel autoUpdate="true">
 			<p:panel id="toBulkPanel" rendered="#{!clientBean.toCutFlag}">
-				<f:facet name="header">
-					<h:outputText value="To Bulk Values" />
-				</f:facet>
-				<p:row>
-					<p:column>
-						<p:outputLabel for="proteinToBulk" value="Protein To Bulk"></p:outputLabel>
-						<br></br>
-						<p:inputNumber id="proteinToBulk" decimalSeparator="."
-							thousandSeparator="" readonly="true" disabled="true"
-							style="width: 10%;"
-							value="#{clientBean.client.nutritionInfo.proteinToBulk}" />
-					</p:column>
-					<p:column>
-						<p:outputLabel for="fatsToBulk" value="Fats To Bulk"></p:outputLabel>
-						<br></br>
-						<p:inputNumber id="fatsToBulk" decimalSeparator="."
-							thousandSeparator="" readonly="true" disabled="true"
-							style="width: 10%;"
-							value="#{clientBean.client.nutritionInfo.fatsToBulk}" />
-					</p:column>
-					<p:column>
-						<p:outputLabel for="carbsToBulk" value="Carbs To Bulk"></p:outputLabel>
-						<br></br>
-						<p:inputNumber id="carbsToBulk" decimalSeparator="."
-							thousandSeparator="" readonly="true" disabled="true"
-							style="width: 10%;"
-							value="#{clientBean.client.nutritionInfo.carbsToBulk}" />
-					</p:column>
-				</p:row>
-
+				<p:panelGrid columns="3">
+					<f:facet name="header">
+						<h:outputText value="To Bulk Values" />
+					</f:facet>
+					<p:row>
+						<p:column>
+							<p:outputLabel for="proteinToBulk" value="Protein To Bulk"></p:outputLabel>
+							<br></br>
+							<p:inputNumber id="proteinToBulk" decimalSeparator="."
+								thousandSeparator="" readonly="true" style="width: 10%;"
+								value="#{clientBean.client.nutritionInfo.proteinToBulk}" />
+						</p:column>
+						<p:column>
+							<p:outputLabel for="fatsToBulk" value="Fats To Bulk"></p:outputLabel>
+							<br></br>
+							<p:inputNumber id="fatsToBulk" decimalSeparator="."
+								thousandSeparator="" readonly="true" style="width: 10%;"
+								value="#{clientBean.client.nutritionInfo.fatsToBulk}" />
+						</p:column>
+						<p:column>
+							<p:outputLabel for="carbsToBulk" value="Carbs To Bulk"></p:outputLabel>
+							<br></br>
+							<p:inputNumber id="carbsToBulk" decimalSeparator="."
+								thousandSeparator="" readonly="true" style="width: 10%;"
+								value="#{clientBean.client.nutritionInfo.carbsToBulk}" />
+						</p:column>
+					</p:row>
+				</p:panelGrid>
 			</p:panel>
 		</p:outputPanel>
 		<p:panelGrid styleClass="noBorderGrid">
 			<p:row>
 				<p:column style="text-align:center;">
 					<p:commandButton id="editSaveButton" value="Save"
-						icon="ui-icon-pencil" actionListener="#{clientBean.saveClient()}" action="#{mealBean.initMealSelection(clientBean.goToMealInfo)}"
-						update=":growlForm:growl" />
+						icon="ui-icon-pencil" actionListener="#{clientBean.saveClient()}"
+						action="#{mealBean.initMealSelection(clientBean.goToMealInfo)}"
+						update=":growlForm:growl" style="width:10%;height:40px;" />
 					<p:commandButton id="gotoHome" value="Home" action="home"
-						ajax="false" immediate="true" />
+						ajax="false" immediate="true" style="width:10%;height:40px;" />
 				</p:column>
 			</p:row>
 		</p:panelGrid>

@@ -20,6 +20,7 @@ com\degwee\daos\MealDao.class
 com\degwee\daos\ClientDao$2.class
 com\degwee\service\FormulasService.class
 com\degwee\utils\FileManger.class
+com\degwee\daos\ReportDao$1.class
 com\degwee\bean\MealBean.class
 com\degwee\daos\ClientDao.class
 com\degwee\daos\StandardIngerdientsDao$1.class
@@ -29,7 +30,9 @@ com\degwee\service\SubMealService.class
 com\degwee\model\ClientNutritionInfo.class
 com\degwee\bean\ClientBean.class
 com\degwee\daos\ClientNutritionInfoDao.class
+com\degwee\model\JasperParam.class
 com\degwee\model\Meal_Client.class
+com\degwee\utils\JasperIntegration.class
 com\degwee\model\FolderPath.class
 com\degwee\model\Client.class
 com\degwee\daos\ClientNutritionInfoDao$2.class

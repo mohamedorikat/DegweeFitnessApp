@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="MealReport" pageWidth="595" pageHeight="200" whenNoDataType="NoDataSection" columnWidth="595" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" whenResourceMissingType="Error" uuid="b81b473d-35d4-456a-a0f7-3f431170dbd2">
-	<property name="ireport.zoom" value="2.0"/>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="MealReport" pageWidth="534" pageHeight="200" whenNoDataType="NoDataSection" columnWidth="534" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" whenResourceMissingType="Error" uuid="b81b473d-35d4-456a-a0f7-3f431170dbd2">
+	<property name="ireport.zoom" value="1.5"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<parameter name="mealId" class="java.lang.String" isForPrompting="false">
@@ -20,12 +20,12 @@
 	<columnHeader>
 		<band height="15" splitType="Stretch">
 			<textField>
-				<reportElement positionType="Float" mode="Opaque" x="0" y="0" width="595" height="15" forecolor="#FFCC00" backcolor="#000000" uuid="4e9b2994-66f5-4f5a-bfda-e15ec577cea1"/>
+				<reportElement positionType="Float" mode="Opaque" x="0" y="0" width="534" height="15" forecolor="#FFA000" backcolor="#000000" uuid="4e9b2994-66f5-4f5a-bfda-e15ec577cea1"/>
 				<textElement>
 					<font fontName="Microsoft JhengHei"/>
 					<paragraph leftIndent="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA["MEAL"+$P{mealId}]]></textFieldExpression>
+				<textFieldExpression><![CDATA["MEAL "+$P{mealId}]]></textFieldExpression>
 			</textField>
 		</band>
 	</columnHeader>

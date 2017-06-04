@@ -73,21 +73,21 @@
 			<textField>
 				<reportElement positionType="Float" x="273" y="40" width="100" height="20" uuid="8cb4d324-e59d-4795-a498-ae1cb32802f9"/>
 				<textElement verticalAlignment="Middle">
-					<font size="8"/>
+					<font size="8" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{proteins}.concat( " gm" )]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement positionType="Float" x="273" y="61" width="100" height="20" uuid="87886c87-5930-42a9-8086-8a3c0e82fcbd"/>
 				<textElement verticalAlignment="Middle">
-					<font size="8"/>
+					<font size="8" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{carbohydrates}.concat( " gm" )]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement positionType="Float" x="273" y="81" width="100" height="20" uuid="570c87e8-41a9-48f0-b8bc-a6129818d60f"/>
 				<textElement verticalAlignment="Middle">
-					<font size="8"/>
+					<font size="8" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{fats}.concat( " gm" )]]></textFieldExpression>
 			</textField>
@@ -102,7 +102,7 @@
 			<textField>
 				<reportElement positionType="Float" mode="Opaque" x="260" y="101" width="277" height="20" backcolor="#CCCCCC" uuid="e9236521-8bd0-49a0-b53a-59db5f1eda21"/>
 				<textElement verticalAlignment="Middle">
-					<font size="8"/>
+					<font size="8" isBold="true"/>
 					<paragraph leftIndent="10"/>
 				</textElement>
 				<textFieldExpression><![CDATA[ $P{caloires}.concat( " Calories" )]]></textFieldExpression>

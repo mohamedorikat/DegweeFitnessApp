@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="SummeryReport" pageWidth="595" pageHeight="842" columnWidth="595" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="20" uuid="f246070a-a645-4fb8-981d-8bc387a9b5b0">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="SummeryReport" pageWidth="595" pageHeight="600" columnWidth="595" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="20" uuid="f246070a-a645-4fb8-981d-8bc387a9b5b0">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
@@ -22,7 +22,7 @@
 	<detail>
 		<band height="125" splitType="Stretch">
 			<staticText>
-				<reportElement positionType="Float" mode="Opaque" x="0" y="0" width="537" height="20" backcolor="#CCCCCC" uuid="9761bbba-efac-4e23-9eb7-2171f947b430"/>
+				<reportElement positionType="Float" mode="Opaque" x="0" y="0" width="494" height="20" backcolor="#CCCCCC" uuid="9761bbba-efac-4e23-9eb7-2171f947b430"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Microsoft JhengHei" isBold="true"/>
 					<paragraph leftIndent="10"/>
@@ -44,7 +44,7 @@
 				<text><![CDATA[Amount]]></text>
 			</staticText>
 			<line>
-				<reportElement x="10" y="40" width="555" height="1" forecolor="#999999" backcolor="#FFFFFF" uuid="337b68b6-b496-4c7f-89fd-ffe821573058"/>
+				<reportElement x="10" y="40" width="484" height="1" forecolor="#999999" backcolor="#FFFFFF" uuid="337b68b6-b496-4c7f-89fd-ffe821573058"/>
 			</line>
 			<line direction="BottomUp">
 				<reportElement x="259" y="20" width="1" height="101" forecolor="#999999" uuid="d7ca4e0b-0db8-42af-aff9-1352ab757679"/>
@@ -100,12 +100,12 @@
 				<text><![CDATA[Total Calories]]></text>
 			</staticText>
 			<textField>
-				<reportElement positionType="Float" mode="Opaque" x="260" y="101" width="277" height="20" backcolor="#CCCCCC" uuid="e9236521-8bd0-49a0-b53a-59db5f1eda21"/>
+				<reportElement positionType="Float" mode="Opaque" x="260" y="101" width="234" height="20" backcolor="#CCCCCC" uuid="e9236521-8bd0-49a0-b53a-59db5f1eda21"/>
 				<textElement verticalAlignment="Middle">
 					<font size="8" isBold="true"/>
 					<paragraph leftIndent="10"/>
 				</textElement>
-				<textFieldExpression><![CDATA[ $P{caloires}.concat( " Calories" )]]></textFieldExpression>
+				<textFieldExpression><![CDATA[  $P{caloires}.concat( " Calories" )]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>

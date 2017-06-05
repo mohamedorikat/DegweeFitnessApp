@@ -35,7 +35,9 @@ public class JasperIntegration {
 			String fileName=jasperParamObj.getClient().getFirstName()+"_"+jasperParamObj.getClient().getLastName()+"_"+sdf.format(new Date())+".pdf";
 			
 			String pdfFileName = jasperParamObj.getJasperReportFolder().getFolderPath()+fileName;
-			
+			System.out.println(jrxmlFileName);
+			System.out.println(jasperFileName);
+			System.out.println(pdfFileName);
 
 			// String jrxmlFileName =
 			// "C:/Users/salahabd/Desktop/Images/SummeryReport.jrxml";
@@ -43,8 +45,9 @@ public class JasperIntegration {
 			// "C:/Users/salahabd/Desktop/Images/SummeryReport.jasper";
 			// String pdfFileName =
 			// "C:/Users/salahabd/Desktop/Images/SummeryReport.pdf";
+			System.out.println("Before Compiling");
 			JasperCompileManager.compileReportToFile(jrxmlFileName, jasperFileName);
-
+			System.out.println("After Compiling");
 			// String dbUrl = props.getProperty("jdbc.url");
 //			String dbUrl = "jdbc:oracle:thin:@localhost:1521:mydbname";
 //			// String dbDriver = props.getProperty("jdbc.driver");

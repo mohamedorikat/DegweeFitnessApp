@@ -1,5 +1,6 @@
 package com.degwee.bean;
 
+import java.nio.file.Paths;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -81,6 +82,10 @@ public class ClientBean {
 
 	public String goToCreateClient() {
 		mode = Constants.createMode;
+		String s = System.getProperty("user.dir");
+		System.out.println("Path----------------------:"+s);
+		String path=Paths.get(".").toAbsolutePath().normalize().toString();
+		System.out.println("Path----------------------:"+path);
 		client = new Client();
 		client.setNutritionInfo(new ClientNutritionInfo());
 		return "clientInfo";

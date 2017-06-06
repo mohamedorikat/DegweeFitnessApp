@@ -608,6 +608,7 @@ public class MealBean {
 				Constants.showMessage("Contact Orikat Null Ingerdient while saving", true);
 			}
 		} catch (Exception ex) {
+			System.out.println(ex);
 			Constants.showMessage("Error in adding inegrdient," + ex.getMessage(), true);
 		}
 	}

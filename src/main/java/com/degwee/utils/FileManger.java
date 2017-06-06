@@ -17,6 +17,8 @@ import org.primefaces.model.UploadedFile;
 
 import com.degwee.model.FolderPath;
 
+import javassist.bytecode.stackmap.BasicBlock.Catch;
+
 public class FileManger {
 	
 	private UploadedFile uploadedFile;
@@ -46,9 +48,15 @@ public class FileManger {
 		String fileName=null;
 		if(this.uploadedFile!= null)
 		{
+			try{
 			fileName=uploadedFile.getFileName();
+			System.out.println("Upload Path:"+folderPath.getFolderPath()+"/"+fileName);
 			Path imagesPath=Paths.get(folderPath.getFolderPath()).resolve(fileName);
 			return uploadFileByPath(imagesPath);
+			}catch (Exception e) {
+				System.out.println("Upload Method Error: "+e.getMessage());
+				return 2;
+			}
 		}
 		return 3;
 	}
@@ -82,8 +90,12 @@ public class FileManger {
 		}catch (FileAlreadyExistsException e) {
 			return 1;
 		} catch (IOException e1) {
+			System.out.println("Upload Method Error: "+e1.getMessage());
 			return 2;
+		}catch (Exception e) {
+			throw e;
 		}
+		
 	}
 	
 

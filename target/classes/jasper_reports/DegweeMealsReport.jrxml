@@ -2,9 +2,9 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="DegweeMealsReport" pageWidth="535" pageHeight="1850" columnWidth="535" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" whenResourceMissingType="Empty" uuid="cc7629f5-d99b-443c-a261-746b398dfb6e">
 	<property name="ireport.zoom" value="1.5"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="50"/>
+	<property name="ireport.y" value="0"/>
 	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
-		<defaultValueExpression><![CDATA["C:\\Users\\orikat\\Documents\\DegweeWorkspace\\NutritionFitnessApp\\src\\main\\resources\\jasper_reports\\"]]></defaultValueExpression>
+		<defaultValueExpression><![CDATA["/app/src/main/resources/jasper_reports/"]]></defaultValueExpression>
 	</parameter>
 	<parameter name="fats" class="java.lang.String" isForPrompting="false"/>
 	<parameter name="proteins" class="java.lang.String" isForPrompting="false"/>
@@ -14,7 +14,7 @@
 		<defaultValueExpression><![CDATA["12"]]></defaultValueExpression>
 	</parameter>
 	<queryString>
-		<![CDATA[SELECT number from meal where number =1]]>
+		<![CDATA[select number from meal where Id=1]]>
 	</queryString>
 	<field name="number" class="java.lang.Long">
 		<fieldDescription><![CDATA[]]></fieldDescription>
@@ -23,7 +23,7 @@
 		<band height="28">
 			<image scaleImage="FillFrame" vAlign="Middle">
 				<reportElement x="-25" y="0" width="560" height="28" uuid="d30e55bc-e2cf-450b-89e5-6049db421266"/>
-				<imageExpression><![CDATA["C:\\Users\\orikat\\Desktop\\yellowBar.jpg"]]></imageExpression>
+				<imageExpression><![CDATA["/app/src/main/resources/jasper_reports/yellowBar.jpg"]]></imageExpression>
 			</image>
 			<textField>
 				<reportElement mode="Transparent" x="0" y="0" width="135" height="24" uuid="7109d43e-26b2-496d-abcc-86b3fd1d3790"/>
@@ -34,7 +34,7 @@
 				<textFieldExpression><![CDATA["MEAL PLAN"]]></textFieldExpression>
 			</textField>
 			<textField pattern="EEEEE dd MMMMM yyyy">
-				<reportElement mode="Transparent" x="151" y="0" width="377" height="24" uuid="ca758197-dc30-4a0d-ab28-ff5c4ffb0612"/>
+				<reportElement mode="Transparent" x="151" y="0" width="377" height="24" backcolor="#FFFFFF" uuid="ca758197-dc30-4a0d-ab28-ff5c4ffb0612"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font fontName="Microsoft JhengHei"/>
 					<paragraph rightIndent="6"/>

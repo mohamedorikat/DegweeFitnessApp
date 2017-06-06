@@ -99,6 +99,10 @@ public class ClientBean {
 			return null;
 		}
 		mode = Constants.editMode;
+		if (client.getNutritionInfo().getGoal() == Constants.toCut)
+			toCutFlag = true;
+		else
+			toCutFlag = false;
 		return "clientInfo";
 	}
 

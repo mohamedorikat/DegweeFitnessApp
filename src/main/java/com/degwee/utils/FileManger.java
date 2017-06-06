@@ -54,7 +54,7 @@ public class FileManger {
 			Path imagesPath=Paths.get(folderPath.getFolderPath()).resolve(fileName);
 			return uploadFileByPath(imagesPath);
 			}catch (Exception e) {
-				System.out.println("Upload Method Error: "+e.getMessage());
+				System.out.println("Upload Method Error: "+e);
 				return 2;
 			}
 		}

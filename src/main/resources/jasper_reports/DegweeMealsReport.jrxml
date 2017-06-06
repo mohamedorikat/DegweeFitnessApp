@@ -4,7 +4,7 @@
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
-		<defaultValueExpression><![CDATA["C:\\Users\\orikat\\Documents\\DegweeWorkspace\\NutritionFitnessApp\\src\\main\\resources\\jasper_reports\\"]]></defaultValueExpression>
+		<defaultValueExpression><![CDATA["/app/src/main/resources/jasper_reports/"]]></defaultValueExpression>
 	</parameter>
 	<parameter name="fats" class="java.lang.String" isForPrompting="false"/>
 	<parameter name="proteins" class="java.lang.String" isForPrompting="false"/>

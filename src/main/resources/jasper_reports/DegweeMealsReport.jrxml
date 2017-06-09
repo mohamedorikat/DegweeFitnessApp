@@ -22,7 +22,7 @@
 	<title>
 		<band height="137">
 			<image scaleImage="FillFrame" vAlign="Middle">
-				<reportElement x="0" y="108" width="533" height="29" forecolor="#FFFFFF" uuid="d30e55bc-e2cf-450b-89e5-6049db421266"/>
+				<reportElement x="0" y="111" width="534" height="26" forecolor="#FFFFFF" uuid="d30e55bc-e2cf-450b-89e5-6049db421266"/>
 				<imageExpression><![CDATA["/app/src/main/resources/jasper_reports/redBar.jpg"]]></imageExpression>
 			</image>
 			<textField>
@@ -42,7 +42,7 @@
 				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 			</textField>
 			<image>
-				<reportElement x="145" y="0" width="358" height="108" uuid="9ad51e6a-99b7-4f24-ad9e-a8260557107a"/>
+				<reportElement x="146" y="0" width="358" height="108" uuid="9ad51e6a-99b7-4f24-ad9e-a8260557107a"/>
 				<imageExpression><![CDATA["/app/WebContent/resources/images/degwelogosmall.png"]]></imageExpression>
 			</image>
 		</band>

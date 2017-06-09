@@ -26,7 +26,7 @@
 				<imageExpression><![CDATA["/app/src/main/resources/jasper_reports/redBar.jpg"]]></imageExpression>
 			</image>
 			<textField>
-				<reportElement mode="Transparent" x="0" y="108" width="135" height="24" forecolor="#FFFFFF" uuid="7109d43e-26b2-496d-abcc-86b3fd1d3790"/>
+				<reportElement mode="Transparent" x="0" y="108" width="135" height="24" forecolor="#000000" uuid="7109d43e-26b2-496d-abcc-86b3fd1d3790"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Microsoft JhengHei"/>
 					<paragraph leftIndent="6"/>

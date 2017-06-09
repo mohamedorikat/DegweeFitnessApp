@@ -22,7 +22,7 @@
 	<title>
 		<band height="137">
 			<image scaleImage="FillFrame" vAlign="Middle">
-				<reportElement x="0" y="108" width="535" height="29" forecolor="#FFFFFF" uuid="d30e55bc-e2cf-450b-89e5-6049db421266"/>
+				<reportElement x="0" y="108" width="534" height="29" forecolor="#FFFFFF" uuid="d30e55bc-e2cf-450b-89e5-6049db421266"/>
 				<imageExpression><![CDATA["/app/src/main/resources/jasper_reports/redBar.jpg"]]></imageExpression>
 			</image>
 			<textField>

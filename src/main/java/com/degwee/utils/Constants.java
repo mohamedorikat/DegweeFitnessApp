@@ -22,6 +22,7 @@ public class Constants {
 	public static final String calculatedTotalCalories="totalCalories";
 	public static final int createMode=0;
 	public static final int editMode=0;
+	public static final String AUTH_KEY="app.user.name";
 	public static Double getLBMperPound(Double LBM)
 	{
 		return LBM/0.45;

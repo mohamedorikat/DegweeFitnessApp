@@ -31,7 +31,7 @@
 				<text><![CDATA[MEALS STATS]]></text>
 			</staticText>
 			<staticText>
-				<reportElement positionType="Float" x="10" y="20" width="100" height="20" uuid="1b71974d-f9f5-4e88-9987-46c276eb03a6"/>
+				<reportElement positionType="Float" x="10" y="20" width="100" height="21" uuid="1b71974d-f9f5-4e88-9987-46c276eb03a6"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Microsoft JhengHei" size="10"/>
 				</textElement>
@@ -111,7 +111,7 @@
 			<staticText>
 				<reportElement x="26" y="131" width="100" height="20" uuid="fd7b7763-dcd3-432f-b181-5be7df95328e"/>
 				<textElement verticalAlignment="Middle">
-					<font fontName="Microsoft JhengHei UI" size="10" isBold="true"/>
+					<font fontName="Microsoft JhengHei" size="10" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Rules:]]></text>
 			</staticText>

@@ -326,8 +326,7 @@ public class MealBean {
 
 	public List<StandardIngerdients> getAllIngerdients() {
 		generateReportEnabled = false;
-		if (allIngerdients == null || allIngerdients.isEmpty())
-			allIngerdients = ingerdientsService.findAllStandardIngerdientss();
+		allIngerdients = ingerdientsService.findAllStandardIngerdientss();
 		return allIngerdients;
 	}
 

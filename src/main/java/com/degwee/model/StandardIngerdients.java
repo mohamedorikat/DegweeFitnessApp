@@ -17,7 +17,7 @@ public class StandardIngerdients {
 	@Id
 	@Column(name="Id")
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private Integer Id;
+	private Integer id;
 	
 	@ManyToOne
 	@JoinColumn(name="FolderPathId",referencedColumnName="Id",nullable=true)
@@ -40,10 +40,10 @@ public class StandardIngerdients {
 	@Column(name="ImageName")
 	private String imageName;
 	public Integer getId() {
-		return Id;
+		return id;
 	}
 	public void setId(Integer Id) {
-		this.Id = Id;
+		this.id = Id;
 	}
 	public FolderPath getFolderPath() {
 		return folderPath;

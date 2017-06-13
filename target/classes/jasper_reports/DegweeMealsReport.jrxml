@@ -21,12 +21,8 @@
 	</field>
 	<title>
 		<band height="137">
-			<image scaleImage="FillFrame" vAlign="Middle">
-				<reportElement x="0" y="111" width="534" height="26" forecolor="#FFFFFF" uuid="d30e55bc-e2cf-450b-89e5-6049db421266"/>
-				<imageExpression><![CDATA["/app/src/main/resources/jasper_reports/redBar.jpg"]]></imageExpression>
-			</image>
 			<textField>
-				<reportElement mode="Transparent" x="0" y="108" width="135" height="24" forecolor="#000000" uuid="7109d43e-26b2-496d-abcc-86b3fd1d3790"/>
+				<reportElement mode="Opaque" x="0" y="108" width="158" height="24" forecolor="#000000" backcolor="#CCCCCC" uuid="7109d43e-26b2-496d-abcc-86b3fd1d3790"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Microsoft JhengHei"/>
 					<paragraph leftIndent="6"/>
@@ -34,7 +30,7 @@
 				<textFieldExpression><![CDATA["MEAL PLAN"]]></textFieldExpression>
 			</textField>
 			<textField pattern="EEEEE dd MMMMM yyyy">
-				<reportElement mode="Transparent" x="158" y="108" width="370" height="24" backcolor="#FFFFFF" uuid="ca758197-dc30-4a0d-ab28-ff5c4ffb0612"/>
+				<reportElement mode="Opaque" x="158" y="108" width="370" height="24" backcolor="#CCCCCC" uuid="ca758197-dc30-4a0d-ab28-ff5c4ffb0612"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font fontName="Microsoft JhengHei"/>
 					<paragraph rightIndent="6"/>

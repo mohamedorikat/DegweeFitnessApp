@@ -44,7 +44,7 @@ public class UserDao extends CustomHibernateDaoSupport {
 	public User findUserByUserNamePass(String userName,String Password ) {
 		User user = null;
 		List singleList = getHibernateTemplate().find("from User a where a.userName like ? and a.password like ?", userName,Password);
-		if (singleList != null)
+		if (singleList != null && !singleList.isEmpty())
 			user = (User) singleList.get(0);
 		return user;
 

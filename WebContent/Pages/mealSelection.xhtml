@@ -23,15 +23,15 @@
         </f:facet>	
          <p:dataTable id="ingedientsTable" widgetVar="ingedientsTable" var="ingerdients" resizableColumns="true"
          			selectionMode="single" selection="#{mealBean.selectedStandardIngerdients}"
-			         rowKey="#{ingerdients.getId()}" value="#{mealBean.allIngerdients}" rowsPerPageTemplate="5,10,25,50" rows="50"
+			         rowKey="#{ingerdients.id}" value="#{mealBean.allIngerdients}" rowsPerPageTemplate="5,10,25,50" rows="50"
 			         paginator="true" style="padding-top:10px;padding-bottom:10px" tableStyle="table-layout: auto"
 			         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown} ">
 			         
 			        <p:column headerText="Food Type" sortBy="#{ingerdients.name}" filterBy="#{ingerdients.name}"><h:outputText value="#{ingerdients.name}" /></p:column>
-			        <p:column headerText="Protein(gm)" sortBy="#{ingerdients.containedProtiens}" filterBy="#{ingerdients.containedProtiens}"><h:outputText value="#{ingerdients.containedProtiens}" /></p:column>
-			        <p:column headerText="Carbs(gm)" sortBy="#{ingerdients.containedCarbs}" filterBy="#{ingerdients.containedCarbs}"><h:outputText value="#{ingerdients.containedCarbs}" /></p:column>
-			        <p:column headerText="Fats(gm)" sortBy="#{ingerdientscontainedFats}" filterBy="#{ingerdientscontainedFats}"><h:outputText value="#{ingerdients.containedFats}" /></p:column>
-			        <p:column headerText="Total Calories" sortBy="#{ingerdients.totalCalories}" filterBy="#{ingerdients.totalCalories}"><h:outputText value="#{ingerdients.totalCalories}" /></p:column>
+			        <p:column headerText="Protein(gm)"  filterBy="#{ingerdients.containedProtiens}"><h:outputText value="#{ingerdients.containedProtiens}" /></p:column>
+			        <p:column headerText="Carbs(gm)"  filterBy="#{ingerdients.containedCarbs}"><h:outputText value="#{ingerdients.containedCarbs}" /></p:column>
+			        <p:column headerText="Fats(gm)"  filterBy="#{ingerdients.containedFats}"><h:outputText value="#{ingerdients.containedFats}" /></p:column>
+			        <p:column headerText="Total Calories" filterBy="#{ingerdients.totalCalories}"><h:outputText value="#{ingerdients.totalCalories}" /></p:column>
 					<p:column styleClass="action-column">
 						<f:facet name="header">
 							<h:outputText value="Actions" />
@@ -271,7 +271,7 @@
 			<p:panelGrid styleClass="noBorderGrid">
     	   	<p:row> 
     	   	  <p:column style="text-align:center;">
- 				<p:commandButton id="generateReportButton" value="Generate Report" icon="ui-icon-pencil" actionListener="#{mealBean.saveMeals()}" ajax="false"  style="width:10%;height:40px;">
+ 				<p:commandButton id="generateReportButton" value="Generate Report" icon="ui-icon-pencil" actionListener="#{mealBean.saveMeals()}" ajax="false"  style="width:22%;height:40px;">
  					<p:fileDownload value="#{mealBean.fileManager.downloadedFile}" />
  				</p:commandButton>
  				<p:commandButton id="backButton" value="Back" action="clientInfo" ajax="false" immediate="true"  style="width:10%;height:40px;"/>

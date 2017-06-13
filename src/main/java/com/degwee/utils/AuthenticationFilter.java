@@ -18,7 +18,6 @@ public class AuthenticationFilter implements Filter {
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
-		System.out.println("Entered intop Login Filter");
 		HttpServletRequest requestHttp = (HttpServletRequest) request;
 		if ((requestHttp).getSession().getAttribute(Constants.AUTH_KEY) == null && !(requestHttp.getRequestURI().indexOf("/login.xhtml") >= 0)) {
 			((HttpServletResponse) response).sendRedirect(requestHttp.getContextPath()+"/Pages/login.xhtml");

@@ -23,7 +23,7 @@
         </f:facet>	
          <p:dataTable id="ingedientsTable" widgetVar="ingedientsTable" var="ingerdients" resizableColumns="true"
          			selectionMode="single" selection="#{mealBean.selectedStandardIngerdients}"
-			         rowKey="#{ingerdients.id}" value="#{mealBean.allIngerdients}" rowsPerPageTemplate="5,10,25,50" rows="50"
+			         rowKey="#{ingerdients.getId()}" value="#{mealBean.allIngerdients}" rowsPerPageTemplate="5,10,25,50" rows="50"
 			         paginator="true" style="padding-top:10px;padding-bottom:10px" tableStyle="table-layout: auto"
 			         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown} ">
 			         

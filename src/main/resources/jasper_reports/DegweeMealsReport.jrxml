@@ -20,9 +20,9 @@
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
 	<title>
-		<band height="137">
+		<band height="202">
 			<textField>
-				<reportElement mode="Opaque" x="0" y="113" width="158" height="24" forecolor="#000000" backcolor="#CCCCCC" uuid="7109d43e-26b2-496d-abcc-86b3fd1d3790"/>
+				<reportElement mode="Opaque" x="1" y="178" width="158" height="24" forecolor="#000000" backcolor="#CCCCCC" uuid="7109d43e-26b2-496d-abcc-86b3fd1d3790"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Microsoft JhengHei"/>
 					<paragraph leftIndent="6"/>
@@ -30,7 +30,7 @@
 				<textFieldExpression><![CDATA["MEAL PLAN"]]></textFieldExpression>
 			</textField>
 			<textField pattern="EEEEE dd MMMMM yyyy">
-				<reportElement mode="Opaque" x="158" y="113" width="376" height="24" backcolor="#CCCCCC" uuid="ca758197-dc30-4a0d-ab28-ff5c4ffb0612"/>
+				<reportElement mode="Opaque" x="153" y="178" width="376" height="24" backcolor="#CCCCCC" uuid="ca758197-dc30-4a0d-ab28-ff5c4ffb0612"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font fontName="Microsoft JhengHei"/>
 					<paragraph rightIndent="6"/>
@@ -38,13 +38,13 @@
 				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 			</textField>
 			<image>
-				<reportElement x="146" y="0" width="358" height="108" uuid="9ad51e6a-99b7-4f24-ad9e-a8260557107a"/>
+				<reportElement x="71" y="0" width="463" height="168" uuid="d6b04461-362f-4ad8-83f1-70893a6b7e29"/>
 				<imageExpression><![CDATA["/app/WebContent/resources/images/degwelogosmall.png"]]></imageExpression>
 			</image>
 		</band>
 	</title>
 	<detail>
-		<band height="70" splitType="Stretch">
+		<band height="71" splitType="Stretch">
 			<subreport isUsingCache="true" runToBottom="false">
 				<reportElement positionType="Float" mode="Opaque" x="0" y="0" width="535" height="70" isRemoveLineWhenBlank="true" uuid="b72f5d88-78dd-452f-b8f8-43f43c71c6e1"/>
 				<subreportParameter name="mealId">
@@ -59,7 +59,7 @@
 		</band>
 		<band height="70" splitType="Stretch">
 			<subreport isUsingCache="true" runToBottom="false">
-				<reportElement positionType="Float" mode="Opaque" x="0" y="0" width="535" height="70" isRemoveLineWhenBlank="true" forecolor="#000000" backcolor="#FFFFFF" uuid="64cd9431-6445-4147-855c-1a3da835ae4f"/>
+				<reportElement positionType="Float" mode="Opaque" x="1" y="0" width="535" height="70" isRemoveLineWhenBlank="true" forecolor="#000000" backcolor="#FFFFFF" uuid="64cd9431-6445-4147-855c-1a3da835ae4f"/>
 				<subreportParameter name="mealId">
 					<subreportParameterExpression><![CDATA["2"]]></subreportParameterExpression>
 				</subreportParameter>
@@ -83,9 +83,9 @@
 				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "MealReport.jasper"]]></subreportExpression>
 			</subreport>
 		</band>
-		<band height="72" splitType="Stretch">
+		<band height="70" splitType="Stretch">
 			<subreport runToBottom="false">
-				<reportElement positionType="Float" mode="Opaque" x="0" y="0" width="535" height="70" isRemoveLineWhenBlank="true" uuid="46adcbee-3ec8-48a5-93cc-ec6ef0a07e1f"/>
+				<reportElement positionType="Float" mode="Opaque" x="1" y="0" width="535" height="70" isRemoveLineWhenBlank="true" uuid="46adcbee-3ec8-48a5-93cc-ec6ef0a07e1f"/>
 				<subreportParameter name="mealId">
 					<subreportParameterExpression><![CDATA["4"]]></subreportParameterExpression>
 				</subreportParameter>
@@ -100,7 +100,7 @@
 	<summary>
 		<band height="63" splitType="Stretch">
 			<subreport runToBottom="false">
-				<reportElement positionType="Float" mode="Opaque" x="0" y="11" width="528" height="40" isRemoveLineWhenBlank="true" uuid="1dde3602-5a5d-4d8b-8b07-ac57be216b18"/>
+				<reportElement positionType="Float" mode="Opaque" x="1" y="10" width="528" height="40" isRemoveLineWhenBlank="true" uuid="1dde3602-5a5d-4d8b-8b07-ac57be216b18"/>
 				<subreportParameter name="fats">
 					<subreportParameterExpression><![CDATA[$P{fats}]]></subreportParameterExpression>
 				</subreportParameter>

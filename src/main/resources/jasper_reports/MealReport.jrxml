@@ -34,7 +34,7 @@
 			<frame>
 				<reportElement positionType="Float" mode="Opaque" x="0" y="0" width="534" height="50" uuid="4cfb0567-87a3-4d00-9c91-0bf9e2948e12"/>
 				<image scaleImage="FillFrame" hAlign="Center" vAlign="Middle">
-					<reportElement x="11" y="13" width="20" height="30" isPrintInFirstWholeBand="true" uuid="73395da0-883d-4d34-bffd-59e098fb2e18"/>
+					<reportElement x="7" y="13" width="30" height="30" isPrintInFirstWholeBand="true" uuid="73395da0-883d-4d34-bffd-59e098fb2e18"/>
 					<imageExpression><![CDATA[$F{CONCAT_WS('',folderpath.FolderPath, standardingerdients.ImageName)}]]></imageExpression>
 				</image>
 				<staticText>

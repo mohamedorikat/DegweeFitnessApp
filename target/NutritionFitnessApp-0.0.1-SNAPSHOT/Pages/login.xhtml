@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions">
+
+<h:head>
+	<h:outputStylesheet library="css" name="standard.css" />
+</h:head>
+<h:form prependId="false" id="growlForm">
+		<p:growl id="growl" showDetail="false" />
+	</h:form>
+<h:body>
+	<h:form>
+		<p:panelGrid styleClass="noBorderGrid" style="text-align:left; padding: 70px 700px; float:right">
+			<p:row>
+			   	<p:column>
+			  	 	<p:outputLabel value="Enter User Name" for="userName"></p:outputLabel>
+			   		<p:inputText id="userName" value="#{loginBean.userName}" style="width:50%;" required="true"></p:inputText>
+			   	</p:column>
+		   	</p:row>
+		   	
+		   	<p:row>
+				<p:column>
+				<p:outputLabel value="Enter Password" for="password"></p:outputLabel>
+				<p:password id="password" value="#{loginBean.password}" style="width:50%;" required="true"></p:password>
+			   	</p:column>
+		   	</p:row>
+		   	
+		   	<p:row><p:column><p:commandButton value="Log In" action="#{loginBean.login}" ajax="false"></p:commandButton></p:column> </p:row>
+		</p:panelGrid>
+
+
+	</h:form>
+</h:body>
+</html>

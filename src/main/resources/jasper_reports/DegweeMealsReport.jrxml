@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="DegweeMealsReport" pageWidth="535" pageHeight="1850" columnWidth="535" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" whenResourceMissingType="Empty" uuid="cc7629f5-d99b-443c-a261-746b398dfb6e">
 	<property name="ireport.zoom" value="1.5"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="266"/>
+	<property name="ireport.y" value="0"/>
 	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
 		<defaultValueExpression><![CDATA["/app/src/main/resources/jasper_reports/"]]></defaultValueExpression>
 	</parameter>
@@ -39,7 +39,7 @@
 			</textField>
 			<image>
 				<reportElement x="96" y="9" width="433" height="152" uuid="d6b04461-362f-4ad8-83f1-70893a6b7e29"/>
-				<imageExpression><![CDATA["C:\\Users\\orikat\\Documents\\DegweeWorkspace\\NutritionFitnessApp\\WebContent\\resources\\images\\degwelogosmall.png"]]></imageExpression>
+				<imageExpression><![CDATA["/app/WebContent/resources/images/degwelogosmall.png"]]></imageExpression>
 			</image>
 		</band>
 	</title>

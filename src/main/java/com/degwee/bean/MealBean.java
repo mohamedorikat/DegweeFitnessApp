@@ -418,26 +418,31 @@ public class MealBean {
 
 	public void addIngerdientsToMeal() {
 
-		selectedSubMeal.setMeal(getSelectedMealFromDialog());
-		if (selectedSubMeal.getMeal() != null) {
-			if (selectedSubMeal.getMeal().getNumber() != null) {
-				if (selectedSubMeal.getMeal().getNumber().equals(Constants.mealOne)) {
-					meal1.add(selectedSubMeal);
-					updateNutritionInfoCounters(Constants.mealOne, meal1);
+		try {
+			selectedSubMeal.setMeal(getSelectedMealFromDialog());
+			if (selectedSubMeal.getMeal() != null) {
+				if (selectedSubMeal.getMeal().getNumber() != null) {
+					if (selectedSubMeal.getMeal().getNumber().equals(Constants.mealOne)) {
+						meal1.add(selectedSubMeal);
+						updateNutritionInfoCounters(Constants.mealOne, meal1);
+					}
+					if (selectedSubMeal.getMeal().getNumber().equals(Constants.mealTwo)) {
+						meal2.add(selectedSubMeal);
+						updateNutritionInfoCounters(Constants.mealTwo, meal2);
+					}
+					if (selectedSubMeal.getMeal().getNumber().equals(Constants.mealThree)) {
+						meal3.add(selectedSubMeal);
+						updateNutritionInfoCounters(Constants.mealThree, meal3);
+					}
 				}
-				if (selectedSubMeal.getMeal().getNumber().equals(Constants.mealTwo)) {
-					meal2.add(selectedSubMeal);
-					updateNutritionInfoCounters(Constants.mealTwo, meal2);
-				}
-				if (selectedSubMeal.getMeal().getNumber().equals(Constants.mealThree)) {
-					meal3.add(selectedSubMeal);
-					updateNutritionInfoCounters(Constants.mealThree, meal3);
+				if (selectedSubMeal.getMeal().getNumber().equals(Constants.mealFour)) {
+					meal4.add(selectedSubMeal);
+					updateNutritionInfoCounters(Constants.mealFour, meal4);
 				}
 			}
-			if (selectedSubMeal.getMeal().getNumber().equals(Constants.mealFour)) {
-				meal4.add(selectedSubMeal);
-				updateNutritionInfoCounters(Constants.mealFour, meal4);
-			}
+		} catch (Exception ex) {
+			ex.printStackTrace();
+			Constants.showMessage("Error addIngerdientsToMeal Method,ex:" + ex.getMessage(), true);
 		}
 	}
 
@@ -477,20 +482,15 @@ public class MealBean {
 	public String saveMeals() {
 		try {
 			meal_ClientService.saveMealClient_SubMeals(meal1, meal2, meal3, meal4, clientBean.getClient());
-			generateReport();
-			Constants.showMessage("Report Generated Successfully", false);
+			boolean susccessfull = generateReport();
+			if (susccessfull)
+				Constants.showMessage("Report Generated Successfully", false);
 		} catch (Exception e) {
-			e.printStackTrace();
+			System.out.println("Exception In Save Maels Method Ex: "+e);
+			Constants.showMessage("Error While Genereating Report,ex:" + e.getMessage(), true);
 		}
 		return null;
 
-	}
-
-	private boolean checkMealWillExceedSize(List<SubMeal> meal) {
-		if (meal.size() < Constants.maxMealSize)
-			return false;
-		else
-			return true;
 	}
 
 	public void removeSubMealFromMealList1(SubMeal subMeal) {
@@ -585,12 +585,14 @@ public class MealBean {
 			try {
 				ingerdientsService.delete(selectedStandardIngerdients);
 				allIngerdients.remove(selectedStandardIngerdients);
+				allIngerdients = ingerdientsService.findAllStandardIngerdientss();
 			} catch (Exception ex) {
 				Constants.showMessage("Please Remove all SubMeals linked To this Ingerdient Before Delete", true);
 			}
 		} else {
 			Constants.showMessage("Please Select Ingerdient First To Delete", true);
 		}
+		return;
 	}
 
 	public void saveIngerdients() {
@@ -620,7 +622,6 @@ public class MealBean {
 
 		fileManager = new FileManger(event.getFile());
 		FolderPath folderPath = folderPathService.findFolderPathById(1);
-		;
 		if (folderPath == null) {
 			Constants.showMessage("Contact orikat add the data in folder table", true);
 			return;
@@ -656,14 +657,13 @@ public class MealBean {
 
 	}
 
-	public void generateReport() throws Exception {
+	public boolean generateReport() throws Exception {
 		String[] generatedPDFName = null;
-		Report report = null;
 		try {
 
 			if (clientBean.getClient() == null) {
 				Constants.showMessage("Client Null in report", true);
-				return;
+				return false;
 			}
 			JasperParam jasperObj = new JasperParam();
 			jasperObj.setTotalMealStatsProteins(mealStatProtein);
@@ -674,25 +674,20 @@ public class MealBean {
 			jasperObj.setJasperXmlFolder(folderPathService.findFolderPathById(2));
 			jasperObj.setJasperReportFolder(folderPathService.findFolderPathById(3));
 			generatedPDFName = jasperIntegration.generateReport(jasperObj);
-			if (generatedPDFName != null) {
-				downloadReport(generatedPDFName[0], generatedPDFName[1]);
-			}
+			downloadReport(generatedPDFName[0], generatedPDFName[1]);
 			System.out.println("Done Download");
-
-			// report=new Report();
-			// report.setClient(clientBean.getClient());
-			// report.setFolderPath(folderPathService.findFolderPathById(3));
-			// report.setReportName(generatedPDFName);
-			// report.setReportDate(new Date());
-			// reportService.save(report);
-			//
+			int result = fileManager.deleteFileByPath(generatedPDFName[1]);
+			if (result == 0) {
+				System.out.println("Done Deleteing File");
+				return true;
+			} else {
+				Constants.showMessage("File Not exists To Delete", true);
+				return false;
+			}
 
 		} catch (Exception e) {
-			System.out.println(e);
-			Constants.showMessage("Error while Generating Rpeort," + e.getMessage(), true);
+			throw e;
 		}
-
-		return;
 	}
 
 	private boolean downloadReport(String fileName, String fullPath) throws Exception {
@@ -710,7 +705,7 @@ public class MealBean {
 				throw new Exception("error while download no file name or file path");
 			}
 		} catch (Exception ex) {
-			Constants.showMessage("Error while Downloading Rpeort," + ex.getMessage(), true);
+			throw ex;
 		}
 		return result;
 	}

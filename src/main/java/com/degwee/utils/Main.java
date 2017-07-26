@@ -1,19 +1,7 @@
 package com.degwee.utils;
 
-import java.math.BigInteger;
-import java.nio.file.Files;
-import java.nio.file.LinkOption;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-
-import javax.ejb.FinderException;
-
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-
-import com.degwee.model.Client;
-import com.degwee.model.ClientNutritionInfo;
-import com.degwee.service.ClientService;
 
 public class Main {
 
@@ -21,10 +9,13 @@ public class Main {
 		ApplicationContext appContext = new ClassPathXmlApplicationContext("spring/config/BeanLocations.xml");
 		String s = System.getProperty("user.dir");
 		System.out.println(s);
-		String path=Paths.get(".").toAbsolutePath().normalize().toString();
-		System.out.println(path);
-		ClientService clientService = (ClientService) appContext.getBean("clientService");
-		Client c = new Client();
+		String value="2008";
+		System.out.println();
+		return;
+		//String path=Paths.get(".").toAbsolutePath().normalize().toString();
+		//System.out.println(path);
+		//ClientService clientService = (ClientService) appContext.getBean("clientService");
+		//Client c = new Client();
 //		c.setEmail("test");
 //		c.setFirstName("test");
 //		c.setGender("M");

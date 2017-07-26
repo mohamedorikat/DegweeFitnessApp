@@ -30,36 +30,36 @@
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="59" splitType="Stretch">
+		<band height="67" splitType="Stretch">
 			<frame>
-				<reportElement positionType="Float" mode="Opaque" x="0" y="0" width="534" height="50" uuid="4cfb0567-87a3-4d00-9c91-0bf9e2948e12"/>
+				<reportElement positionType="Float" mode="Opaque" x="0" y="0" width="534" height="67" uuid="4cfb0567-87a3-4d00-9c91-0bf9e2948e12"/>
 				<image scaleImage="FillFrame" hAlign="Center" vAlign="Middle">
-					<reportElement x="11" y="13" width="20" height="30" isPrintInFirstWholeBand="true" uuid="73395da0-883d-4d34-bffd-59e098fb2e18"/>
+					<reportElement x="10" y="8" width="48" height="48" isPrintInFirstWholeBand="true" uuid="73395da0-883d-4d34-bffd-59e098fb2e18"/>
 					<imageExpression><![CDATA[$F{CONCAT_WS('',folderpath.FolderPath, standardingerdients.ImageName)}]]></imageExpression>
 				</image>
 				<staticText>
-					<reportElement positionType="Float" x="43" y="13" width="70" height="15" uuid="16fee342-5575-4f6f-ae1d-63bbed8f9013"/>
+					<reportElement positionType="Float" x="79" y="13" width="70" height="15" uuid="16fee342-5575-4f6f-ae1d-63bbed8f9013"/>
 					<textElement>
 						<font fontName="Microsoft JhengHei" size="8" isBold="true"/>
 					</textElement>
 					<text><![CDATA[Food Name:]]></text>
 				</staticText>
 				<staticText>
-					<reportElement positionType="Float" x="43" y="28" width="70" height="15" uuid="e4c261ab-00a5-40f0-8522-d74dbfcc42f8"/>
+					<reportElement positionType="Float" x="79" y="28" width="70" height="15" uuid="e4c261ab-00a5-40f0-8522-d74dbfcc42f8"/>
 					<textElement>
 						<font fontName="Microsoft JhengHei" size="8" isBold="true"/>
 					</textElement>
 					<text><![CDATA[Serving Size:]]></text>
 				</staticText>
 				<textField>
-					<reportElement positionType="Float" x="144" y="13" width="100" height="15" uuid="3d86d0e8-6858-48d1-9ecc-2075d16db7dc"/>
+					<reportElement positionType="Float" x="162" y="13" width="100" height="15" uuid="3d86d0e8-6858-48d1-9ecc-2075d16db7dc"/>
 					<textElement>
 						<font fontName="Microsoft JhengHei" size="8"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{Name}]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement positionType="Float" x="144" y="28" width="100" height="15" uuid="6c578942-5207-4e8b-b74a-f10e2066b0c2"/>
+					<reportElement positionType="Float" x="162" y="28" width="100" height="15" uuid="6c578942-5207-4e8b-b74a-f10e2066b0c2"/>
 					<textElement>
 						<font fontName="Microsoft JhengHei" size="8"/>
 					</textElement>

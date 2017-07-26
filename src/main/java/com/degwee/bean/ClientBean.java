@@ -34,7 +34,7 @@ public class ClientBean {
 	public boolean toCutFlag = false;
 	int mode = 0;
 	List<Client> allClients = null;
-	boolean goToMealInfo=false;
+	boolean goToMealInfo = false;
 
 	public ClientService getClientService() {
 		return clientService;
@@ -61,16 +61,14 @@ public class ClientBean {
 	}
 
 	public List<Client> getAllClients() {
-		if (allClients == null || allClients.isEmpty()) {
-			allClients = clientService.findAllClients();
-		}
+
+		allClients = clientService.findAllClients();
 		return allClients;
 	}
 
 	public void setAllClients(List<Client> allClients) {
 		this.allClients = allClients;
 	}
-	
 
 	public boolean isGoToMealInfo() {
 		return goToMealInfo;
@@ -83,9 +81,9 @@ public class ClientBean {
 	public String goToCreateClient() {
 		mode = Constants.createMode;
 		String s = System.getProperty("user.dir");
-		System.out.println("Path----------------------:"+s);
-		String path=Paths.get(".").toAbsolutePath().normalize().toString();
-		System.out.println("Path----------------------:"+path);
+		System.out.println("Path----------------------:" + s);
+		String path = Paths.get(".").toAbsolutePath().normalize().toString();
+		System.out.println("Path----------------------:" + path);
 		client = new Client();
 		client.setNutritionInfo(new ClientNutritionInfo());
 		return "clientInfo";
@@ -123,27 +121,27 @@ public class ClientBean {
 					FacesMessage facesMessage = new FacesMessage("Client Updated Successfully");
 					facesMessage.setSeverity(FacesMessage.SEVERITY_INFO);
 					FacesContext.getCurrentInstance().addMessage(null, facesMessage);
-					 goToMealInfo=true;
+					goToMealInfo = true;
 				} else {
 					boolean alreadyExist = clientService.save(client);
 					if (alreadyExist) {
 						FacesMessage facesMessage = new FacesMessage("Client Already Exist with this Email");
 						facesMessage.setSeverity(FacesMessage.SEVERITY_ERROR);
 						FacesContext.getCurrentInstance().addMessage(null, facesMessage);
-						goToMealInfo=false;
+						goToMealInfo = false;
 						return null;
 					}
-					allClients=clientService.findAllClients();
+					allClients = clientService.findAllClients();
 					FacesMessage facesMessage = new FacesMessage("Client Saved Successfully");
 					facesMessage.setSeverity(FacesMessage.SEVERITY_INFO);
 					FacesContext.getCurrentInstance().addMessage(null, facesMessage);
-					goToMealInfo=true;
+					goToMealInfo = true;
 				}
 			} else {
 				FacesMessage facesMessage = new FacesMessage("Calculate NutritionInfo First");
 				facesMessage.setSeverity(FacesMessage.SEVERITY_ERROR);
 				FacesContext.getCurrentInstance().addMessage(null, facesMessage);
-				goToMealInfo=false;
+				goToMealInfo = false;
 			}
 		}
 		return null;
@@ -172,7 +170,6 @@ public class ClientBean {
 
 	}
 
-	
 	@PostConstruct
 	private void init() {
 		ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();

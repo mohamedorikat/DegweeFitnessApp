@@ -23,11 +23,11 @@
         </f:facet>	
          <p:dataTable id="ingedientsTable" widgetVar="ingedientsTable" var="ingerdients" resizableColumns="true"
          			selectionMode="single" selection="#{mealBean.selectedStandardIngerdients}"
-			         rowKey="#{ingerdients.getId()}" value="#{mealBean.allIngerdients}" rowsPerPageTemplate="5,10,25,50" rows="50"
+			         rowKey="#{ingerdients.getId()}" value="#{mealBean.allIngerdients}" rowsPerPageTemplate="5,10,25,50" rows="20"
 			         paginator="true" style="padding-top:10px;padding-bottom:10px" tableStyle="table-layout: auto"
 			         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown} ">
 			         
-			        <p:column headerText="Food Type" sortBy="#{ingerdients.name}" filterBy="#{ingerdients.name}"><h:outputText value="#{ingerdients.name}" /></p:column>
+			        <p:column headerText="Food Type"  filterBy="#{ingerdients.name}"><h:outputText value="#{ingerdients.name}" /></p:column>
 			        <p:column headerText="Protein(gm)"  filterBy="#{ingerdients.containedProtiens}"><h:outputText value="#{ingerdients.containedProtiens}" /></p:column>
 			        <p:column headerText="Carbs(gm)"  filterBy="#{ingerdients.containedCarbs}"><h:outputText value="#{ingerdients.containedCarbs}" /></p:column>
 			        <p:column headerText="Fats(gm)"  filterBy="#{ingerdients.containedFats}"><h:outputText value="#{ingerdients.containedFats}" /></p:column>
@@ -43,13 +43,14 @@
 						<p:tooltip for="addToMeal" value="Add To Meal"
 							showEffect="fade" hideEffect="fade" />
 							</p:column>
+							
 			        </p:dataTable>
 		</p:panel>
 		 <p:panelGrid styleClass="noBorderGrid">
     	   	<p:row> 
     	   	  <p:column style="text-align:center;">
  				<p:commandButton id="saveButton" style="width:10%;height:40px;" value="Add Ingerdient" icon="ui-icon-create" action="#{mealBean.showAddIngerdientsDialog()}" update="AddIngerdientsDialog"/>
- 				<p:commandButton id="deleteButton"  style="width:111px;height:40px;" value="Delete Ingerdient" icon="ui-icon-trash" action="#{mealBean.deleteIngerdient}" ajax="false"/>
+ 				<p:commandButton id="deleteButton"  style="width:111px;height:40px;" value="Delete Ingerdient" icon="ui-icon-trash"  onclick="PF('ingedientsTable').clearFilters()" action="#{mealBean.deleteIngerdient}" ajax="false"/>
 			  </p:column>
 			</p:row>
 		</p:panelGrid>

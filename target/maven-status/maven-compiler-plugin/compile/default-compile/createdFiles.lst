@@ -12,6 +12,8 @@ com\degwee\daos\ClientNutritionInfoDao$1.class
 com\degwee\daos\SubMealDao$1.class
 com\degwee\service\Meal_ClientService.class
 com\degwee\utils\Constants.class
+com\degwee\model\User.class
+com\degwee\service\UserService.class
 com\degwee\daos\FolderPathDao.class
 com\degwee\daos\ReportDao.class
 com\degwee\model\StandardIngerdients.class
@@ -21,6 +23,7 @@ com\degwee\daos\ClientDao$2.class
 com\degwee\service\FormulasService.class
 com\degwee\utils\FileManger.class
 com\degwee\daos\ReportDao$1.class
+com\degwee\daos\UserDao.class
 com\degwee\bean\MealBean.class
 com\degwee\daos\ClientDao.class
 com\degwee\daos\StandardIngerdientsDao$1.class
@@ -30,12 +33,15 @@ com\degwee\service\SubMealService.class
 com\degwee\model\ClientNutritionInfo.class
 com\degwee\bean\ClientBean.class
 com\degwee\daos\ClientNutritionInfoDao.class
+com\degwee\daos\UserDao$1.class
 com\degwee\model\JasperParam.class
 com\degwee\model\Meal_Client.class
 com\degwee\utils\JasperIntegration.class
+com\degwee\utils\AuthenticationFilter.class
 com\degwee\model\FolderPath.class
 com\degwee\model\Client.class
 com\degwee\daos\ClientNutritionInfoDao$2.class
 com\degwee\service\ClientService.class
 com\degwee\service\MealService.class
 com\degwee\service\ReportService.class
+com\degwee\bean\LoginBean.class

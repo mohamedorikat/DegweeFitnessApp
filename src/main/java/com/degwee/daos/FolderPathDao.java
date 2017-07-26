@@ -28,7 +28,7 @@ public class FolderPathDao extends CustomHibernateDaoSupport {
 	public FolderPath findFolderPathById(Integer id) {
 		FolderPath folderPath = null;
 		List singleList = getHibernateTemplate().find("from FolderPath a where a.id=?", id);
-		if (singleList != null)
+		if (singleList != null || singleList.isEmpty())
 			folderPath = (FolderPath) singleList.get(0);
 		return folderPath;
 

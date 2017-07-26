@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="SummeryReport" pageWidth="595" pageHeight="842" columnWidth="595" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="20" uuid="f246070a-a645-4fb8-981d-8bc387a9b5b0">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="SummeryReport" pageWidth="595" pageHeight="600" columnWidth="595" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="20" uuid="f246070a-a645-4fb8-981d-8bc387a9b5b0">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
+	<subDataset name="dataset1" uuid="6eaaa9d7-df00-4351-97fe-6f679dd02116"/>
 	<parameter name="proteins" class="java.lang.String" isForPrompting="false"/>
 	<parameter name="fats" class="java.lang.String" isForPrompting="false"/>
 	<parameter name="carbohydrates" class="java.lang.String" isForPrompting="false"/>
@@ -20,9 +21,9 @@
 		<band splitType="Stretch"/>
 	</columnHeader>
 	<detail>
-		<band height="125" splitType="Stretch">
+		<band height="403" splitType="Stretch">
 			<staticText>
-				<reportElement positionType="Float" mode="Opaque" x="0" y="0" width="537" height="20" backcolor="#CCCCCC" uuid="9761bbba-efac-4e23-9eb7-2171f947b430"/>
+				<reportElement positionType="Float" mode="Opaque" x="0" y="0" width="494" height="20" backcolor="#CCCCCC" uuid="9761bbba-efac-4e23-9eb7-2171f947b430"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Microsoft JhengHei" isBold="true"/>
 					<paragraph leftIndent="10"/>
@@ -30,7 +31,7 @@
 				<text><![CDATA[MEALS STATS]]></text>
 			</staticText>
 			<staticText>
-				<reportElement positionType="Float" x="10" y="20" width="100" height="20" uuid="1b71974d-f9f5-4e88-9987-46c276eb03a6"/>
+				<reportElement positionType="Float" x="10" y="20" width="100" height="21" uuid="1b71974d-f9f5-4e88-9987-46c276eb03a6"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Microsoft JhengHei" size="10"/>
 				</textElement>
@@ -44,7 +45,7 @@
 				<text><![CDATA[Amount]]></text>
 			</staticText>
 			<line>
-				<reportElement x="10" y="40" width="555" height="1" forecolor="#999999" backcolor="#FFFFFF" uuid="337b68b6-b496-4c7f-89fd-ffe821573058"/>
+				<reportElement x="10" y="40" width="484" height="1" forecolor="#999999" backcolor="#FFFFFF" uuid="337b68b6-b496-4c7f-89fd-ffe821573058"/>
 			</line>
 			<line direction="BottomUp">
 				<reportElement x="259" y="20" width="1" height="101" forecolor="#999999" uuid="d7ca4e0b-0db8-42af-aff9-1352ab757679"/>
@@ -73,21 +74,21 @@
 			<textField>
 				<reportElement positionType="Float" x="273" y="40" width="100" height="20" uuid="8cb4d324-e59d-4795-a498-ae1cb32802f9"/>
 				<textElement verticalAlignment="Middle">
-					<font size="8"/>
+					<font size="8" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{proteins}.concat( " gm" )]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement positionType="Float" x="273" y="61" width="100" height="20" uuid="87886c87-5930-42a9-8086-8a3c0e82fcbd"/>
 				<textElement verticalAlignment="Middle">
-					<font size="8"/>
+					<font size="8" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{carbohydrates}.concat( " gm" )]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement positionType="Float" x="273" y="81" width="100" height="20" uuid="570c87e8-41a9-48f0-b8bc-a6129818d60f"/>
 				<textElement verticalAlignment="Middle">
-					<font size="8"/>
+					<font size="8" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{fats}.concat( " gm" )]]></textFieldExpression>
 			</textField>
@@ -100,12 +101,82 @@
 				<text><![CDATA[Total Calories]]></text>
 			</staticText>
 			<textField>
-				<reportElement positionType="Float" mode="Opaque" x="260" y="101" width="277" height="20" backcolor="#CCCCCC" uuid="e9236521-8bd0-49a0-b53a-59db5f1eda21"/>
+				<reportElement positionType="Float" mode="Opaque" x="260" y="101" width="234" height="20" backcolor="#CCCCCC" uuid="e9236521-8bd0-49a0-b53a-59db5f1eda21"/>
 				<textElement verticalAlignment="Middle">
-					<font size="8"/>
+					<font size="8" isBold="true"/>
 					<paragraph leftIndent="10"/>
 				</textElement>
-				<textFieldExpression><![CDATA[ $P{caloires}.concat( " Calories" )]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$P{caloires}.concat( " Calories" )]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="26" y="131" width="100" height="20" uuid="fd7b7763-dcd3-432f-b181-5be7df95328e"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Microsoft JhengHei" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Rules:]]></text>
+			</staticText>
+			<textField>
+				<reportElement positionType="Float" x="38" y="151" width="494" height="20" uuid="9899d5d8-2139-446a-8b34-127997311d79"/>
+				<textElement verticalAlignment="Middle" markup="styled">
+					<font fontName="Microsoft JhengHei" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA["<li>All food is weighed RAW before cooking</li>"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" x="38" y="311" width="494" height="20" uuid="4a4bb539-bd8f-4f91-85e8-db121d7238a9"/>
+				<textElement verticalAlignment="Middle" markup="styled">
+					<font fontName="Microsoft JhengHei" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA["<li>Train hard </li>"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" x="38" y="171" width="494" height="20" uuid="77096e4e-fb7c-420a-bdce-a91ce436bf6d"/>
+				<textElement verticalAlignment="Middle" markup="styled">
+					<font fontName="Microsoft JhengHei" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA["<li>Don't use oil in cooking your meals unless you have it in the meal plan</li>"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" x="38" y="191" width="494" height="20" uuid="da5c1d2a-72a6-485e-9455-0c5b049411ef"/>
+				<textElement verticalAlignment="Middle" markup="styled">
+					<font fontName="Microsoft JhengHei" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA["<li>Stick to the plan for maximum Results</li>"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" x="38" y="211" width="494" height="20" uuid="69f42da3-10c9-46e6-a2e0-4b4189caae94"/>
+				<textElement verticalAlignment="Middle" markup="styled">
+					<font fontName="Microsoft JhengHei" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA["<li>You can mix and match between meals but not between plans</li>"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" x="38" y="231" width="494" height="20" uuid="dc4f967d-e675-4e3f-b462-1ad0213f5bdf"/>
+				<textElement verticalAlignment="Middle" markup="styled">
+					<font fontName="Microsoft JhengHei" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA["<li>Meal timing is irrelevant you can eat at any time you want as long as you meet your macronutrients</li>"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" x="38" y="251" width="494" height="20" uuid="16d026e0-5b9e-40df-8651-8d3da911c78a"/>
+				<textElement verticalAlignment="Middle" markup="styled">
+					<font fontName="Microsoft JhengHei" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA["<li>If you are bulking exclude cardio from your workout (Don't do it)</li>"]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" x="38" y="271" width="494" height="20" uuid="1764106d-93cf-4428-8b48-dd84d5fb6a16"/>
+				<textElement verticalAlignment="Middle" markup="styled">
+					<font fontName="Microsoft JhengHei" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA["<li>Cheat days are once every 2 weeks if you are over 10 percent body fat and once every week if you are under 10 percent</li>"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" x="38" y="291" width="494" height="20" uuid="aad4b958-9297-456d-9a2a-5f2bd04b283d"/>
+				<textElement verticalAlignment="Middle" markup="styled">
+					<font fontName="Microsoft JhengHei" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA["<li>Lift the maximum weights possible</li>"]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>

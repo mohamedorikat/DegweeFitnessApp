@@ -4,7 +4,7 @@
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
-		<defaultValueExpression><![CDATA["/app/src/main/resources/jasper_reports/"]]></defaultValueExpression>
+		<defaultValueExpression><![CDATA["C:\\Users\\orikat\\Documents\\DegweeWorkspace\\NutritionFitnessApp\\src\\main\\resources\\jasper_reports\\"]]></defaultValueExpression>
 	</parameter>
 	<parameter name="fats" class="java.lang.String" isForPrompting="false"/>
 	<parameter name="proteins" class="java.lang.String" isForPrompting="false"/>
@@ -39,7 +39,7 @@
 			</textField>
 			<image>
 				<reportElement x="96" y="9" width="433" height="152" uuid="d6b04461-362f-4ad8-83f1-70893a6b7e29"/>
-				<imageExpression><![CDATA["/app/WebContent/resources/images/degwelogosmall.png"]]></imageExpression>
+				<imageExpression><![CDATA["C:\\Users\\orikat\\Documents\\DegweeWorkspace\\NutritionFitnessApp\\WebContent\\resources\\images\\degwelogosmall.png"]]></imageExpression>
 			</image>
 		</band>
 	</title>

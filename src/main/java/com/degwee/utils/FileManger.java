@@ -97,6 +97,18 @@ public class FileManger {
 		}
 		
 	}
+	public int deleteFileByPath(String fullPath) throws IOException {
+		try {
+			Path path=Paths.get(fullPath);
+			boolean deleted=Files.deleteIfExists(path);
+			if(deleted)
+				return 0;
+			else
+				return 1;//file not exits
+		} catch (IOException e1) {
+			throw e1;
+		}
+	}
 	
 
 }

@@ -28,10 +28,10 @@
 			         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown} ">
 			         
 			        <p:column headerText="Food Type" sortBy="#{ingerdients.name}" filterBy="#{ingerdients.name}"><h:outputText value="#{ingerdients.name}" /></p:column>
-			        <p:column headerText="Protein(gm)" sortBy="#{ingerdients.containedProtiens}" filterBy="#{ingerdients.containedProtiens}"><h:outputText value="#{ingerdients.containedProtiens}" /></p:column>
-			        <p:column headerText="Carbs(gm)" sortBy="#{ingerdients.containedCarbs}" filterBy="#{ingerdients.containedCarbs}"><h:outputText value="#{ingerdients.containedCarbs}" /></p:column>
-			        <p:column headerText="Fats(gm)" sortBy="#{ingerdientscontainedFats}" filterBy="#{ingerdientscontainedFats}"><h:outputText value="#{ingerdients.containedFats}" /></p:column>
-			        <p:column headerText="Total Calories" sortBy="#{ingerdients.totalCalories}" filterBy="#{ingerdients.totalCalories}"><h:outputText value="#{ingerdients.totalCalories}" /></p:column>
+			        <p:column headerText="Protein(gm)"  filterBy="#{ingerdients.containedProtiens}"><h:outputText value="#{ingerdients.containedProtiens}" /></p:column>
+			        <p:column headerText="Carbs(gm)"  filterBy="#{ingerdients.containedCarbs}"><h:outputText value="#{ingerdients.containedCarbs}" /></p:column>
+			        <p:column headerText="Fats(gm)"  filterBy="#{ingerdients.containedFats}"><h:outputText value="#{ingerdients.containedFats}" /></p:column>
+			        <p:column headerText="Total Calories" filterBy="#{ingerdients.totalCalories}"><h:outputText value="#{ingerdients.totalCalories}" /></p:column>
 					<p:column styleClass="action-column">
 						<f:facet name="header">
 							<h:outputText value="Actions" />
@@ -49,7 +49,7 @@
     	   	<p:row> 
     	   	  <p:column style="text-align:center;">
  				<p:commandButton id="saveButton" style="width:10%;height:40px;" value="Add Ingerdient" icon="ui-icon-create" action="#{mealBean.showAddIngerdientsDialog()}" update="AddIngerdientsDialog"/>
- 				<p:commandButton id="deleteButton"  style="width:10%;height:40px;" value="Delete Ingerdient" icon="ui-icon-trash" action="#{mealBean.deleteIngerdient}" ajax="false"/>
+ 				<p:commandButton id="deleteButton"  style="width:111px;height:40px;" value="Delete Ingerdient" icon="ui-icon-trash" action="#{mealBean.deleteIngerdient}" ajax="false"/>
 			  </p:column>
 			</p:row>
 		</p:panelGrid>
@@ -271,7 +271,7 @@
 			<p:panelGrid styleClass="noBorderGrid">
     	   	<p:row> 
     	   	  <p:column style="text-align:center;">
- 				<p:commandButton id="generateReportButton" value="Generate Report" icon="ui-icon-pencil" actionListener="#{mealBean.saveMeals()}" ajax="false"  style="width:10%;height:40px;">
+ 				<p:commandButton id="generateReportButton" value="Generate Report" icon="ui-icon-pencil" actionListener="#{mealBean.saveMeals()}" ajax="false"  style="width:22%;height:40px;">
  					<p:fileDownload value="#{mealBean.fileManager.downloadedFile}" />
  				</p:commandButton>
  				<p:commandButton id="backButton" value="Back" action="clientInfo" ajax="false" immediate="true"  style="width:10%;height:40px;"/>

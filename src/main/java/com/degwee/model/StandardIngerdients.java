@@ -1,5 +1,7 @@
 package com.degwee.model;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,8 +14,7 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name="standardingerdients")
-public class StandardIngerdients {
-	
+public class StandardIngerdients{
 	@Id
 	@Column(name="Id")
 	@GeneratedValue(strategy=GenerationType.AUTO)

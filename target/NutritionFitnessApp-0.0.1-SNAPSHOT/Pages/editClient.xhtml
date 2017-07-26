@@ -20,15 +20,15 @@
 			rowKey="#{client.getClientId()}" selection="#{clientBean.client}" tableStyle="table-layout: auto"
 			style="padding-top:10px;padding-bottom:10px" paginator="true" 
 			paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
-			<p:column headerText="Fisrt Name" sortBy="#{client.firstName}"
+			<p:column headerText="Fisrt Name"
 				filterBy="#{client.firstName}">
 				<h:outputText value="#{client.firstName}" />
 			</p:column>
-			<p:column headerText="Last Name" sortBy="#{client.lastName}"
+			<p:column headerText="Last Name"
 				filterBy="#{client.lastName}">
 				<h:outputText value="#{client.lastName}" />
 			</p:column>
-			<p:column headerText="Email" sortBy="#{client.email}"
+			<p:column headerText="Email"
 				filterBy="#{client.email}">
 				<h:outputText value="#{client.email}" />
 			</p:column>

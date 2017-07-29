@@ -392,14 +392,14 @@ public class MealBean {
 		this.fileManager = fileManager;
 	}
 
-	public void showIngerdientsToMealDialog(StandardIngerdients selectedIngedrients) {
+	public void showIngerdientsToMealDialog() {
 		selectedSubMeal = new SubMeal();
 		selectedSubMeal.setMeal(new Meal());
-		if (selectedIngedrients.getId() == null) {
-			Constants.showMessage("Error in Adding To Meal List Contact Orikat", true);
+		if (selectedStandardIngerdients == null) {
+			Constants.showMessage("Please Select Ingerdient First To Add", true);
 			return;
 		}
-		selectedSubMeal.setStandardIngerdients(selectedIngedrients);
+		selectedSubMeal.setStandardIngerdients(selectedStandardIngerdients);
 		RequestContext context = RequestContext.getCurrentInstance();
 		context.execute("PF('addToMealDialog').show()");
 	}
@@ -416,7 +416,7 @@ public class MealBean {
 		return meal;
 	}
 
-	public void addIngerdientsToMeal() {
+	public String addIngerdientsToMeal() {
 
 		try {
 			selectedSubMeal.setMeal(getSelectedMealFromDialog());
@@ -444,6 +444,7 @@ public class MealBean {
 			ex.printStackTrace();
 			Constants.showMessage("Error addIngerdientsToMeal Method,ex:" + ex.getMessage(), true);
 		}
+		return "mealSelection";
 	}
 
 	public void updateNutritionInfoCounters(Integer mealNumber, List<SubMeal> mealList) {
@@ -580,7 +581,7 @@ public class MealBean {
 
 	}
 
-	public void deleteIngerdient() {
+	public String deleteIngerdient() {
 		if (selectedStandardIngerdients != null) {
 			try {
 				ingerdientsService.delete(selectedStandardIngerdients);
@@ -592,15 +593,14 @@ public class MealBean {
 		} else {
 			Constants.showMessage("Please Select Ingerdient First To Delete", true);
 		}
-		return;
+		return "mealSelection";
 	}
 
-	public void saveIngerdients() {
+	public String saveIngerdients() {
 		try {
 			if (selectedStandardIngerdients != null) {
 				if (selectedStandardIngerdients.getFolderPath() == null) {
 					Constants.showMessage("Please Choose Image For Food Before Save", true);
-					return;
 				}
 				ingerdientsService.save(selectedStandardIngerdients);
 				allIngerdients.add(selectedStandardIngerdients);
@@ -612,6 +612,7 @@ public class MealBean {
 			System.out.println(ex);
 			Constants.showMessage("Error in adding inegrdient," + ex.getMessage(), true);
 		}
+		return "mealSelection";
 	}
 
 	public void resetIngerdient() {

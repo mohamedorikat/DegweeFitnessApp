@@ -32,18 +32,6 @@
 			        <p:column headerText="Carbs(gm)"  filterBy="#{ingerdients.containedCarbs}"><h:outputText value="#{ingerdients.containedCarbs}" /></p:column>
 			        <p:column headerText="Fats(gm)"  filterBy="#{ingerdients.containedFats}"><h:outputText value="#{ingerdients.containedFats}" /></p:column>
 			        <p:column headerText="Total Calories" filterBy="#{ingerdients.totalCalories}"><h:outputText value="#{ingerdients.totalCalories}" /></p:column>
-					<p:column styleClass="action-column">
-						<f:facet name="header">
-							<h:outputText value="Actions" />
-						</f:facet>
-						<p:commandButton id="addToMeal" value="Add To Meal" icon="ui-icon-create" update="addToMealDialog"
-							action="#{mealBean.showIngerdientsToMealDialog(ingerdients)}" immediate="true"
-							title="Add To meal" ajax="true">
-						</p:commandButton>
-						<p:tooltip for="addToMeal" value="Add To Meal"
-							showEffect="fade" hideEffect="fade" />
-							</p:column>
-							
 			        </p:dataTable>
 		</p:panel>
 		 <p:panelGrid styleClass="noBorderGrid">
@@ -51,6 +39,10 @@
     	   	  <p:column style="text-align:center;">
  				<p:commandButton id="saveButton" style="width:10%;height:40px;" value="Add Ingerdient" icon="ui-icon-create" action="#{mealBean.showAddIngerdientsDialog()}" update="AddIngerdientsDialog"/>
  				<p:commandButton id="deleteButton"  style="width:111px;height:40px;" value="Delete Ingerdient" icon="ui-icon-trash"  onclick="PF('ingedientsTable').clearFilters()" action="#{mealBean.deleteIngerdient}" ajax="false"/>
+ 				<p:commandButton id="addToMealButton" value="Add To Meal" icon="ui-icon-create" update="addToMealDialog growl"
+							action="#{mealBean.showIngerdientsToMealDialog()}"
+							title="Add To meal" ajax="true">
+						</p:commandButton>
 			  </p:column>
 			</p:row>
 		</p:panelGrid>

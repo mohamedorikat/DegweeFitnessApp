@@ -22,11 +22,11 @@ public class Workout_Muscle {
 	private Integer id;
 
 	@ManyToOne
-	@JoinColumn(name = "muscle_id", referencedColumnName = "muscle_id", nullable = false)
+	@JoinColumn(name = "muscle_id", referencedColumnName = "id", nullable = false)
 	private Muscle muscle;
 
 	@ManyToOne
-	@JoinColumn(name = "workout_id", referencedColumnName = "workout_id", nullable = false)
+	@JoinColumn(name = "workout_id", referencedColumnName = "id", nullable = false)
 	private Workout workout;
 
 	public Integer getId() {

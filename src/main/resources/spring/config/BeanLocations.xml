@@ -37,6 +37,11 @@ http://www.springframework.org/schema/context/spring-context-2.5.xsd">
 				<value>com.degwee.model.User</value>
 				<value>com.degwee.model.Stratgey</value>
 				<value>com.degwee.model.Set</value>
+				<value>com.degwee.model.Muscle</value>
+				<value>com.degwee.model.Workout</value>
+				<value>com.degwee.model.Day</value>
+				<value>com.degwee.model.DailyWorkout</value>
+				<value>com.degwee.model.Workout_Muscle</value>
 
 				<value>com.degwee.service.ClientService</value>
 				<value>com.degwee.service.StandardIngerdientsService</value>

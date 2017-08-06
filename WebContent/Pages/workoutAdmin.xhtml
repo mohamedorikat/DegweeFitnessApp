@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions">
+
+<h:head>
+	<h:outputStylesheet library="css" name="standard.css" />
+</h:head>
+<h:body>
+	<h:form prependId="false" id="growlForm">
+		<p:growl id="growl" showDetail="false" />
+	</h:form>
+	<h:form id="stratgeyForm">
+		<p:panel>
+			<p:dataTable id="stratgeyTable" widgetVar="stratgeyTable"
+				value="#{workoutAdminBean.allStratgies}" rows="10"
+				resizableColumns="true" selectionMode="single" var="stratgey"
+				rowKey="#{stratgey.id}" selection="#{workoutAdminBean.stratgey}"
+				tableStyle="table-layout: auto"
+				style="padding-top:10px;padding-bottom:10px" paginator="true"
+				paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
+				<p:column headerText="Stratgey Value)" filterBy="#{stratgey.value}">
+					<h:outputText value="#{stratgey.value}" />
+				</p:column>
+			</p:dataTable>
+			<p:panelGrid styleClass="noBorderGrid">
+				<p:row>
+					<p:column style="text-align:center;">
+						<p:commandButton
+							action="#{workoutAdminBean.showCreateStratgeyDialog()}"
+							value="Create" icon="ui-icon-create" update="stratgeyTable growl"
+							style="width:10%;height:40px;"></p:commandButton>
+						<p:commandButton id="delete" value="Delete"
+							action="#{workoutAdminBean.deleteStratgey()}"
+							style="width:10%;height:40px;" ajax="false"/>
+					</p:column>
+				</p:row>
+			</p:panelGrid>
+		</p:panel>
+	</h:form>
+	<p:dialog id="addStratgeyDialog" header="Add To Stratgey List"
+		modal="true" widgetVar="addStratgeyDialog" dynamic="true"
+		resizable="true" maximizable="true" showEffect="fade"
+		hideEffect="explode">
+		<p:outputPanel id="addStratgeyPanel">
+			<h:form id="addStratgeyForm" enctype="multipart/form-data">
+				<h:panelGrid id="addStratgeyPanelGrid">
+					<p:row>
+						<p:column>
+							<p:outputLabel value="Stratgey Value(Slash Based)"
+								for="stratgeyValue" />
+							<p:inputText id="stratgeyValue"
+								value="#{workoutAdminBean.stratgey.value}" required="true"></p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+					<p:column><p:commandButton id="addStratgeyButton" value="Add"
+					action="#{workoutAdminBean.createStratgey()}" ajax="false"/>
+				<p:commandButton id="closeButton" value="Close"
+					onclick="PF('addStratgeyDialog').hide()" type="button" /></p:column>
+					</p:row>
+				</h:panelGrid>
+
+				
+			</h:form>
+		</p:outputPanel>
+	</p:dialog>
+
+
+
+
+</h:body>
+</html>

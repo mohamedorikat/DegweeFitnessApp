@@ -36,6 +36,10 @@ public class Client {
 	@JoinColumn(name="NutritionId",referencedColumnName="Id",nullable=false)
 	private ClientNutritionInfo nutritionInfo;
 	
+	@ManyToOne
+	@JoinColumn(name="strategy_id",referencedColumnName="id",nullable=true)
+	private Stratgey strategyId;
+	
 	@Column(name="PhoneNumber")
 	private String phoneNumber;
 	@Column(name="Email")
@@ -59,6 +63,12 @@ public class Client {
 	}
 	public void setNutritionInfo(ClientNutritionInfo nutritionInfo) {
 		this.nutritionInfo = nutritionInfo;
+	}
+	public Stratgey getStrategyId() {
+		return strategyId;
+	}
+	public void setStrategyId(Stratgey strategyId) {
+		this.strategyId = strategyId;
 	}
 	public String getPhoneNumber() {
 		return phoneNumber;

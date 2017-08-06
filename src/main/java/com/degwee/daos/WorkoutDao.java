@@ -45,7 +45,7 @@ public class WorkoutDao extends CustomHibernateDaoSupport {
 
 	public Workout findWorkoutById(Integer id) {
 		Workout workout = null;
-		List singleList = getHibernateTemplate().find("from workout a where a.id=?", id);
+		List singleList = getHibernateTemplate().find("from Workout a where a.id=?", id);
 		if (singleList != null)
 			workout = (Workout) singleList.get(0);
 		return workout;
@@ -53,7 +53,7 @@ public class WorkoutDao extends CustomHibernateDaoSupport {
 	}
 
 	public List<Workout> findAllWorkouts() {
-		List<Workout> workouts = (List<Workout>) getHibernateTemplate().find("from workout");
+		List<Workout> workouts = (List<Workout>) getHibernateTemplate().find("from Workout");
 		return workouts;
 
 	}

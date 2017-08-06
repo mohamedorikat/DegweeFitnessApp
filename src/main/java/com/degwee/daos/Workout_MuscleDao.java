@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.degwee.model.Muscle;
+import com.degwee.model.Stratgey;
 import com.degwee.model.Workout;
 import com.degwee.model.Workout_Muscle;
 import com.degwee.utils.CustomHibernateDaoSupport;
@@ -48,18 +49,25 @@ public class Workout_MuscleDao extends CustomHibernateDaoSupport {
 	}
 
 	public List<Workout_Muscle> findAllWorkout_Muscle() {
-		List<Workout_Muscle> workoutMuscleList = (List<Workout_Muscle>) getHibernateTemplate().find("from Workout_Muscle");
+		List<Workout_Muscle> workoutMuscleList = (List<Workout_Muscle>) getHibernateTemplate()
+				.find("from Workout_Muscle");
 		return workoutMuscleList;
 
 	}
 
-	public Workout_Muscle findWorkout_MuscleByWorkoutMusclet( Workout workout,Muscle muscle) {
+	public Workout_Muscle findWorkout_MuscleByWorkoutMusclet(Workout workout, Muscle muscle) {
 		Workout_Muscle workout_Muscle = null;
 		List singleList = getHibernateTemplate().find("from Workout_Muscle a where a.workout=? AND a.muscle=?", workout,
 				muscle);
 		if (singleList != null)
 			workout_Muscle = (Workout_Muscle) singleList.get(0);
 		return workout_Muscle;
+
+	}
+	
+	public List<Workout_Muscle> findWorkout_MuscleByWorkout(Workout workout) {
+		List list = getHibernateTemplate().find("from Workout_Muscle a where a.workout=?", workout);
+		return list;
 
 	}
 

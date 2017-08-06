@@ -46,7 +46,7 @@ public class MuscleDao extends CustomHibernateDaoSupport {
 
 	public Muscle findMuscleById(Integer id) {
 		Muscle muscle = null;
-		List singleList = getHibernateTemplate().find("from muscle a where a.id=?", id);
+		List singleList = getHibernateTemplate().find("from Muscle a where a.id=?", id);
 		if (singleList != null)
 			muscle = (Muscle) singleList.get(0);
 		return muscle;
@@ -54,7 +54,7 @@ public class MuscleDao extends CustomHibernateDaoSupport {
 	}
 
 	public List<Muscle> findAllMuscles() {
-		List<Muscle> muscles = (List<Muscle>) getHibernateTemplate().find("from muscle");
+		List<Muscle> muscles = (List<Muscle>) getHibernateTemplate().find("from Muscle");
 		return muscles;
 
 	}

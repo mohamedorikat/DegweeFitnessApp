@@ -16,15 +16,8 @@ public class WorkoutService {
 	public WorkoutDao workoutDao;
 
 	@Transactional
-	public boolean save(Workout workout) {
-		Workout existedWorkout = null;
-		existedWorkout = workoutDao.findWorkoutById(workout.getId());
-		if (existedWorkout != null) {
-			return true;
-		} else {
-			workoutDao.save(workout);
-		}
-		return false;
+	public void save(Workout workout) {
+		workoutDao.save(workout);
 	}
 
 	public Workout findWorkoutById(Integer id) {

@@ -16,15 +16,8 @@ public class MuscleService {
 	public MuscleDao muscleDao;
 	
 	@Transactional
-	public boolean save(Muscle muscle) {
-		Muscle existedMuscle = null;
-		existedMuscle = muscleDao.findMuscleById(muscle.getId());
-		if (existedMuscle != null) {
-			return true;
-		} else {
+	public void save(Muscle muscle) {
 			muscleDao.save(muscle);
-		}
-		return false;
 	}
 
 	public Muscle findMuscleById(Integer id) {

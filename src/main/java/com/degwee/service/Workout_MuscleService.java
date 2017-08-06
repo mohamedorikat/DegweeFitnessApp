@@ -38,4 +38,22 @@ public class Workout_MuscleService {
 		return workout_MuscleDao.findWorkout_MuscleByWorkoutMusclet(workout, muscle);
 	}
 
+	public List<Workout_Muscle> findWorkout_MuscleByWorkout(Workout workout) {
+		return workout_MuscleDao.findWorkout_MuscleByWorkout(workout);
+	}
+
+	public boolean deleteWorkoutMuscleByWorkout(Workout workout) {
+		List<Workout_Muscle> deletedList = this.findWorkout_MuscleByWorkout(workout);
+		boolean existed = false;
+		if (deletedList != null && !deletedList.isEmpty()) {
+			existed = true;
+			for (Workout_Muscle workouMuscle : deletedList)
+				workout_MuscleDao.delete(workouMuscle);
+
+		} else
+			existed = false;
+		return existed;
+
+	}
+
 }

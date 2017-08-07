@@ -14,35 +14,8 @@
 	<h:form prependId="false" id="growlForm">
 		<p:growl id="growl" showDetail="false" />
 	</h:form>
-	<h:form id="stratgeyForm">
-		<p:panel>
-			<p:dataTable id="stratgeyTable" widgetVar="stratgeyTable"
-				value="#{workoutAdminBean.allStratgies}" rows="10"
-				resizableColumns="true" selectionMode="single" var="stratgey"
-				rowKey="#{stratgey.id}" selection="#{workoutAdminBean.stratgey}"
-				tableStyle="table-layout: auto"
-				style="padding-top:10px;padding-bottom:10px" paginator="true"
-				paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
-				<p:column headerText="Stratgey Value)" filterBy="#{stratgey.value}">
-					<h:outputText value="#{stratgey.value}" />
-				</p:column>
-			</p:dataTable>
-			<p:panelGrid styleClass="noBorderGrid">
-				<p:row>
-					<p:column style="text-align:center;">
-						<p:commandButton
-							action="#{workoutAdminBean.showCreateStratgeyDialog()}"
-							value="Create" icon="ui-icon-create" update="stratgeyTable growl"
-							style="width:10%;height:40px;"></p:commandButton>
-						<p:commandButton id="delete" value="Delete"
-							action="#{workoutAdminBean.deleteStratgey()}"
-							style="width:10%;height:40px;" ajax="false"/>
-					</p:column>
-				</p:row>
-			</p:panelGrid>
-		</p:panel>
-	</h:form>
-	
+
+
 	<h:form id="workoutForm">
 		<p:panel>
 			<p:dataTable id="workoutable" widgetVar="workoutable"
@@ -55,7 +28,8 @@
 				<p:column headerText="Workout Name" filterBy="#{workout.name}">
 					<h:outputText value="#{workout.name}" />
 				</p:column>
-				<p:column headerText="Workout Video Link" filterBy="#{workout.videoLink}">
+				<p:column headerText="Workout Video Link"
+					filterBy="#{workout.videoLink}">
 					<h:outputText value="#{workout.videoLink}" />
 				</p:column>
 			</p:dataTable>
@@ -66,17 +40,16 @@
 							action="#{workoutAdminBean.showCreateWorkoutDialog()}"
 							value="Create" icon="ui-icon-create" update="workoutable growl"
 							style="width:10%;height:40px;"></p:commandButton>
-						<p:commandButton id="delete" value="Delete"
+						<p:commandButton id="delete" value="Delete" icon="ui-icon-trash"
 							action="#{workoutAdminBean.deleteWorkout()}"
-							style="width:10%;height:40px;" ajax="false"/>
+							style="width:10%;height:40px;" ajax="false" />
 					</p:column>
 				</p:row>
 			</p:panelGrid>
 		</p:panel>
 	</h:form>
-	
-	
-	
+
+
 	<h:form id="MuscleForm">
 		<p:panel>
 			<p:dataTable id="muscletable" widgetVar="muscletable"
@@ -97,16 +70,45 @@
 							action="#{workoutAdminBean.showCreateMuscleDialog()}"
 							value="Create" icon="ui-icon-create" update="muscletable growl"
 							style="width:10%;height:40px;"></p:commandButton>
-						<p:commandButton id="delete" value="Delete"
+						<p:commandButton id="delete" value="Delete" icon="ui-icon-trash"
 							action="#{workoutAdminBean.deleteMuscle()}"
-							style="width:10%;height:40px;" ajax="false"/>
+							style="width:10%;height:40px;" ajax="false" />
 					</p:column>
 				</p:row>
 			</p:panelGrid>
 		</p:panel>
 	</h:form>
-	
-	
+
+
+	<h:form id="stratgeyForm">
+		<p:panel>
+			<p:dataTable id="stratgeyTable" widgetVar="stratgeyTable"
+				value="#{workoutAdminBean.allStratgies}" rows="10"
+				resizableColumns="true" selectionMode="single" var="stratgey"
+				rowKey="#{stratgey.id}" selection="#{workoutAdminBean.stratgey}"
+				tableStyle="table-layout: auto"
+				style="padding-top:10px;padding-bottom:10px" paginator="true"
+				paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
+				<p:column headerText="Stratgey Value)" filterBy="#{stratgey.value}">
+					<h:outputText value="#{stratgey.value}" />
+				</p:column>
+			</p:dataTable>
+			<p:panelGrid styleClass="noBorderGrid">
+				<p:row>
+					<p:column style="text-align:center;">
+						<p:commandButton
+							action="#{workoutAdminBean.showCreateStratgeyDialog()}"
+							value="Create" icon="ui-icon-create" update="stratgeyTable growl"
+							style="width:10%;height:40px;"></p:commandButton>
+						<p:commandButton id="delete" value="Delete" icon="ui-icon-trash"
+							action="#{workoutAdminBean.deleteStratgey()}"
+							style="width:10%;height:40px;" ajax="false" />
+					</p:column>
+				</p:row>
+			</p:panelGrid>
+		</p:panel>
+	</h:form>
+
 	<p:dialog id="addStratgeyDialog" header="Add To Stratgey List"
 		modal="true" widgetVar="addStratgeyDialog" dynamic="true"
 		resizable="true" maximizable="true" showEffect="fade"
@@ -123,19 +125,21 @@
 						</p:column>
 					</p:row>
 					<p:row>
-					<p:column><p:commandButton id="addStratgeyButton" value="Add"
-					action="#{workoutAdminBean.createStratgey()}" ajax="false"/>
-				<p:commandButton id="closeButton" value="Close"
-					onclick="PF('addStratgeyDialog').hide()" type="button" /></p:column>
+						<p:column>
+							<p:commandButton id="addStratgeyButton" value="Add"
+								action="#{workoutAdminBean.createStratgey()}" ajax="false" />
+							<p:commandButton id="closeButton" value="Close"
+								onclick="PF('addStratgeyDialog').hide()" type="button" />
+						</p:column>
 					</p:row>
 				</h:panelGrid>
 
-				
+
 			</h:form>
 		</p:outputPanel>
 	</p:dialog>
-	
-	<p:dialog id="addWorkoutDialog" header="Add To Stratgey List"
+
+	<p:dialog id="addWorkoutDialog" header="Add To Workout List"
 		modal="true" widgetVar="addWorkoutDialog" dynamic="true"
 		resizable="true" maximizable="true" showEffect="fade"
 		hideEffect="explode">
@@ -144,60 +148,77 @@
 				<h:panelGrid id="addWorkoutPanelGrid">
 					<p:row>
 						<p:column>
-							<p:outputLabel value="Workout Name"
-								for="name" />
-							<p:inputText id="name"
-								value="#{workoutAdminBean.workout.name}" required="true"></p:inputText>
+							<p:outputLabel value="Workout Name" for="name" />
+							<p:inputText id="name" value="#{workoutAdminBean.workout.name}"
+								required="true"></p:inputText>
 						</p:column>
 					</p:row>
 					<p:row>
 						<p:column>
-							<p:outputLabel value="Workout Video Link"
-								for="link" />
+							<p:outputLabel value="Workout Video Link" for="link" />
 							<p:inputText id="link"
-								value="#{workoutAdminBean.workout.videoLink}" required="true"></p:inputText>
+								value="#{workoutAdminBean.workout.videoLink}" required="true"></p:inputText><br></br>
 						</p:column>
 					</p:row>
 					<p:row>
 						<p:column>
-							<p:outputLabel value="Select Muscle" /><br></br>
+							<p:commandButton process="@this" value="Select Related Muscle" icon="ui-icon-add"
+								action="#{workoutAdminBean.showMuscleForWorkoutList()}"></p:commandButton>
 						</p:column>
 						<p:column>
-							<p:selectOneMenu id="selectMuscle" value="#{workoutAdminBean.selectedWorkoutMuscleId}" style="width:150px" required="true" requiredMessage="please select a Muscle to add before save">
-              				<f:selectItem itemLabel="Select Muscle" itemValue="" noSelectionOption="true" />
-               				<f:selectItems value="#{workoutAdminBean.allMuscles}"
-										var="muscleVar" itemValue="#{muscleVar.id}"
-										itemLabel="#{muscleVar.name}" />
-          					</p:selectOneMenu>
+							<p:dataTable id="muscleWorkoutTable"
+								widgetVar="muscleWorkoutTable"
+								value="#{workoutAdminBean.selectedMusclesListForWokrout}"
+								rows="5" resizableColumns="true" var="muscle"
+								rowKey="#{muscle.id}" paginator="true"
+								tableStyle="table-layout: auto"
+								style="padding-top:10px;padding-bottom:10px">
+								<p:column headerText="Muscle Name">
+									<h:outputText value="#{muscle.name}" />
+								</p:column>
+								<p:column styleClass="action-column">
+									<f:facet name="header">
+										<h:outputText value="Actions" />
+									</f:facet>
+									<p:commandButton id="removeMuscle" value="Remove"
+										icon="ui-icon-trash" process="@this"
+										update="muscleWorkoutTable"
+										action="#{workoutAdminBean.removeMuscleFromWorkout(muscle)}"
+										title="Remove">
+									</p:commandButton>
+									<p:tooltip for="removeMuscle" value="Reomve" showEffect="fade"
+										hideEffect="fade" />
+								</p:column>
+							</p:dataTable>
 						</p:column>
-						</p:row>
+					</p:row>
 					<p:row>
-					<p:column><p:commandButton id="addWorkoutButton" value="Add"
-					action="#{workoutAdminBean.createWorkout()}" ajax="false"/>
-				<p:commandButton id="closeWorkoutButton" value="Close"
-					onclick="PF('addWorkoutDialog').hide()" type="button" /></p:column>
+						<p:column>
+							<p:commandButton id="addWorkoutButton" value="Add"
+								action="#{workoutAdminBean.createWorkout()}" ajax="false" />
+							<p:commandButton id="closeWorkoutButton" value="Close"
+								onclick="PF('addWorkoutDialog').hide()" type="button" />
+						</p:column>
 					</p:row>
 				</h:panelGrid>
 
-				
+
 			</h:form>
 		</p:outputPanel>
 	</p:dialog>
 
 
-<p:dialog id="addMuscleDialog" header="Add To Stratgey List"
-		modal="true" widgetVar="addMuscleDialog" dynamic="true"
-		resizable="true" maximizable="true" showEffect="fade"
-		hideEffect="explode">
+	<p:dialog id="addMuscleDialog" header="Add To Muscle List" modal="true"
+		widgetVar="addMuscleDialog" dynamic="true" resizable="true"
+		maximizable="true" showEffect="fade" hideEffect="explode">
 		<p:outputPanel id="addMusclePanel">
 			<h:form id="addMuscleForm" enctype="multipart/form-data">
 				<h:panelGrid id="addMusclePanelGrid">
 					<p:row>
 						<p:column>
-							<p:outputLabel value="Muscle Name"
-								for="name" />
-							<p:inputText id="name"
-								value="#{workoutAdminBean.muscle.name}" required="true"></p:inputText>
+							<p:outputLabel value="Muscle Name" for="name" />
+							<p:inputText id="name" value="#{workoutAdminBean.muscle.name}"
+								required="true"></p:inputText>
 						</p:column>
 					</p:row>
 					<p:row>
@@ -206,6 +227,43 @@
 								action="#{workoutAdminBean.createMuscle()}" ajax="false" />
 							<p:commandButton id="closeMuscleButton" value="Close"
 								onclick="PF('addMuscleDialog').hide()" type="button" />
+						</p:column>
+					</p:row>
+				</h:panelGrid>
+			</h:form>
+		</p:outputPanel>
+	</p:dialog>
+
+	<p:dialog id="addMuscleToWorkoutDialog" header="Add Muscle To Workout"
+		modal="true" widgetVar="addMuscleToWorkoutDialog" dynamic="true"
+		resizable="true" maximizable="true" showEffect="fade"
+		hideEffect="explode">
+		<p:outputPanel id="addMuscleWorkoutPanel">
+			<h:form id="addMuscleToWorkoutForm" enctype="multipart/form-data">
+				<p:dataTable id="muscletableForWorkout" rowKey="#{muscle.id}"
+					widgetVar="muscletableForWorkout"
+					value="#{workoutAdminBean.allMuscles}" rows="8"
+					resizableColumns="true" var="muscle"
+					selection="#{workoutAdminBean.selectedMuscleForWokrout}"
+					tableStyle="table-layout: auto"
+					style="padding-top:10px;padding-bottom:10px" paginator="true"
+					paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
+					<p:column selectionMode="single"
+						style="width:16px;text-align:center" />
+					<p:column headerText="Muscle Name">
+						<h:outputText value="#{muscle.name}" />
+					</p:column>
+				</p:dataTable>
+				<h:panelGrid id="addMuscleWorkoutPanelGrid">
+					<p:row>
+						<p:column>
+							<p:commandButton id="addMuscleToWorkoutButton"
+								value="Add To Workout"
+								action="#{workoutAdminBean.addSelectedMuscleToWorkout()}"
+								update=":addWorkoutForm:muscleWorkoutTable growl"
+								oncomplete="PF('addMuscleToWorkoutDialog').hide()" />
+							<p:commandButton id="closeMuscleToWorkoutButton" value="Close"
+								onclick="PF('addMuscleToWorkoutDialog').hide()" type="button" />
 						</p:column>
 					</p:row>
 				</h:panelGrid>

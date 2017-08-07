@@ -55,5 +55,17 @@ public class Workout_MuscleService {
 		return existed;
 
 	}
+	public void saveWorkoutWithMuscleList(Workout workout,List<Muscle> muscleList)
+	{
+		Workout_Muscle workoutMuscleObj=null;
+		for(Muscle muscle:muscleList)
+		{
+			workoutMuscleObj=new Workout_Muscle();
+			workoutMuscleObj.setMuscle(muscle);
+			workoutMuscleObj.setWorkout(workout);
+			this.save(workoutMuscleObj);
+		}
+			
+	}
 
 }

@@ -17,8 +17,10 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import com.degwee.model.Client;
 import com.degwee.model.ClientNutritionInfo;
+import com.degwee.model.Stratgey;
 import com.degwee.service.ClientNutritionInfoService;
 import com.degwee.service.ClientService;
+import com.degwee.service.StratgeyService;
 import com.degwee.utils.Constants;
 
 //@Component("clientBean")
@@ -31,10 +33,30 @@ public class ClientBean {
 	ClientService clientService;
 	@Autowired
 	ClientNutritionInfoService clientNutritionInfoService;
+	@Autowired
+	StratgeyService strategyService;
 	public boolean toCutFlag = false;
 	int mode = 0;
 	List<Client> allClients = null;
 	boolean goToMealInfo = false;
+	private Integer selectedStrategyId = null;
+	private boolean enableMealWorkoutPages = false;
+
+	public Integer getSelectedStrategyId() {
+		return selectedStrategyId;
+	}
+
+	public void setSelectedStrategyId(Integer selectedStrategyId) {
+		this.selectedStrategyId = selectedStrategyId;
+	}
+
+	public boolean isEnableMealWorkoutPages() {
+		return enableMealWorkoutPages;
+	}
+
+	public void setEnableMealWorkoutPages(boolean enableMealWorkoutPages) {
+		this.enableMealWorkoutPages = enableMealWorkoutPages;
+	}
 
 	public ClientService getClientService() {
 		return clientService;
@@ -86,6 +108,8 @@ public class ClientBean {
 		System.out.println("Path----------------------:" + path);
 		client = new Client();
 		client.setNutritionInfo(new ClientNutritionInfo());
+		enableMealWorkoutPages = false;
+		selectedStrategyId = null;
 		return "clientInfo";
 	}
 
@@ -101,6 +125,11 @@ public class ClientBean {
 			toCutFlag = true;
 		else
 			toCutFlag = false;
+		enableMealWorkoutPages = false;
+		if (client.getStrategyId() != null)
+			selectedStrategyId = client.getStrategyId().getId();
+		else
+			selectedStrategyId = null;
 		return "clientInfo";
 	}
 
@@ -115,6 +144,10 @@ public class ClientBean {
 		if (client.getNutritionInfo() != null) {
 			if (client.getNutritionInfo().getBMR() != null && client.getNutritionInfo().getTEE() != null
 					&& client.getNutritionInfo().getTACN() != null) {
+				if (selectedStrategyId != null)
+					client.setStrategyId(strategyService.findStratgeyById(selectedStrategyId));
+				else
+					client.setStrategyId(null);
 
 				if (client.getClientId() != null && mode == Constants.editMode) {
 					clientService.update(client);
@@ -122,6 +155,7 @@ public class ClientBean {
 					facesMessage.setSeverity(FacesMessage.SEVERITY_INFO);
 					FacesContext.getCurrentInstance().addMessage(null, facesMessage);
 					goToMealInfo = true;
+					enableMealWorkoutPages = true;
 				} else {
 					boolean alreadyExist = clientService.save(client);
 					if (alreadyExist) {
@@ -136,6 +170,7 @@ public class ClientBean {
 					facesMessage.setSeverity(FacesMessage.SEVERITY_INFO);
 					FacesContext.getCurrentInstance().addMessage(null, facesMessage);
 					goToMealInfo = true;
+					enableMealWorkoutPages = true;
 				}
 			} else {
 				FacesMessage facesMessage = new FacesMessage("Calculate NutritionInfo First");
@@ -176,6 +211,15 @@ public class ClientBean {
 		ServletContext servletContext = (ServletContext) externalContext.getContext();
 		WebApplicationContextUtils.getRequiredWebApplicationContext(servletContext).getAutowireCapableBeanFactory()
 				.autowireBean(this);
+	}
+
+	public String goToWorkoutSelection() {
+		if (client != null && client.getStrategyId() != null)
+			return "workoutSelection";
+		else {
+			Constants.showMessage("Please Select Strategy First before Going to Workout Page", true);
+			return null;
+		}
 	}
 
 }

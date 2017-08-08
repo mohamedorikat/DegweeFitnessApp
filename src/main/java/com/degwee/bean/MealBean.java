@@ -710,5 +710,9 @@ public class MealBean {
 		}
 		return result;
 	}
+	public String goBackToClientInfo()
+	{
+		return clientBean.goToEditClient();
+	}
 
 }

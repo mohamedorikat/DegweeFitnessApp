@@ -27,13 +27,17 @@
 						<p:outputLabel for="firstName" value="First Name"></p:outputLabel>
 					</p:column>
 					<p:column>
-						<p:inputText id="firstName" value="#{clientBean.client.firstName}" required="true" requiredMessage="First Name Required Field To Save Client"></p:inputText>
+						<p:inputText id="firstName" value="#{clientBean.client.firstName}"
+							required="true"
+							requiredMessage="First Name Required Field To Save Client"></p:inputText>
 					</p:column>
 					<p:column>
 						<p:outputLabel for="lastName" value="Last Name"></p:outputLabel>
 					</p:column>
 					<p:column>
-						<p:inputText id="lastName" value="#{clientBean.client.lastName}" required="true" requiredMessage="Last Name Required Field To Save Client "></p:inputText>
+						<p:inputText id="lastName" value="#{clientBean.client.lastName}"
+							required="true"
+							requiredMessage="Last Name Required Field To Save Client "></p:inputText>
 					</p:column>
 				</p:row>
 				<p:row>
@@ -131,6 +135,19 @@
 							value="#{clientBean.client.nutritionInfo.activityRate}"
 							required="true"
 							requiredMessage="Activity Rate Required Field To Save Client"></p:inputNumber>
+					</p:column>
+					<p:column>
+						<p:outputLabel value="Select Workout Strategy" />
+					</p:column>
+					<p:column>
+						<p:selectOneMenu id="selectStratgey"
+							value="#{clientBean.client.strategyId}" style="width:150px">
+							<f:selectItem itemLabel="Select Strategy" itemValue=""
+								noSelectionOption="true" />
+							<f:selectItems value="#{workoutAdminBean.allStratgies}"
+								var="strategy" itemValue="#{strategy.id}"
+								itemLabel="#{strategy.value}" />
+						</p:selectOneMenu>
 					</p:column>
 				</p:row>
 
@@ -258,9 +275,17 @@
 			<p:row>
 				<p:column style="text-align:center;">
 					<p:commandButton id="editSaveButton" value="Save"
-						icon="ui-icon-pencil" actionListener="#{clientBean.saveClient()}"
+						icon="ui-icon-pencil" action="#{clientBean.saveClient()}"
+						update=":growlForm:growl mealpage workoutpage" style="width:10%;height:40px;" />
+					<p:commandButton id="mealpage" value="Meals"
+						disabled="#{!clientBean.enableMealWorkoutPages}"
 						action="#{mealBean.initMealSelection(clientBean.goToMealInfo)}"
+						update=":growlForm:growl " style="width:10%;height:40px;" />
+						<p:commandButton id="workoutpage" value="Workouts"
+						disabled="#{!clientBean.enableMealWorkoutPages}"
+						action="#{clientBean.goToWorkoutSelection()}"
 						update=":growlForm:growl" style="width:10%;height:40px;" />
+
 					<p:commandButton id="gotoHome" value="Home" action="home"
 						ajax="false" immediate="true" style="width:10%;height:40px;" />
 				</p:column>

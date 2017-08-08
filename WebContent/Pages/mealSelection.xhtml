@@ -267,7 +267,7 @@
  				<p:commandButton id="generateReportButton" value="Generate Report" icon="ui-icon-pencil" actionListener="#{mealBean.saveMeals()}" ajax="false"  style="width:22%;height:40px;">
  					<p:fileDownload value="#{mealBean.fileManager.downloadedFile}" />
  				</p:commandButton>
- 				<p:commandButton id="backButton" value="Back" action="clientInfo" ajax="false" immediate="true"  style="width:10%;height:40px;"/>
+ 				<p:commandButton id="backButton" value="Back" action="#{mealBean.goBackToClientInfo()}" ajax="false" immediate="true"  style="width:10%;height:40px;"/>
  				<p:commandButton id="gotoHome" value="Home" action="home" style="width:10%;height:40px;"
 						ajax="false" immediate="true"/>
 			  </p:column>

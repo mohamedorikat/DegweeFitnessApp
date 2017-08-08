@@ -42,8 +42,8 @@
 					<p:column style="text-align:center;">
 						<p:commandButton
 							action="#{workoutAdminBean.showCreateWorkoutDialog()}"
-							value="Create Workout" icon="ui-icon-create" update="workoutable growl"
-							style="width:10%;height:40px;"></p:commandButton>
+							value="Create Workout" icon="ui-icon-create"
+							update="workoutable growl" style="width:10%;height:40px;"></p:commandButton>
 						<p:commandButton id="delete" value="Delete" icon="ui-icon-trash"
 							action="#{workoutAdminBean.deleteWorkout()}"
 							style="width:10%;height:40px;" ajax="false" />
@@ -72,8 +72,8 @@
 					<p:column style="text-align:center;">
 						<p:commandButton
 							action="#{workoutAdminBean.showCreateMuscleDialog()}"
-							value="Create Muscle" icon="ui-icon-create" update="muscletable growl"
-							style="width:10%;height:40px;"></p:commandButton>
+							value="Create Muscle" icon="ui-icon-create"
+							update="muscletable growl" style="width:10%;height:40px;"></p:commandButton>
 						<p:commandButton id="delete" value="Delete" icon="ui-icon-trash"
 							action="#{workoutAdminBean.deleteMuscle()}"
 							style="width:10%;height:40px;" ajax="false" />
@@ -102,11 +102,19 @@
 					<p:column style="text-align:center;">
 						<p:commandButton
 							action="#{workoutAdminBean.showCreateStratgeyDialog()}"
-							value="Create Strategy" icon="ui-icon-create" update="stratgeyTable growl"
-							style="width:10%;height:40px;"></p:commandButton>
+							value="Create Strategy" icon="ui-icon-create"
+							update="stratgeyTable growl" style="width:10%;height:40px;"></p:commandButton>
 						<p:commandButton id="delete" value="Delete" icon="ui-icon-trash"
 							action="#{workoutAdminBean.deleteStratgey()}"
 							style="width:10%;height:40px;" ajax="false" />
+					</p:column>
+				</p:row>
+			</p:panelGrid>
+			<p:panelGrid styleClass="noBorderGrid">
+				<p:row>
+					<p:column style="text-align:right;">
+						<p:commandButton action="home" value="Home" ajax="false"
+							style="width:10%;height:40px;"></p:commandButton>
 					</p:column>
 				</p:row>
 			</p:panelGrid>

@@ -17,11 +17,9 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
 import com.degwee.model.Muscle;
 import com.degwee.model.Stratgey;
 import com.degwee.model.Workout;
-import com.degwee.model.Workout_Muscle;
 import com.degwee.service.MuscleService;
 import com.degwee.service.StratgeyService;
 import com.degwee.service.WorkoutService;
-import com.degwee.service.Workout_MuscleService;
 import com.degwee.utils.Constants;
 
 //@Component("clientBean")
@@ -32,8 +30,8 @@ public class WorkoutAdminBean {
 	private Stratgey stratgey;
 	private Workout workout;
 	private Muscle muscle;
-	private Workout_Muscle workout_Muscle;
 	private Muscle selectedMuscleForWokrout = null;
+	private Integer selectedMuscleForWokroutId = null;
 
 	@Autowired
 	StratgeyService stratgeyService;
@@ -41,14 +39,19 @@ public class WorkoutAdminBean {
 	WorkoutService workoutService;
 	@Autowired
 	MuscleService muscleService;
-	@Autowired
-	Workout_MuscleService workout_MuscleService;
 
 	int mode = 0;
 	List<Stratgey> allStratgies = null;
 	List<Workout> allworkouts = null;
 	List<Muscle> allMuscles = null;
-	List<Muscle> selectedMusclesListForWokrout = null;
+
+	public Integer getSelectedMuscleForWokroutId() {
+		return selectedMuscleForWokroutId;
+	}
+
+	public void setSelectedMuscleForWokroutId(Integer selectedMuscleForWokroutId) {
+		this.selectedMuscleForWokroutId = selectedMuscleForWokroutId;
+	}
 
 	public Muscle getSelectedMuscleForWokrout() {
 		return selectedMuscleForWokrout;
@@ -56,22 +59,6 @@ public class WorkoutAdminBean {
 
 	public void setSelectedMuscleForWokrout(Muscle selectedMuscleForWokrout) {
 		this.selectedMuscleForWokrout = selectedMuscleForWokrout;
-	}
-
-	public List<Muscle> getSelectedMusclesListForWokrout() {
-		return selectedMusclesListForWokrout;
-	}
-
-	public void setSelectedMusclesListForWokrout(List<Muscle> selectedMusclesListForWokrout) {
-		this.selectedMusclesListForWokrout = selectedMusclesListForWokrout;
-	}
-
-	public Workout_Muscle getWorkout_Muscle() {
-		return workout_Muscle;
-	}
-
-	public void setWorkout_Muscle(Workout_Muscle workout_Muscle) {
-		this.workout_Muscle = workout_Muscle;
 	}
 
 	public Muscle getMuscle() {
@@ -168,20 +155,25 @@ public class WorkoutAdminBean {
 
 	public void showCreateWorkoutDialog() {
 		workout = new Workout();
-		selectedMusclesListForWokrout = new ArrayList<>();
+		selectedMuscleForWokroutId=null;
+		selectedMuscleForWokrout=null;
 		RequestContext context = RequestContext.getCurrentInstance();
 		context.execute("PF('addWorkoutDialog').show()");
 	}
 
 	public String createWorkout() {
 		try {
-			if (!selectedMusclesListForWokrout.isEmpty()) {
+			if (selectedMuscleForWokroutId != null)
+				selectedMuscleForWokrout = muscleService.findMuscleById(selectedMuscleForWokroutId);
+			if (selectedMuscleForWokrout != null) {
+				workout.setMuscleId(selectedMuscleForWokrout);
 				workoutService.save(workout);
-				workout_MuscleService.saveWorkoutWithMuscleList(workout, selectedMusclesListForWokrout);
 				Constants.showMessage("Workout Saved Successfully", false);
-			} else
-				Constants.showMessage("Must Select at least one muscle for the workout before save", true);
-		} catch (Exception ex) {
+			}
+			
+		} catch (
+
+		Exception ex) {
 			Constants.showMessage("Error While Save workout,see Log error ex:" + ex.getMessage(), true);
 			System.out.print(ex);
 		}
@@ -193,7 +185,6 @@ public class WorkoutAdminBean {
 			Constants.showMessage("Please Select workout before delete ", true);
 			return "workoutAdmin";
 		}
-		workout_MuscleService.deleteWorkoutMuscleByWorkout(workout);
 		workoutService.delete(workout);
 		Constants.showMessage("Workout Deleted Successfully ", false);
 		return "workoutAdmin";
@@ -233,42 +224,6 @@ public class WorkoutAdminBean {
 		ServletContext servletContext = (ServletContext) externalContext.getContext();
 		WebApplicationContextUtils.getRequiredWebApplicationContext(servletContext).getAutowireCapableBeanFactory()
 				.autowireBean(this);
-	}
-
-	private boolean validateOnAddedMuscleToWorkout(Muscle selectedMuscle) {
-		boolean muscleAlreadyExist = false;
-		if (!selectedMusclesListForWokrout.isEmpty()) {
-			for (Muscle mu : selectedMusclesListForWokrout)
-				if (mu.getId().equals(selectedMuscle.getId()))
-				{
-					muscleAlreadyExist = true;
-					break;
-				}
-		}
-		return muscleAlreadyExist;
-
-	}
-
-	public void addSelectedMuscleToWorkout() {
-		boolean musclealreadyExist = false;
-		if (selectedMuscleForWokrout != null) {
-			musclealreadyExist = validateOnAddedMuscleToWorkout(selectedMuscleForWokrout);
-			if (musclealreadyExist) {
-				Constants.showMessage("Selected Muscle Already Exist For this Workout", true);
-			} else
-				selectedMusclesListForWokrout.add(selectedMuscleForWokrout);
-		}
-	}
-
-	public void removeMuscleFromWorkout(Muscle muscle) {
-		if (selectedMusclesListForWokrout != null && !selectedMusclesListForWokrout.isEmpty())
-			selectedMusclesListForWokrout.remove(muscle);
-	}
-
-	public void showMuscleForWorkoutList() {
-		selectedMuscleForWokrout = new Muscle();
-		RequestContext context = RequestContext.getCurrentInstance();
-		context.execute("PF('addMuscleToWorkoutDialog').show()");
 	}
 
 }

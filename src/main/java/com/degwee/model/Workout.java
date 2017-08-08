@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -28,6 +30,10 @@ public class Workout {
 	@NotNull
 	private String videoLink;
 	
+	@ManyToOne
+	@JoinColumn(name="muscleId",referencedColumnName="id",nullable=false)
+	private Muscle muscleId;
+	
 	public Integer getId() {
 		return id;
 	}
@@ -46,5 +52,12 @@ public class Workout {
 	public void setVideoLink(String videoLink) {
 		this.videoLink = videoLink;
 	}
+	public Muscle getMuscleId() {
+		return muscleId;
+	}
+	public void setMuscleId(Muscle muscleId) {
+		this.muscleId = muscleId;
+	}
+	
 	
 }

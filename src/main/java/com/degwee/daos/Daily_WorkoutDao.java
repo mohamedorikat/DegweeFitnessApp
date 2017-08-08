@@ -10,7 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.degwee.model.Daily_Workout;
 import com.degwee.model.Day;
 import com.degwee.model.Set;
-import com.degwee.model.Workout_Muscle;
+import com.degwee.model.Workout;
 import com.degwee.utils.CustomHibernateDaoSupport;
 
 @Repository
@@ -54,10 +54,10 @@ public class Daily_WorkoutDao extends CustomHibernateDaoSupport {
 
 	}
 
-	public Daily_Workout findDaily_WorkoutByDaySetWorkout_Muscle(Day day, Set set, Workout_Muscle workout_Muscle) {
+	public Daily_Workout findDaily_WorkoutByDaySetWorkout_Muscle(Day day, Set set, Workout workout) {
 		Daily_Workout daily_Workout = null;
 		List singleList = getHibernateTemplate().find(
-				"from daily_Workout a where a.day=? AND a.set=? AND a.workout_Muscle=?", day, set, workout_Muscle);
+				"from daily_Workout a where a.day=? AND a.set=? AND a.workoutId=?", day, set, workout);
 		if (singleList != null)
 			daily_Workout = (Daily_Workout) singleList.get(0);
 		return daily_Workout;

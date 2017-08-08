@@ -31,8 +31,8 @@ public class Daily_Workout {
 	@JoinColumn(name = "set_id", referencedColumnName = "id", nullable = false)
 	private Set set;
 	@ManyToOne
-	@JoinColumn(name = "workout_muscle_id", referencedColumnName = "id", nullable = false)
-	private Workout_Muscle workoutMuscle;
+	@JoinColumn(name = "workout_id", referencedColumnName = "id", nullable = false)
+	private Workout workoutId;
 	public Integer getId() {
 		return id;
 	}
@@ -57,11 +57,12 @@ public class Daily_Workout {
 	public void setSet(Set set) {
 		this.set = set;
 	}
-	public Workout_Muscle getWorkoutMuscle() {
-		return workoutMuscle;
+	public Workout getWorkoutId() {
+		return workoutId;
 	}
-	public void setWorkoutMuscle(Workout_Muscle workoutMuscle) {
-		this.workoutMuscle = workoutMuscle;
+	public void setWorkoutId(Workout workoutId) {
+		this.workoutId = workoutId;
 	}
+	
 
 }

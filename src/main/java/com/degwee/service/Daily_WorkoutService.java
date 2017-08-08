@@ -9,7 +9,7 @@ import com.degwee.daos.Daily_WorkoutDao;
 import com.degwee.model.Daily_Workout;
 import com.degwee.model.Day;
 import com.degwee.model.Set;
-import com.degwee.model.Workout_Muscle;
+import com.degwee.model.Workout;
 
 @Service
 public class Daily_WorkoutService {
@@ -39,8 +39,8 @@ public class Daily_WorkoutService {
 
 	}
 
-	public Daily_Workout findDaily_WorkoutByDaySetWorkout_Muscle(Day day, Set set, Workout_Muscle workout_Muscle) {
-	return daily_WorkoutDao.findDaily_WorkoutByDaySetWorkout_Muscle(day, set, workout_Muscle);
+	public Daily_Workout findDaily_WorkoutByDaySetWorkout_Muscle(Day day, Set set, Workout workout) {
+	return daily_WorkoutDao.findDaily_WorkoutByDaySetWorkout_Muscle(day, set, workout);
 
 	}
 

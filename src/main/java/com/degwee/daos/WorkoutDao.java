@@ -13,7 +13,6 @@ import com.degwee.utils.CustomHibernateDaoSupport;
 @Repository
 public class WorkoutDao extends CustomHibernateDaoSupport {
 
-	
 	@Transactional
 	public void save(Workout workout) {
 		getHibernateTemplate().setCheckWriteOperations(false);
@@ -31,6 +30,7 @@ public class WorkoutDao extends CustomHibernateDaoSupport {
 			}
 		});
 	}
+
 	@SuppressWarnings("unchecked")
 	@Transactional
 	public void delete(Workout workout) {
@@ -46,7 +46,7 @@ public class WorkoutDao extends CustomHibernateDaoSupport {
 	public Workout findWorkoutById(Integer id) {
 		Workout workout = null;
 		List singleList = getHibernateTemplate().find("from Workout a where a.id=?", id);
-		if (singleList != null)
+		if (singleList != null && singleList.size() > 0)
 			workout = (Workout) singleList.get(0);
 		return workout;
 
@@ -58,5 +58,11 @@ public class WorkoutDao extends CustomHibernateDaoSupport {
 
 	}
 
-}
+	public List<Workout> findAllWorkoutsByMuscleId(Integer muscleId) {
+		List<Workout> workouts = (List<Workout>) getHibernateTemplate().find("from Workout a where a.muscleId=?",
+				muscleId);
+		return workouts;
 
+	}
+
+}

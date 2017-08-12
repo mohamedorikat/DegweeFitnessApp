@@ -39,4 +39,8 @@ public class WorkoutService {
 		workoutDao.delete(workout);
 	}
 
+	public List<Workout> findAllWorkoutsByMuscleId(int muscleId) {
+		return workoutDao.findAllWorkoutsByMuscleId(muscleId);
+	}
+
 }

@@ -44,7 +44,7 @@ public class DayDao extends CustomHibernateDaoSupport {
 
 	public Day findDayById(Integer id) {
 		Day day = null;
-		List singleList = getHibernateTemplate().find("from day a where a.id=?", id);
+		List singleList = getHibernateTemplate().find("from Day a where a.id=?", id);
 		if (singleList != null)
 			day = (Day) singleList.get(0);
 		return day;
@@ -52,7 +52,7 @@ public class DayDao extends CustomHibernateDaoSupport {
 	}
 
 	public List<Day> findAllDays() {
-		List<Day> days = (List<Day>) getHibernateTemplate().find("from day");
+		List<Day> days = (List<Day>) getHibernateTemplate().find("from Day");
 		return days;
 
 	}

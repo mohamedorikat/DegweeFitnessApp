@@ -41,7 +41,7 @@ http://www.springframework.org/schema/context/spring-context-2.5.xsd">
 				<value>com.degwee.model.Workout</value>
 				<value>com.degwee.model.Day</value>
 				<value>com.degwee.model.Daily_Workout</value>
-				<value>com.degwee.model.Workout_Muscle</value>
+				<value>com.degwee.model.Client_DailyWorkout</value>
 
 				<value>com.degwee.service.ClientService</value>
 				<value>com.degwee.service.StandardIngerdientsService</value>

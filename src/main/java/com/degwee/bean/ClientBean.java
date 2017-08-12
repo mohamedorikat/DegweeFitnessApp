@@ -215,7 +215,7 @@ public class ClientBean {
 
 	public String goToWorkoutSelection() {
 		if (client != null && client.getStrategyId() != null)
-			return "workoutSelection";
+			return "workout";
 		else {
 			Constants.showMessage("Please Select Strategy First before Going to Workout Page", true);
 			return null;

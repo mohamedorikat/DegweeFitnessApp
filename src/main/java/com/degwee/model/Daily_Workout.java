@@ -32,7 +32,7 @@ public class Daily_Workout {
 	private Set set;
 	@ManyToOne
 	@JoinColumn(name = "workout_id", referencedColumnName = "id", nullable = false)
-	private Workout workoutId;
+	private Workout workout;
 	public Integer getId() {
 		return id;
 	}
@@ -57,11 +57,11 @@ public class Daily_Workout {
 	public void setSet(Set set) {
 		this.set = set;
 	}
-	public Workout getWorkoutId() {
-		return workoutId;
+	public Workout getWorkout() {
+		return workout;
 	}
-	public void setWorkoutId(Workout workoutId) {
-		this.workoutId = workoutId;
+	public void setWorkout(Workout workout) {
+		this.workout = workout;
 	}
 	
 

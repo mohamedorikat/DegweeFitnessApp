@@ -1,0 +1,338 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions">
+
+<h:head>
+	<h:outputStylesheet library="css" name="standard.css" />
+</h:head>
+
+<h:body>
+
+	<h:form prependId="false" id="growlForm">
+		<p:growl id="growl" showDetail="false" />
+	</h:form>
+	<h:form id="dataForm">
+		<p:panel id="ingerdientsTable">
+			<f:facet name="header">
+				<h:outputText value="Standard Workout List" />
+			</f:facet>
+			<p:panelGrid styleClass="noBorderGrid">
+
+				<p:row>
+					<p:column>
+						<p:outputLabel value="Select Day" />
+					</p:column>
+					<p:column>
+						<p:selectOneMenu id="selectDay"
+							value="#{workoutBean.selectedDayId}" style="width:150px">
+							<f:selectItem itemLabel="Select Day" itemValue=""
+								noSelectionOption="true" />
+							<f:selectItems value="#{workoutBean.allDays}" var="day"
+								itemValue="#{day.id}" itemLabel="#{day.number}" />
+						</p:selectOneMenu>
+					</p:column>
+					<p:column>
+						<p:outputLabel value="Select Musle" />
+					</p:column>
+					<p:column>
+						<p:selectOneMenu id="selectMusle"
+							value="#{workoutBean.selectedMusleId}" style="width:150px">
+							<p:ajax listener="#{workoutBean.getWorkoutsByMusleId()}"
+								update="selectWorkout" />
+							<f:selectItem itemLabel="Select Musle" itemValue=""
+								noSelectionOption="true" />
+							<f:selectItems value="#{workoutBean.allMuscles}" var="muscle"
+								itemValue="#{muscle.id}" itemLabel="#{muscle.name}" />
+						</p:selectOneMenu>
+					</p:column>
+					<p:column>
+						<p:outputLabel value="Select Workout" />
+					</p:column>
+					<p:column>
+						<p:selectOneMenu id="selectWorkout"
+							value="#{workoutBean.selectedWorkoutId}" style="width:150px">
+							<f:selectItem itemLabel="Select Workout" itemValue=""
+								noSelectionOption="true" />
+							<f:selectItems value="#{workoutBean.musleWorkouts}" var="muscle"
+								itemValue="#{workout.id}" itemLabel="#{workout.name}" />
+						</p:selectOneMenu>
+					</p:column>
+                    <p:column>
+						<p:outputLabel value="Select Set" />
+					</p:column>
+					<p:column >
+						<p:selectOneMenu id="selectSet"
+							value="#{workoutBean.selectedSetId}" style="width:150px">
+							<p:ajax listener="#{workoutBean.getStratgeyValue()}"
+								update="strategyValue" />
+							<f:selectItem itemLabel="Select Set" itemValue=""
+								noSelectionOption="true" />
+							<f:selectItems value="#{workoutBean.allSets}" var="set"
+								itemValue="#{set.id}" itemLabel="#{set.number}" />
+						</p:selectOneMenu>
+					</p:column>
+					<p:column>
+					       <p:outputLabel value="Strategy" />
+					</p:column>
+					<p:column>
+					       <p:outputLabel value="#{workoutBean.selectedStratgey}" id="strategyValue"></p:outputLabel>
+					</p:column>
+
+				</p:row>
+				<p:row>
+					
+					<p:column style="text-align:center;">
+
+						<p:commandButton id="addButton" style="width:211px;height:40px;"
+							value="Add Workout" icon="ui-icon-trash"
+							action="#{workoutBean.addDailyWorkout}" ajax="false" />
+
+					</p:column>
+				</p:row>
+			</p:panelGrid>
+
+			<br></br>
+			<br></br>
+			<h:panelGrid id="daysPanel" columns="3" styleClass="noBorderGrid">
+				<p:panel id="day1Panel" style="height:300px;width:350px;">
+					<f:facet name="header">
+						<h:outputText value="day 1" />
+					</f:facet>
+					<p:dataTable id="day1Table" widgetVar="day1Table" var="workout"
+						rowKey="#{workout.id}" value="#{workoutBean.dayOneWorkout}"
+						rows="4" paginator="true"
+						style="padding-top:10px;padding-bottom:10px"
+						tableStyle="width:auto; table-layout: auto">
+
+						<p:column headerText="Day">
+							<h:outputText value="#{workout.day.number}" />
+						</p:column>
+						<p:column headerText="Set">
+							<h:outputText value="#{workout.set.number}" />
+						</p:column>
+						<p:column headerText="Workout">
+							<h:outputText value="#{workout.workout.name}" />
+						</p:column>
+						<p:column headerText="Stratgey">
+							<h:outputText value="#{workout.workoutStrategy}" />
+						</p:column>
+						<p:column styleClass="action-column">
+							<f:facet name="header">
+								<h:outputText value="Actions" />
+							</f:facet>
+							<p:commandButton id="removeDay1" value="Remove"
+								icon="ui-icon-trash"
+								action="#{workoutBean.removeDailyWorkout(workout,1)}"
+								immediate="true" title="Remove" ajax="false">
+							</p:commandButton>
+							<p:tooltip for="removeDay1" value="Remove" showEffect="fade"
+								hideEffect="fade" />
+						</p:column>
+					</p:dataTable>
+				</p:panel>
+				<p:panel id="day2Panel" style="height:300px;width:350px;">
+					<f:facet name="header">
+						<h:outputText value="day 2" />
+					</f:facet>
+					<p:dataTable id="day2Table" widgetVar="day2Table" var="workout"
+						rowKey="#{workout.id}" value="#{workoutBean.dayTwoWorkout}"
+						rows="4" paginator="true"
+						style="padding-top:10px;padding-bottom:10px"
+						tableStyle="width:auto; table-layout: auto">
+
+						<p:column headerText="Day">
+							<h:outputText value="#{workout.day.number}" />
+						</p:column>
+						<p:column headerText="Set">
+							<h:outputText value="#{workout.set.number}" />
+						</p:column>
+						<p:column headerText="Workout">
+							<h:outputText value="#{workout.workout.name}" />
+						</p:column>
+						<p:column headerText="Stratgey">
+							<h:outputText value="#{workout.workoutStrategy}" />
+						</p:column>
+						<p:column styleClass="action-column">
+							<f:facet name="header">
+								<h:outputText value="Actions" />
+							</f:facet>
+							<p:commandButton id="removeDay2" value="Remove"
+								icon="ui-icon-trash"
+								action="#{workoutBean.removeDailyWorkout(workout,2)}"
+								immediate="true" title="Remove" ajax="false">
+							</p:commandButton>
+							<p:tooltip for="removeDay2" value="Remove" showEffect="fade"
+								hideEffect="fade" />
+						</p:column>
+					</p:dataTable>
+				</p:panel>
+				<p:panel id="day3Panel" style="height:300px;width:350px;">
+					<f:facet name="header">
+						<h:outputText value="day 3" />
+					</f:facet>
+					<p:dataTable id="day3Table" widgetVar="day3Table" var="workout"
+						rowKey="#{workout.id}" value="#{workoutBean.dayThreeWorkout}"
+						rows="4" paginator="true"
+						style="padding-top:10px;padding-bottom:10px"
+						tableStyle="width:auto; table-layout: auto">
+
+						<p:column headerText="Day">
+							<h:outputText value="#{workout.day.number}" />
+						</p:column>
+						<p:column headerText="Set">
+							<h:outputText value="#{workout.set.number}" />
+						</p:column>
+						<p:column headerText="Workout">
+							<h:outputText value="#{workout.workout.name}" />
+						</p:column>
+						<p:column headerText="Stratgey">
+							<h:outputText value="#{workout.workoutStrategy}" />
+						</p:column>
+						<p:column styleClass="action-column">
+							<f:facet name="header">
+								<h:outputText value="Actions" />
+							</f:facet>
+							<p:commandButton id="removeDay3" value="Remove"
+								icon="ui-icon-trash"
+								action="#{workoutBean.removeDailyWorkout(workout,3)}"
+								immediate="true" title="Remove" ajax="false">
+							</p:commandButton>
+							<p:tooltip for="removeDay3" value="Remove" showEffect="fade"
+								hideEffect="fade" />
+						</p:column>
+					</p:dataTable>
+				</p:panel>
+				<p:panel id="day4Panel" style="height:300px;width:350px;">
+					<f:facet name="header">
+						<h:outputText value="day 1" />
+					</f:facet>
+					<p:dataTable id="day4Table" widgetVar="day4Table" var="workout"
+						rowKey="#{workout.id}" value="#{workoutBean.dayFourWorkout}"
+						rows="4" paginator="true"
+						style="padding-top:10px;padding-bottom:10px"
+						tableStyle="width:auto; table-layout: auto">
+
+						<p:column headerText="Day">
+							<h:outputText value="#{workout.day.number}" />
+						</p:column>
+						<p:column headerText="Set">
+							<h:outputText value="#{workout.set.number}" />
+						</p:column>
+						<p:column headerText="Workout">
+							<h:outputText value="#{workout.workout.name}" />
+						</p:column>
+						<p:column headerText="Stratgey">
+							<h:outputText value="#{workout.workoutStrategy}" />
+						</p:column>
+						<p:column styleClass="action-column">
+							<f:facet name="header">
+								<h:outputText value="Actions" />
+							</f:facet>
+							<p:commandButton id="removeDay4" value="Remove"
+								icon="ui-icon-trash"
+								action="#{workoutBean.removeDailyWorkout(workout,4)}"
+								immediate="true" title="Remove" ajax="false">
+							</p:commandButton>
+							<p:tooltip for="removeDay4" value="Remove" showEffect="fade"
+								hideEffect="fade" />
+						</p:column>
+					</p:dataTable>
+				</p:panel>
+				<p:panel id="day5Panel" style="height:300px;width:350px;">
+					<f:facet name="header">
+						<h:outputText value="day 5" />
+					</f:facet>
+					<p:dataTable id="day5Table" widgetVar="day5Table" var="workout"
+						rowKey="#{workout.id}" value="#{workoutBean.dayFiveWorkout}"
+						rows="4" paginator="true"
+						style="padding-top:10px;padding-bottom:10px"
+						tableStyle="width:auto; table-layout: auto">
+
+						<p:column headerText="Day">
+							<h:outputText value="#{workout.day.number}" />
+						</p:column>
+						<p:column headerText="Set">
+							<h:outputText value="#{workout.set.number}" />
+						</p:column>
+						<p:column headerText="Workout">
+							<h:outputText value="#{workout.workout.name}" />
+						</p:column>
+						<p:column headerText="Stratgey">
+							<h:outputText value="#{workout.workoutStrategy}" />
+						</p:column>
+						<p:column styleClass="action-column">
+							<f:facet name="header">
+								<h:outputText value="Actions" />
+							</f:facet>
+							<p:commandButton id="removeDay5" value="Remove"
+								icon="ui-icon-trash"
+								action="#{workoutBean.removeDailyWorkout(workout,5)}"
+								immediate="true" title="Remove" ajax="false">
+							</p:commandButton>
+							<p:tooltip for="removeDay5" value="Remove" showEffect="fade"
+								hideEffect="fade" />
+						</p:column>
+					</p:dataTable>
+				</p:panel>
+				<p:panel id="day6Panel" style="height:300px;width:350px;">
+					<f:facet name="header">
+						<h:outputText value="day 6" />
+					</f:facet>
+					<p:dataTable id="day6Table" widgetVar="day6Table" var="workout"
+						rowKey="#{day6Table.id}" value="#{workoutBean.daySixWorkout}"
+						rows="4" paginator="true"
+						style="padding-top:10px;padding-bottom:10px"
+						tableStyle="width:auto; table-layout: auto">
+
+						<p:column headerText="Day">
+							<h:outputText value="#{workout.day.number}" />
+						</p:column>
+						<p:column headerText="Set">
+							<h:outputText value="#{workout.set.number}" />
+						</p:column>
+						<p:column headerText="Workout">
+							<h:outputText value="#{workout.workout.name}" />
+						</p:column>
+						<p:column headerText="Stratgey">
+							<h:outputText value="#{workout.workoutStrategy}" />
+						</p:column>
+						<p:column styleClass="action-column">
+							<f:facet name="header">
+								<h:outputText value="Actions" />
+							</f:facet>
+							<p:commandButton id="removeDay6" value="Remove"
+								icon="ui-icon-trash"
+								action="#{workoutBean.removeDailyWorkout(workout,6)}"
+								immediate="true" title="Remove" ajax="false">
+							</p:commandButton>
+							<p:tooltip for="removeDay6" value="Remove" showEffect="fade"
+								hideEffect="fade" />
+						</p:column>
+					</p:dataTable>
+				</p:panel>
+			</h:panelGrid>
+			<p:panelGrid>
+				<p:row>
+					
+					<p:column style="text-align:center;">
+
+						<p:commandButton id="saveButton" style="width:211px;height:40px;"
+							value="Save Workouts" icon="ui-icon-trash"
+							action="#{workoutBean.saveDailyWorkouts}" ajax="false" />
+
+					</p:column>
+				</p:row>
+			</p:panelGrid>
+
+
+		</p:panel>
+	</h:form>
+
+
+</h:body>
+</html>

@@ -15,7 +15,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -24,7 +23,7 @@ import javax.validation.constraints.NotNull;
  *
  */
 @Entity
-@Table(name="set")
+@Table(name="`set`")
 public class Set {
 	public Set() {
 	}

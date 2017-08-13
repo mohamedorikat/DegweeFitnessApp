@@ -57,6 +57,7 @@ public class WorkoutBean {
 	List<Daily_Workout> dayFourWorkout;
 	List<Daily_Workout> dayFiveWorkout;
 	List<Daily_Workout> daySixWorkout;
+	List<Client_DailyWorkout> oldClintDailyWorkouts;
 
 	List<Day> allDays;
 	List<Stratgey> allStratgies;
@@ -87,6 +88,9 @@ public class WorkoutBean {
 		dayFourWorkout = new ArrayList<>();
 		dayFiveWorkout = new ArrayList<>();
 		daySixWorkout = new ArrayList<>();
+
+		fillClientDailyWorkouts();
+
 		selectedStratgey = stratgeyService.findStratgeyById(clientBean.getSelectedStrategyId()).getValue();
 
 		// initialize all static lists
@@ -98,8 +102,9 @@ public class WorkoutBean {
 	}
 
 	public void getWorkoutsByMusleId() {
-		if (selectedMusleId != 0)
+		if (selectedMusleId != 0) {
 			musleWorkouts = workoutService.findAllWorkoutsByMuscleId(selectedMusleId);
+		}
 	}
 
 	public void getStratgeyValue() {
@@ -122,6 +127,11 @@ public class WorkoutBean {
 			break;
 
 		}
+	}
+
+	public String getMuscleByMuscleId(int muscleId) {
+
+		return muscleService.findMuscleById(muscleId).getName();
 	}
 
 	public void removeDailyWorkout(Daily_Workout dailyWorkout, int day) {
@@ -184,6 +194,7 @@ public class WorkoutBean {
 		selectedDayId = 0;
 		selectedSetId = 0;
 		selectedWorkoutId = 0;
+		selectedMusleId = 0;
 		selectedStratgey = stratgeyService.findStratgeyById(clientBean.getSelectedStrategyId()).getValue();
 	}
 
@@ -212,15 +223,68 @@ public class WorkoutBean {
 
 	public void addClientDailyWorkout(List<Daily_Workout> daily_WorkoutList) {
 
+		deleteOldWorkouts();
+
 		for (Daily_Workout daily_Workout : daily_WorkoutList) {
 
 			dailyWorkoutService.save(daily_Workout);
+
 			Client_DailyWorkout client_DailyWorkout = new Client_DailyWorkout();
 			client_DailyWorkout.setDaily_Workout(daily_Workout);
 			client_DailyWorkout.setClient(clientBean.getClient());
 			clientDailyWorkoutService.save(client_DailyWorkout);
 		}
 
+	}
+
+	public void deleteOldWorkouts() {
+
+		if (oldClintDailyWorkouts != null && oldClintDailyWorkouts.size() > 0) {
+			for (Client_DailyWorkout client_DailyWorkout : oldClintDailyWorkouts) {
+				clientDailyWorkoutService.delete(client_DailyWorkout);
+				dailyWorkoutService.delete(client_DailyWorkout.getDaily_Workout());
+			}
+			oldClintDailyWorkouts = null;
+
+		}
+	}
+
+	public void fillClientDailyWorkouts() {
+
+		oldClintDailyWorkouts = clientDailyWorkoutService
+				.findClientDailyWorkoutByClientId(clientBean.getClient().getClientId());
+
+		if (oldClintDailyWorkouts != null && oldClintDailyWorkouts.size() > 0) {
+			for (Client_DailyWorkout client_DailyWorkout : oldClintDailyWorkouts) {
+				Daily_Workout dailyWorkout = client_DailyWorkout.getDaily_Workout();
+				switch (dailyWorkout.getDay().getNumber()) {
+
+				case 1:
+					dayOneWorkout.add(dailyWorkout);
+					break;
+				case 2:
+					dayTwoWorkout.add(dailyWorkout);
+					break;
+				case 3:
+					dayThreeWorkout.add(dailyWorkout);
+					break;
+				case 4:
+					dayFourWorkout.add(dailyWorkout);
+					break;
+				case 5:
+					dayFiveWorkout.add(dailyWorkout);
+					break;
+				case 6:
+					daySixWorkout.add(dailyWorkout);
+					break;
+
+				}
+			}
+		}
+
+	}
+
+	public void generateReport() {
 	}
 
 	public List<Daily_Workout> getDayOneWorkout() {

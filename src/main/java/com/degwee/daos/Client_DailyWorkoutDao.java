@@ -47,18 +47,26 @@ public class Client_DailyWorkoutDao extends CustomHibernateDaoSupport {
 	}
 
 	public List<Client_DailyWorkout> findAllClient_DailyWorkout() {
-		List<Client_DailyWorkout> client_DailyWorkoutList = (List<Client_DailyWorkout>) getHibernateTemplate().find("from Client_DailyWorkout");
+		List<Client_DailyWorkout> client_DailyWorkoutList = (List<Client_DailyWorkout>) getHibernateTemplate()
+				.find("from Client_DailyWorkout");
 		return client_DailyWorkoutList;
 
 	}
 
 	public Client_DailyWorkout findClientDailyWorkoutByClientDailyWorkout(Client client, Daily_Workout dailyWorkout) {
 		Client_DailyWorkout client_DailyWorkout = null;
-		List singleList = getHibernateTemplate().find("from Client_DailyWorkout a where a.client=? AND a.daily_Workout=?", client,
-				dailyWorkout);
+		List singleList = getHibernateTemplate()
+				.find("from Client_DailyWorkout a where a.client=? AND a.daily_Workout=?", client, dailyWorkout);
 		if (singleList != null)
 			client_DailyWorkout = (Client_DailyWorkout) singleList.get(0);
 		return client_DailyWorkout;
+
+	}
+
+	public List<Client_DailyWorkout> findClientDailyWorkoutByClientId(int clientId) {
+		List<Client_DailyWorkout> client_DailyWorkoutList = (List<Client_DailyWorkout>) getHibernateTemplate()
+				.find("from Client_DailyWorkout a where a.client.ClientId=?", clientId);
+		return client_DailyWorkoutList;
 
 	}
 

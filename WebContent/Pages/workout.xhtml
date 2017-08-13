@@ -29,6 +29,7 @@
 					</p:column>
 					<p:column>
 						<p:selectOneMenu id="selectDay"
+							requiredMessage="Day Value is required"
 							value="#{workoutBean.selectedDayId}" style="width:150px">
 							<f:selectItem itemLabel="Select Day" itemValue=""
 								noSelectionOption="true" />
@@ -41,6 +42,7 @@
 					</p:column>
 					<p:column>
 						<p:selectOneMenu id="selectMusle"
+							requiredMessage="Muscle Value is required"
 							value="#{workoutBean.selectedMusleId}" style="width:150px">
 							<p:ajax listener="#{workoutBean.getWorkoutsByMusleId()}"
 								update="selectWorkout" />
@@ -55,18 +57,20 @@
 					</p:column>
 					<p:column>
 						<p:selectOneMenu id="selectWorkout"
+							requiredMessage="Workout Value is required"
 							value="#{workoutBean.selectedWorkoutId}" style="width:150px">
 							<f:selectItem itemLabel="Select Workout" itemValue=""
 								noSelectionOption="true" />
-							<f:selectItems value="#{workoutBean.musleWorkouts}" var="muscle"
+							<f:selectItems value="#{workoutBean.musleWorkouts}" var="workout"
 								itemValue="#{workout.id}" itemLabel="#{workout.name}" />
 						</p:selectOneMenu>
 					</p:column>
-                    <p:column>
+					<p:column>
 						<p:outputLabel value="Select Set" />
 					</p:column>
-					<p:column >
+					<p:column>
 						<p:selectOneMenu id="selectSet"
+							requiredMessage="Set Value is required"
 							value="#{workoutBean.selectedSetId}" style="width:150px">
 							<p:ajax listener="#{workoutBean.getStratgeyValue()}"
 								update="strategyValue" />
@@ -77,19 +81,24 @@
 						</p:selectOneMenu>
 					</p:column>
 					<p:column>
-					       <p:outputLabel value="Strategy" />
+						<p:outputLabel value="Strategy" />
 					</p:column>
 					<p:column>
-					       <p:outputLabel value="#{workoutBean.selectedStratgey}" id="strategyValue"></p:outputLabel>
+						<p:outputLabel value="#{workoutBean.selectedStratgey}"
+							id="strategyValue"></p:outputLabel>
 					</p:column>
 
 				</p:row>
+
+			</p:panelGrid>
+			<br></br>
+			<p:panelGrid>
 				<p:row>
-					
+
 					<p:column style="text-align:center;">
 
 						<p:commandButton id="addButton" style="width:211px;height:40px;"
-							value="Add Workout" icon="ui-icon-trash"
+							value="Add Workout" icon="ui-icon-create"
 							action="#{workoutBean.addDailyWorkout}" ajax="false" />
 
 					</p:column>
@@ -97,9 +106,8 @@
 			</p:panelGrid>
 
 			<br></br>
-			<br></br>
 			<h:panelGrid id="daysPanel" columns="3" styleClass="noBorderGrid">
-				<p:panel id="day1Panel" style="height:300px;width:350px;">
+				<p:panel id="day1Panel" style="height:300px;width:450px;">
 					<f:facet name="header">
 						<h:outputText value="day 1" />
 					</f:facet>
@@ -112,11 +120,15 @@
 						<p:column headerText="Day">
 							<h:outputText value="#{workout.day.number}" />
 						</p:column>
-						<p:column headerText="Set">
-							<h:outputText value="#{workout.set.number}" />
+						<p:column headerText="Muscle">
+							<h:outputText
+								value="#{workoutBean.getMuscleByMuscleId(workout.workout.muscle.id)}" />
 						</p:column>
 						<p:column headerText="Workout">
 							<h:outputText value="#{workout.workout.name}" />
+						</p:column>
+						<p:column headerText="Set">
+							<h:outputText value="#{workout.set.number}" />
 						</p:column>
 						<p:column headerText="Stratgey">
 							<h:outputText value="#{workout.workoutStrategy}" />
@@ -135,7 +147,7 @@
 						</p:column>
 					</p:dataTable>
 				</p:panel>
-				<p:panel id="day2Panel" style="height:300px;width:350px;">
+				<p:panel id="day2Panel" style="height:300px;width:450px;">
 					<f:facet name="header">
 						<h:outputText value="day 2" />
 					</f:facet>
@@ -148,11 +160,15 @@
 						<p:column headerText="Day">
 							<h:outputText value="#{workout.day.number}" />
 						</p:column>
-						<p:column headerText="Set">
-							<h:outputText value="#{workout.set.number}" />
+						<p:column headerText="Muscle">
+							<h:outputText
+								value="#{workoutBean.getMuscleByMuscleId(workout.workout.muscle.id)}" />
 						</p:column>
 						<p:column headerText="Workout">
 							<h:outputText value="#{workout.workout.name}" />
+						</p:column>
+						<p:column headerText="Set">
+							<h:outputText value="#{workout.set.number}" />
 						</p:column>
 						<p:column headerText="Stratgey">
 							<h:outputText value="#{workout.workoutStrategy}" />
@@ -171,7 +187,7 @@
 						</p:column>
 					</p:dataTable>
 				</p:panel>
-				<p:panel id="day3Panel" style="height:300px;width:350px;">
+				<p:panel id="day3Panel" style="height:300px;width:450px;">
 					<f:facet name="header">
 						<h:outputText value="day 3" />
 					</f:facet>
@@ -184,11 +200,15 @@
 						<p:column headerText="Day">
 							<h:outputText value="#{workout.day.number}" />
 						</p:column>
-						<p:column headerText="Set">
-							<h:outputText value="#{workout.set.number}" />
+						<p:column headerText="Muscle">
+							<h:outputText
+								value="#{workoutBean.getMuscleByMuscleId(workout.workout.muscle.id)}" />
 						</p:column>
 						<p:column headerText="Workout">
 							<h:outputText value="#{workout.workout.name}" />
+						</p:column>
+						<p:column headerText="Set">
+							<h:outputText value="#{workout.set.number}" />
 						</p:column>
 						<p:column headerText="Stratgey">
 							<h:outputText value="#{workout.workoutStrategy}" />
@@ -207,9 +227,9 @@
 						</p:column>
 					</p:dataTable>
 				</p:panel>
-				<p:panel id="day4Panel" style="height:300px;width:350px;">
+				<p:panel id="day4Panel" style="height:300px;width:450px;">
 					<f:facet name="header">
-						<h:outputText value="day 1" />
+						<h:outputText value="day 4" />
 					</f:facet>
 					<p:dataTable id="day4Table" widgetVar="day4Table" var="workout"
 						rowKey="#{workout.id}" value="#{workoutBean.dayFourWorkout}"
@@ -220,11 +240,15 @@
 						<p:column headerText="Day">
 							<h:outputText value="#{workout.day.number}" />
 						</p:column>
-						<p:column headerText="Set">
-							<h:outputText value="#{workout.set.number}" />
+						<p:column headerText="Muscle">
+							<h:outputText
+								value="#{workoutBean.getMuscleByMuscleId(workout.workout.muscle.id)}" />
 						</p:column>
 						<p:column headerText="Workout">
 							<h:outputText value="#{workout.workout.name}" />
+						</p:column>
+						<p:column headerText="Set">
+							<h:outputText value="#{workout.set.number}" />
 						</p:column>
 						<p:column headerText="Stratgey">
 							<h:outputText value="#{workout.workoutStrategy}" />
@@ -243,7 +267,7 @@
 						</p:column>
 					</p:dataTable>
 				</p:panel>
-				<p:panel id="day5Panel" style="height:300px;width:350px;">
+				<p:panel id="day5Panel" style="height:300px;width:450px;">
 					<f:facet name="header">
 						<h:outputText value="day 5" />
 					</f:facet>
@@ -256,11 +280,15 @@
 						<p:column headerText="Day">
 							<h:outputText value="#{workout.day.number}" />
 						</p:column>
-						<p:column headerText="Set">
-							<h:outputText value="#{workout.set.number}" />
+						<p:column headerText="Muscle">
+							<h:outputText
+								value="#{workoutBean.getMuscleByMuscleId(workout.workout.muscle.id)}" />
 						</p:column>
 						<p:column headerText="Workout">
 							<h:outputText value="#{workout.workout.name}" />
+						</p:column>
+						<p:column headerText="Set">
+							<h:outputText value="#{workout.set.number}" />
 						</p:column>
 						<p:column headerText="Stratgey">
 							<h:outputText value="#{workout.workoutStrategy}" />
@@ -279,7 +307,7 @@
 						</p:column>
 					</p:dataTable>
 				</p:panel>
-				<p:panel id="day6Panel" style="height:300px;width:350px;">
+				<p:panel id="day6Panel" style="height:300px;width:450px;">
 					<f:facet name="header">
 						<h:outputText value="day 6" />
 					</f:facet>
@@ -292,11 +320,15 @@
 						<p:column headerText="Day">
 							<h:outputText value="#{workout.day.number}" />
 						</p:column>
-						<p:column headerText="Set">
-							<h:outputText value="#{workout.set.number}" />
+						<p:column headerText="Muscle">
+							<h:outputText
+								value="#{workoutBean.getMuscleByMuscleId(workout.workout.muscle.id)}" />
 						</p:column>
 						<p:column headerText="Workout">
 							<h:outputText value="#{workout.workout.name}" />
+						</p:column>
+						<p:column headerText="Set">
+							<h:outputText value="#{workout.set.number}" />
 						</p:column>
 						<p:column headerText="Stratgey">
 							<h:outputText value="#{workout.workoutStrategy}" />
@@ -316,16 +348,23 @@
 					</p:dataTable>
 				</p:panel>
 			</h:panelGrid>
+			<br></br>
 			<p:panelGrid>
 				<p:row>
-					
+
 					<p:column style="text-align:center;">
 
 						<p:commandButton id="saveButton" style="width:211px;height:40px;"
-							value="Save Workouts" icon="ui-icon-trash"
+							value="Save Workouts" icon="ui-icon-create"
 							action="#{workoutBean.saveDailyWorkouts}" ajax="false" />
+						<p:commandButton id="gotoHome" value="Back" action="home"
+							style="width:10%;height:40px;" ajax="false" immediate="true" />
+						<p:commandButton id="generateReport" value="Generate Report"
+							action="#{workoutBean.generateReport}"
+							style="width:10%;height:40px;" ajax="false" immediate="true" />
 
 					</p:column>
+
 				</p:row>
 			</p:panelGrid>
 

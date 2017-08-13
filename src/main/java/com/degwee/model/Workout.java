@@ -32,7 +32,7 @@ public class Workout {
 	
 	@ManyToOne
 	@JoinColumn(name="muscleId",referencedColumnName="id",nullable=false)
-	private Muscle muscleId;
+	private Muscle muscle;
 	
 	public Integer getId() {
 		return id;
@@ -52,12 +52,11 @@ public class Workout {
 	public void setVideoLink(String videoLink) {
 		this.videoLink = videoLink;
 	}
-	public Muscle getMuscleId() {
-		return muscleId;
+	public Muscle getMuscle() {
+		return muscle;
 	}
-	public void setMuscleId(Muscle muscleId) {
-		this.muscleId = muscleId;
+	public void setMuscle(Muscle muscle) {
+		this.muscle = muscle;
 	}
-	
 	
 }

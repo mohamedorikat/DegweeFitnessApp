@@ -40,4 +40,8 @@ public class Client_DailyWorkoutService {
 	public Client_DailyWorkout findClientDailyWorkoutByClientDailyWorkout(Client client, Daily_Workout daily_Workout) {
 		return client_DailyWorkoutDao.findClientDailyWorkoutByClientDailyWorkout(client, daily_Workout);
 	}
+
+	public List<Client_DailyWorkout> findClientDailyWorkoutByClientId(int clientId) {
+		return client_DailyWorkoutDao.findClientDailyWorkoutByClientId(clientId);
+	}
 }

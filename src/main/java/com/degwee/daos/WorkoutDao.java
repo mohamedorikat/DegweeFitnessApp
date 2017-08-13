@@ -59,7 +59,7 @@ public class WorkoutDao extends CustomHibernateDaoSupport {
 	}
 
 	public List<Workout> findAllWorkoutsByMuscleId(Integer muscleId) {
-		List<Workout> workouts = (List<Workout>) getHibernateTemplate().find("from Workout a where a.muscleId=?",
+		List<Workout> workouts = (List<Workout>) getHibernateTemplate().find("from Workout a where a.muscle.id=?",
 				muscleId);
 		return workouts;
 

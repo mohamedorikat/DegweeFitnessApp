@@ -165,7 +165,7 @@ public class WorkoutAdminBean {
 			if (selectedMuscleForWokroutId != null)
 				selectedMuscleForWokrout = muscleService.findMuscleById(selectedMuscleForWokroutId);
 			if (selectedMuscleForWokrout != null) {
-				workout.setMuscleId(selectedMuscleForWokrout);
+				workout.setMuscle(selectedMuscleForWokrout);
 				workoutService.save(workout);
 				Constants.showMessage("Workout Saved Successfully", false);
 			}

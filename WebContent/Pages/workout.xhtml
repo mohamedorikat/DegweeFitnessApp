@@ -28,7 +28,7 @@
 						<p:outputLabel value="Select Day" />
 					</p:column>
 					<p:column>
-						<p:selectOneMenu id="selectDay"
+						<p:selectOneMenu id="selectDay" required="true"
 							requiredMessage="Day Value is required"
 							value="#{workoutBean.selectedDayId}" style="width:150px">
 							<f:selectItem itemLabel="Select Day" itemValue=""
@@ -41,7 +41,7 @@
 						<p:outputLabel value="Select Musle" />
 					</p:column>
 					<p:column>
-						<p:selectOneMenu id="selectMusle"
+						<p:selectOneMenu id="selectMusle" required="true"
 							requiredMessage="Muscle Value is required"
 							value="#{workoutBean.selectedMusleId}" style="width:150px">
 							<p:ajax listener="#{workoutBean.getWorkoutsByMusleId()}"
@@ -56,7 +56,7 @@
 						<p:outputLabel value="Select Workout" />
 					</p:column>
 					<p:column>
-						<p:selectOneMenu id="selectWorkout"
+						<p:selectOneMenu id="selectWorkout" required="true"
 							requiredMessage="Workout Value is required"
 							value="#{workoutBean.selectedWorkoutId}" style="width:150px">
 							<f:selectItem itemLabel="Select Workout" itemValue=""
@@ -69,7 +69,7 @@
 						<p:outputLabel value="Select Set" />
 					</p:column>
 					<p:column>
-						<p:selectOneMenu id="selectSet"
+						<p:selectOneMenu id="selectSet" required="true"
 							requiredMessage="Set Value is required"
 							value="#{workoutBean.selectedSetId}" style="width:150px">
 							<p:ajax listener="#{workoutBean.getStratgeyValue()}"
@@ -354,7 +354,7 @@
 
 					<p:column style="text-align:center;">
 
-						<p:commandButton id="saveButton" style="width:211px;height:40px;"
+						<p:commandButton id="saveButton" style="width:211px;height:40px;" immediate="true"
 							value="Save Workouts" icon="ui-icon-create"
 							action="#{workoutBean.saveDailyWorkouts}" ajax="false" />
 						<p:commandButton id="gotoHome" value="Back" action="home"

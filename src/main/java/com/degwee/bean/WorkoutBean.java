@@ -1,6 +1,7 @@
 package com.degwee.bean;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -28,6 +29,7 @@ import com.degwee.service.MuscleService;
 import com.degwee.service.SetService;
 import com.degwee.service.StratgeyService;
 import com.degwee.service.WorkoutService;
+import com.degwee.utils.Constants;
 
 @ManagedBean(name = "workoutBean")
 @SessionScoped
@@ -99,6 +101,13 @@ public class WorkoutBean {
 		allStratgies = stratgeyService.findAllStratgeys();
 		allSets = setService.findAllSets();
 
+	}
+	public void reloadstaticLists() {
+		
+		allMuscles = muscleService.findAllMuscles();
+		allStratgies = stratgeyService.findAllStratgeys();
+		allSets = setService.findAllSets();
+		
 	}
 
 	public void getWorkoutsByMusleId() {
@@ -234,18 +243,21 @@ public class WorkoutBean {
 			client_DailyWorkout.setClient(clientBean.getClient());
 			clientDailyWorkoutService.save(client_DailyWorkout);
 		}
+		Constants.showMessage("Workout Added Successfully", false);
 
 	}
 
 	public void deleteOldWorkouts() {
 
 		if (oldClintDailyWorkouts != null && oldClintDailyWorkouts.size() > 0) {
-			for (Client_DailyWorkout client_DailyWorkout : oldClintDailyWorkouts) {
+			Iterator iter = oldClintDailyWorkouts.iterator();
+			while (iter.hasNext()) {
+				Client_DailyWorkout client_DailyWorkout = (Client_DailyWorkout) iter.next();
 				clientDailyWorkoutService.delete(client_DailyWorkout);
 				dailyWorkoutService.delete(client_DailyWorkout.getDaily_Workout());
-			}
-			oldClintDailyWorkouts = null;
 
+				iter.remove();
+			}
 		}
 	}
 
@@ -376,6 +388,7 @@ public class WorkoutBean {
 	}
 
 	public List<Stratgey> getAllStratgies() {
+		allStratgies = stratgeyService.findAllStratgeys();
 		return allStratgies;
 	}
 
@@ -384,6 +397,7 @@ public class WorkoutBean {
 	}
 
 	public List<Muscle> getAllMuscles() {
+		allMuscles = muscleService.findAllMuscles();
 		return allMuscles;
 	}
 
@@ -432,6 +446,7 @@ public class WorkoutBean {
 	}
 
 	public List<Set> getAllSets() {
+		allSets = setService.findAllSets();
 		return allSets;
 	}
 

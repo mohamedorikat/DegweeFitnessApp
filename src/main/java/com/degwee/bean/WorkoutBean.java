@@ -388,6 +388,7 @@ public class WorkoutBean {
 	}
 
 	public List<Stratgey> getAllStratgies() {
+		allStratgies = stratgeyService.findAllStratgeys();
 		return allStratgies;
 	}
 
@@ -396,6 +397,7 @@ public class WorkoutBean {
 	}
 
 	public List<Muscle> getAllMuscles() {
+		allMuscles = muscleService.findAllMuscles();
 		return allMuscles;
 	}
 
@@ -444,6 +446,7 @@ public class WorkoutBean {
 	}
 
 	public List<Set> getAllSets() {
+		allSets = setService.findAllSets();
 		return allSets;
 	}
 

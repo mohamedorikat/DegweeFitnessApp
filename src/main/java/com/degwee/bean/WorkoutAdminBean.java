@@ -9,6 +9,7 @@ import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.servlet.ServletContext;
 
+import org.hibernate.exception.ConstraintViolationException;
 import org.primefaces.context.RequestContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.context.support.WebApplicationContextUtils;
@@ -118,8 +119,8 @@ public class WorkoutAdminBean {
 	}
 
 	public String createStratgey() {
-		if (stratgey.getValue().isEmpty()) {
-			Constants.showMessage("Please Remove Spaces And enter Stratgey value Slash based ", true);
+		if (stratgey.getValue() == null || stratgey.getValue().isEmpty()) {
+			Constants.showMessage("Strategy Value required ", true);
 			return "workoutAdmin";
 		}
 		try {
@@ -127,12 +128,12 @@ public class WorkoutAdminBean {
 			if (stragteyArr.length == 0) {
 				Constants.showMessage("Please Remove Spaces And enter Stratgey value Slash based ", true);
 				return "workoutAdmin";
-			} else if (stragteyArr.length > 5) {
-				Constants.showMessage("Pleas enter Stratgey value Slash based With Max 5 digits", true);
-				return "workoutAdmin";
-			} else {
+			} else if (stragteyArr.length == 5) {
 				stratgeyService.save(stratgey);
 				Constants.showMessage("Stratgey Saved Successfully", false);
+			} else {
+				Constants.showMessage("Please enter Stratgey value Slash based & have 5 Numbers,ex:10/10/10/10/10", true);
+				return "workoutAdmin";
 			}
 		} catch (Exception ex) {
 			Constants.showMessage("Error While Save Stratgey,see Log error ex:" + ex.getMessage(), true);
@@ -142,34 +143,43 @@ public class WorkoutAdminBean {
 	}
 
 	public String deleteStratgey() {
-		if (stratgey == null) {
-			Constants.showMessage("Please Select stratgey before delete ", true);
-			return "workoutAdmin";
+		try {
+			if (stratgey == null) {
+				Constants.showMessage("Please Select stratgey before delete ", true);
+				return "workoutAdmin";
+			}
+			stratgeyService.delete(stratgey);
+			Constants.showMessage("Stratgey Deleted Successfully ", false);
+		} catch (org.springframework.dao.DataIntegrityViolationException e) {
+			Constants.showMessage(
+					"Cannot Delete Strategy because it is already used by clients Please Remove all Links with this strategy",
+					false);
+		} catch (Exception e) {
+			System.out.println(e);
 		}
-		stratgeyService.delete(stratgey);
-		Constants.showMessage("Stratgey Deleted Successfully ", false);
 		return "workoutAdmin";
 
 	}
 
 	public void showCreateWorkoutDialog() {
 		workout = new Workout();
-		selectedMuscleForWokroutId=null;
-		selectedMuscleForWokrout=null;
+		selectedMuscleForWokroutId = null;
+		selectedMuscleForWokrout = null;
 		RequestContext context = RequestContext.getCurrentInstance();
 		context.execute("PF('addWorkoutDialog').show()");
 	}
 
 	public String createWorkout() {
 		try {
-			if (selectedMuscleForWokroutId != null)
+
+			if (!checkWorkoutRequiredFields()) {
 				selectedMuscleForWokrout = muscleService.findMuscleById(selectedMuscleForWokroutId);
-			if (selectedMuscleForWokrout != null) {
-				workout.setMuscle(selectedMuscleForWokrout);
-				workoutService.save(workout);
-				Constants.showMessage("Workout Saved Successfully", false);
+				if (selectedMuscleForWokrout != null) {
+					workout.setMuscle(selectedMuscleForWokrout);
+					workoutService.save(workout);
+					Constants.showMessage("Workout Saved Successfully", false);
+				}
 			}
-			
 		} catch (
 
 		Exception ex) {
@@ -179,13 +189,38 @@ public class WorkoutAdminBean {
 		return "workoutAdmin";
 	}
 
-	public String deleteWorkout() {
-		if (workout == null) {
-			Constants.showMessage("Please Select workout before delete ", true);
-			return "workoutAdmin";
+	private boolean checkWorkoutRequiredFields() {
+		boolean requiredError = false;
+		if (workout.getName() == null || workout.getName().isEmpty()) {
+			Constants.showMessage("Workout Name Required", true);
+			requiredError = true;
 		}
-		workoutService.delete(workout);
-		Constants.showMessage("Workout Deleted Successfully ", false);
+		if (workout.getVideoLink() == null || workout.getVideoLink().isEmpty()) {
+			Constants.showMessage("Workout Video Link Required", true);
+			requiredError = true;
+		}
+		if (selectedMuscleForWokroutId == null) {
+			Constants.showMessage("Workout Muscle Required", true);
+			requiredError = true;
+		}
+		return requiredError;
+	}
+
+	public String deleteWorkout() {
+		try {
+			if (workout == null) {
+				Constants.showMessage("Please Select workout before delete ", true);
+				return "workoutAdmin";
+			}
+			workoutService.delete(workout);
+			Constants.showMessage("Workout Deleted Successfully ", false);
+		} catch (org.springframework.dao.DataIntegrityViolationException e) {
+			Constants.showMessage(
+					"Cannot Delete Workout because it is already used by clients Please Remove all Links with this Workout",
+					false);
+		} catch (Exception e) {
+			System.out.println(e);
+		}
 		return "workoutAdmin";
 
 	}
@@ -198,6 +233,10 @@ public class WorkoutAdminBean {
 
 	public String createMuscle() {
 		try {
+			if (muscle.getName() == null || muscle.getName().isEmpty()) {
+				Constants.showMessage("Muscle Name Required", true);
+				return "workoutAdmin";
+			}
 			muscleService.save(muscle);
 		} catch (Exception ex) {
 			Constants.showMessage("Error While Save muscle,see Log error ex:" + ex.getMessage(), true);
@@ -207,12 +246,20 @@ public class WorkoutAdminBean {
 	}
 
 	public String deleteMuscle() {
-		if (muscle == null) {
-			Constants.showMessage("Please Select muscle before delete ", true);
-			return "workoutAdmin";
+		try {
+			if (muscle == null) {
+				Constants.showMessage("Please Select muscle before delete ", true);
+				return "workoutAdmin";
+			}
+			muscleService.delete(muscle);
+			Constants.showMessage("Muscle Deleted Successfully ", false);
+		} catch (org.springframework.dao.DataIntegrityViolationException e) {
+			Constants.showMessage(
+					"Cannot Delete Muscle because it is already used by clients Please Remove all Links with this Muscle",
+					false);
+		} catch (Exception e) {
+			System.out.println(e);
 		}
-		muscleService.delete(muscle);
-		Constants.showMessage("Muscle Deleted Successfully ", false);
 		return "workoutAdmin";
 
 	}

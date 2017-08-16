@@ -286,19 +286,19 @@
 					<h:panelGrid id="addToMealPanelGrid">
 						<p:row>
 						<p:column>
-							<p:outputLabel value="Portion(gm)" for="portionInput" />
+							<p:outputLabel value="Portion(gm) *" for="portionInput" />
 						</p:column>
 						<p:column>
-							<p:inputNumber id="portionInput" value="#{mealBean.selectedSubMeal.ingerdientPortion}" decimalPlaces="1" thousandSeparator="" decimalSeparator="." requiredMessage="please enter portion field to add" required="true"></p:inputNumber>
+							<p:inputNumber id="portionInput" value="#{mealBean.selectedSubMeal.ingerdientPortion}" decimalPlaces="1" thousandSeparator="" decimalSeparator="."></p:inputNumber>
 						</p:column>
 						</p:row>
 						
 						<p:row>
 						<p:column>
-							<p:outputLabel value="Select Meal" /><br></br>
+							<p:outputLabel value="Select Meal *" /><br></br>
 						</p:column>
 						<p:column>
-							<p:selectOneMenu id="selectMeal" value="#{mealBean.selectedSubMeal.meal.id}" style="width:150px" required="true" requiredMessage="please select a meal to add">
+							<p:selectOneMenu id="selectMeal" value="#{mealBean.selectedSubMeal.meal.id}" style="width:150px">
               				<f:selectItem itemLabel="Select Meal" itemValue="" noSelectionOption="true" />
                				<f:selectItems value="#{mealBean.mealList}"
 										var="mealVar" itemValue="#{mealVar.id}"
@@ -329,47 +329,47 @@
 					
 					<p:row>			
 						<p:column>
-							<p:outputLabel value="Food Name" for="foodNameInput" />
+							<p:outputLabel value="Food Name *" for="foodNameInput" />
 						</p:column>
 						<p:column>
-						<p:inputText id="foodNameInput" value="#{mealBean.selectedStandardIngerdients.name}" required="true" requiredMessage="please enter food name to add"></p:inputText>
+						<p:inputText id="foodNameInput" value="#{mealBean.selectedStandardIngerdients.name}"></p:inputText>
 						</p:column>
 						</p:row>
 					
 						<p:row>			
 						<p:column>
-							<p:outputLabel value="Protiens" for="proteinsInput"/>
+							<p:outputLabel value="Protiens *" for="proteinsInput"/>
 						</p:column>
 						<p:column>
-							<p:inputNumber id="proteinsInput" value="#{mealBean.selectedStandardIngerdients.containedProtiens}" decimalPlaces="1" thousandSeparator="" decimalSeparator="." required="true" requiredMessage="please enter protein field to add"></p:inputNumber>
-						</p:column>
-						</p:row>
-						
-						<p:row>			
-						<p:column>
-							<p:outputLabel value="Carbs" for="carbsInput" />
-						</p:column>
-						<p:column>
-							<p:inputNumber id="carbsInput" value="#{mealBean.selectedStandardIngerdients.containedCarbs}" decimalPlaces="1" thousandSeparator="" decimalSeparator="." required="true" requiredMessage="please enter carbs field to add"></p:inputNumber>
-						</p:column>
-						</p:row>
-						
-						
-						<p:row>			
-						<p:column>
-							<p:outputLabel value="Fats" for="fatsInput" />
-						</p:column>
-						<p:column>
-							<p:inputNumber id="fatsInput" value="#{mealBean.selectedStandardIngerdients.containedFats}" decimalPlaces="1" thousandSeparator="" decimalSeparator="." required="true" requiredMessage="please enter fats field to add"></p:inputNumber>
+							<p:inputNumber id="proteinsInput" value="#{mealBean.selectedStandardIngerdients.containedProtiens}" decimalPlaces="1" thousandSeparator="" decimalSeparator="."></p:inputNumber>
 						</p:column>
 						</p:row>
 						
 						<p:row>			
 						<p:column>
-							<p:outputLabel value="Total Calories" for="totalCaloriesInput" />
+							<p:outputLabel value="Carbs *" for="carbsInput" />
 						</p:column>
 						<p:column>
-							<p:inputNumber id="totalCaloriesInput" value="#{mealBean.selectedStandardIngerdients.totalCalories}" decimalPlaces="1" thousandSeparator="" decimalSeparator="." required="true" requiredMessage="please enter totalCalories field to add"></p:inputNumber>
+							<p:inputNumber id="carbsInput" value="#{mealBean.selectedStandardIngerdients.containedCarbs}" decimalPlaces="1" thousandSeparator="" decimalSeparator="."></p:inputNumber>
+						</p:column>
+						</p:row>
+						
+						
+						<p:row>			
+						<p:column>
+							<p:outputLabel value="Fats *" for="fatsInput" />
+						</p:column>
+						<p:column>
+							<p:inputNumber id="fatsInput" value="#{mealBean.selectedStandardIngerdients.containedFats}" decimalPlaces="1" thousandSeparator="" decimalSeparator="." ></p:inputNumber>
+						</p:column>
+						</p:row>
+						
+						<p:row>			
+						<p:column>
+							<p:outputLabel value="Total Calories *" for="totalCaloriesInput" />
+						</p:column>
+						<p:column>
+							<p:inputNumber id="totalCaloriesInput" value="#{mealBean.selectedStandardIngerdients.totalCalories}" decimalPlaces="1" thousandSeparator="" decimalSeparator="." ></p:inputNumber>
 						</p:column>
 						</p:row>
 					</h:panelGrid>

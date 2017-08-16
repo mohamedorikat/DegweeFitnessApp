@@ -33,8 +33,8 @@
 					<h:outputText value="#{workout.videoLink}" />
 				</p:column>
 				<p:column headerText="Related Muscle"
-					filterBy="#{workout.muscleId.name}">
-					<h:outputText value="#{workout.muscleId.name}" />
+					filterBy="#{workout.muscle.name}">
+					<h:outputText value="#{workout.muscle.name}" />
 				</p:column>
 			</p:dataTable>
 			<p:panelGrid styleClass="noBorderGrid">
@@ -130,16 +130,17 @@
 				<h:panelGrid id="addStratgeyPanelGrid">
 					<p:row>
 						<p:column>
-							<p:outputLabel value="Stratgey Value(Slash Based)"
+							<p:outputLabel value="Stratgey Value(Slash Based(/)) *"
 								for="stratgeyValue" />
 							<p:inputText id="stratgeyValue"
-								value="#{workoutAdminBean.stratgey.value}" required="true"></p:inputText>
+								value="#{workoutAdminBean.stratgey.value}"></p:inputText>
 						</p:column>
 					</p:row>
 					<p:row>
 						<p:column>
 							<p:commandButton id="addStratgeyButton" value="Add"
-								action="#{workoutAdminBean.createStratgey()}" ajax="false" />
+								 action="#{workoutAdminBean.createStratgey()}"
+								ajax="false" />
 							<p:commandButton id="closeButton" value="Close"
 								onclick="PF('addStratgeyDialog').hide()" type="button" />
 						</p:column>
@@ -160,29 +161,28 @@
 				<h:panelGrid id="addWorkoutPanelGrid">
 					<p:row>
 						<p:column>
-							<p:outputLabel value="Workout Name" for="name" />
-							<p:inputText id="name" value="#{workoutAdminBean.workout.name}"
-								required="true"></p:inputText>
+							<p:outputLabel value="Workout Name *" for="name" />
+							<p:inputText id="name" value="#{workoutAdminBean.workout.name}"></p:inputText>
 						</p:column>
 					</p:row>
 					<p:row>
 						<p:column>
-							<p:outputLabel value="Workout Video Link" for="link" />
+							<p:outputLabel value="Workout Video Link *" for="link" />
 							<p:inputText id="link"
-								value="#{workoutAdminBean.workout.videoLink}" required="true"></p:inputText>
+								value="#{workoutAdminBean.workout.videoLink}"></p:inputText>
 							<br></br>
 						</p:column>
 					</p:row>
 					<p:row>
 						<p:column>
-							<p:outputLabel value="Select Muscle" />
+							<p:outputLabel value="Select Muscle *" />
 							<br></br>
 						</p:column>
 						<p:column>
 							<p:selectOneMenu id="selectMuscle"
 								value="#{workoutAdminBean.selectedMuscleForWokroutId}"
-								style="width:150px" required="true"
-								requiredMessage="please select a Muscle to add before save">
+								style="width:150px">
+
 								<f:selectItem itemLabel="Select Muscle" itemValue=""
 									noSelectionOption="true" />
 								<f:selectItems value="#{workoutAdminBean.allMuscles}"
@@ -215,9 +215,8 @@
 				<h:panelGrid id="addMusclePanelGrid">
 					<p:row>
 						<p:column>
-							<p:outputLabel value="Muscle Name" for="name" />
-							<p:inputText id="name" value="#{workoutAdminBean.muscle.name}"
-								required="true"></p:inputText>
+							<p:outputLabel value="Muscle Name *" for="name" />
+							<p:inputText id="name" value="#{workoutAdminBean.muscle.name}"></p:inputText>
 						</p:column>
 					</p:row>
 					<p:row>

@@ -405,38 +405,35 @@ public class MealBean {
 
 	private Meal getSelectedMealFromDialog() {
 		Meal meal = null;
-		if (selectedSubMeal.getMeal().getId() != null) {
-			meal = mealService.findMealById(selectedSubMeal.getMeal().getId());
-		} else {
-			FacesMessage facesMessage = new FacesMessage("Please Select Meal First To Add");
-			facesMessage.setSeverity(FacesMessage.SEVERITY_ERROR);
-			FacesContext.getCurrentInstance().addMessage(null, facesMessage);
-		}
+		meal = mealService.findMealById(selectedSubMeal.getMeal().getId());
 		return meal;
 	}
 
 	public String addIngerdientsToMeal() {
 
 		try {
-			selectedSubMeal.setMeal(getSelectedMealFromDialog());
-			if (selectedSubMeal.getMeal() != null) {
-				if (selectedSubMeal.getMeal().getNumber() != null) {
-					if (selectedSubMeal.getMeal().getNumber().equals(Constants.mealOne)) {
-						meal1.add(selectedSubMeal);
-						updateNutritionInfoCounters(Constants.mealOne, meal1);
+
+			if (!checkAddToMealRequiredFields()) {
+				selectedSubMeal.setMeal(getSelectedMealFromDialog());
+				if (selectedSubMeal.getMeal() != null) {
+					if (selectedSubMeal.getMeal().getNumber() != null) {
+						if (selectedSubMeal.getMeal().getNumber().equals(Constants.mealOne)) {
+							meal1.add(selectedSubMeal);
+							updateNutritionInfoCounters(Constants.mealOne, meal1);
+						}
+						if (selectedSubMeal.getMeal().getNumber().equals(Constants.mealTwo)) {
+							meal2.add(selectedSubMeal);
+							updateNutritionInfoCounters(Constants.mealTwo, meal2);
+						}
+						if (selectedSubMeal.getMeal().getNumber().equals(Constants.mealThree)) {
+							meal3.add(selectedSubMeal);
+							updateNutritionInfoCounters(Constants.mealThree, meal3);
+						}
 					}
-					if (selectedSubMeal.getMeal().getNumber().equals(Constants.mealTwo)) {
-						meal2.add(selectedSubMeal);
-						updateNutritionInfoCounters(Constants.mealTwo, meal2);
+					if (selectedSubMeal.getMeal().getNumber().equals(Constants.mealFour)) {
+						meal4.add(selectedSubMeal);
+						updateNutritionInfoCounters(Constants.mealFour, meal4);
 					}
-					if (selectedSubMeal.getMeal().getNumber().equals(Constants.mealThree)) {
-						meal3.add(selectedSubMeal);
-						updateNutritionInfoCounters(Constants.mealThree, meal3);
-					}
-				}
-				if (selectedSubMeal.getMeal().getNumber().equals(Constants.mealFour)) {
-					meal4.add(selectedSubMeal);
-					updateNutritionInfoCounters(Constants.mealFour, meal4);
 				}
 			}
 		} catch (Exception ex) {
@@ -444,6 +441,19 @@ public class MealBean {
 			Constants.showMessage("Error addIngerdientsToMeal Method,ex:" + ex.getMessage(), true);
 		}
 		return "mealSelection";
+	}
+
+	private boolean checkAddToMealRequiredFields() {
+		boolean requiredError = false;
+		if (selectedSubMeal.getIngerdientPortion() == null) {
+			Constants.showMessage("Ingerdient Portion Required", true);
+			requiredError = true;
+		}
+		if (selectedSubMeal.getMeal().getId() == null) {
+			Constants.showMessage("Selection of Meal Required", true);
+			requiredError = true;
+		}
+		return requiredError;
 	}
 
 	public void updateNutritionInfoCounters(Integer mealNumber, List<SubMeal> mealList) {
@@ -486,7 +496,7 @@ public class MealBean {
 			if (susccessfull)
 				Constants.showMessage("Report Generated Successfully", false);
 		} catch (Exception e) {
-			System.out.println("Exception In Save Maels Method Ex: "+e);
+			System.out.println("Exception In Save Maels Method Ex: " + e);
 			Constants.showMessage("Error While Genereating Report,ex:" + e.getMessage(), true);
 		}
 		return null;
@@ -598,12 +608,11 @@ public class MealBean {
 	public String saveIngerdients() {
 		try {
 			if (selectedStandardIngerdients != null) {
-				if (selectedStandardIngerdients.getFolderPath() == null) {
-					Constants.showMessage("Please Choose Image For Food Before Save", true);
+				if (!checkIngerdientRequiredFields()) {
+					ingerdientsService.save(selectedStandardIngerdients);
+					allIngerdients.add(selectedStandardIngerdients);
+					Constants.showMessage("Ingerdient Added Successfully", false);
 				}
-				ingerdientsService.save(selectedStandardIngerdients);
-				allIngerdients.add(selectedStandardIngerdients);
-				Constants.showMessage("Ingerdient Added Successfully", false);
 			} else {
 				Constants.showMessage("Contact Orikat Null Ingerdient while saving", true);
 			}
@@ -612,6 +621,38 @@ public class MealBean {
 			Constants.showMessage("Error in adding inegrdient," + ex.getMessage(), true);
 		}
 		return "mealSelection";
+	}
+
+	private boolean checkIngerdientRequiredFields() {// this method is done for
+														// the sake of specific
+														// issue in adding empty
+														// value while filter
+		boolean requiredError = false;
+		if (selectedStandardIngerdients.getName() == null || selectedStandardIngerdients.getName().isEmpty()) {
+			Constants.showMessage("Food Name Required", true);
+			requiredError = true;
+		}
+		if (selectedStandardIngerdients.getContainedProtiens() == null) {
+			Constants.showMessage("Contained Proteins Required", true);
+			requiredError = true;
+		}
+		if (selectedStandardIngerdients.getContainedCarbs() == null) {
+			Constants.showMessage("Contained Carbs Required", true);
+			requiredError = true;
+		}
+		if (selectedStandardIngerdients.getContainedFats() == null) {
+			Constants.showMessage("Contained Fats Required", true);
+			requiredError = true;
+		}
+		if (selectedStandardIngerdients.getTotalCalories() == null) {
+			Constants.showMessage("Total Calories Required", true);
+			requiredError = true;
+		}
+		if (selectedStandardIngerdients.getFolderPath() == null) {
+			Constants.showMessage("Please Choose Image For Food Before Save", true);
+			requiredError = true;
+		}
+		return requiredError;
 	}
 
 	public void resetIngerdient() {
@@ -709,8 +750,8 @@ public class MealBean {
 		}
 		return result;
 	}
-	public String goBackToClientInfo()
-	{
+
+	public String goBackToClientInfo() {
 		return clientBean.goToEditClient();
 	}
 

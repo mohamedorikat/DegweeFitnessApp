@@ -102,12 +102,13 @@ public class WorkoutBean {
 		allSets = setService.findAllSets();
 
 	}
+
 	public void reloadstaticLists() {
-		
+
 		allMuscles = muscleService.findAllMuscles();
 		allStratgies = stratgeyService.findAllStratgeys();
 		allSets = setService.findAllSets();
-		
+
 	}
 
 	public void getWorkoutsByMusleId() {
@@ -120,22 +121,14 @@ public class WorkoutBean {
 
 		int setValue = setService.findSetById(selectedSetId).getNumber();
 		String stratgeyValue = stratgeyService.findStratgeyById(clientBean.getSelectedStrategyId()).getValue();
+		String startigiesTemp[] = stratgeyValue.split("\\/");
 
-		switch (setValue) {
-		case 1:
-			selectedStratgey = stratgeyValue.substring(0, setValue);
-			break;
-		case 2:
-			selectedStratgey = stratgeyValue.substring(0, setValue + 1);
-			break;
-		case 3:
-			selectedStratgey = stratgeyValue.substring(0, setValue + 2);
-			break;
-		case 4:
-			selectedStratgey = stratgeyValue.substring(0, setValue + 3);
-			break;
-
+		selectedStratgey = "";
+		for (int i = 0; i < setValue; i++) {
+			selectedStratgey = selectedStratgey + startigiesTemp[i] + "/";
 		}
+
+		selectedStratgey = selectedStratgey.substring(0, selectedStratgey.length() - 1);
 	}
 
 	public String getMuscleByMuscleId(int muscleId) {

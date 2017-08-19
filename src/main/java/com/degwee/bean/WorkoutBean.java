@@ -12,12 +12,14 @@ import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.servlet.ServletContext;
 
+import org.primefaces.model.StreamedContent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import com.degwee.model.Client_DailyWorkout;
 import com.degwee.model.Daily_Workout;
 import com.degwee.model.Day;
+import com.degwee.model.JasperParam;
 import com.degwee.model.Muscle;
 import com.degwee.model.Set;
 import com.degwee.model.Stratgey;
@@ -25,11 +27,15 @@ import com.degwee.model.Workout;
 import com.degwee.service.Client_DailyWorkoutService;
 import com.degwee.service.Daily_WorkoutService;
 import com.degwee.service.DayService;
+import com.degwee.service.FolderPathService;
 import com.degwee.service.MuscleService;
+import com.degwee.service.ReportService;
 import com.degwee.service.SetService;
 import com.degwee.service.StratgeyService;
 import com.degwee.service.WorkoutService;
 import com.degwee.utils.Constants;
+import com.degwee.utils.FileManger;
+import com.degwee.utils.JasperIntegration;
 
 @ManagedBean(name = "workoutBean")
 @SessionScoped
@@ -49,6 +55,12 @@ public class WorkoutBean {
 	Daily_WorkoutService dailyWorkoutService;
 	@Autowired
 	Client_DailyWorkoutService clientDailyWorkoutService;
+	@Autowired
+	FolderPathService folderPathService;
+	@Autowired
+	JasperIntegration jasperIntegration;
+	@Autowired
+	ReportService reportService;
 
 	@ManagedProperty(value = "#{clientBean}")
 	ClientBean clientBean;
@@ -66,6 +78,7 @@ public class WorkoutBean {
 	List<Workout> musleWorkouts;
 	List<Muscle> allMuscles;
 	List<Set> allSets;
+	private FileManger fileManager = null;
 
 	int selectedDayId;
 	int selectedMusleId;
@@ -289,7 +302,55 @@ public class WorkoutBean {
 
 	}
 
-	public void generateReport() {
+	public boolean generateReport() throws Exception {
+		String[] generatedPDFName = null;
+		try {
+
+			if (clientBean.getClient() == null) {
+				Constants.showMessage("Client Null in report", true);
+				return false;
+			}
+			JasperParam jasperObj = new JasperParam();
+
+			jasperObj.setClient(clientBean.getClient());
+			jasperObj.setJasperXmlFolder(folderPathService.findFolderPathById(2));
+			jasperObj.setJasperReportFolder(folderPathService.findFolderPathById(3));
+			generatedPDFName = jasperIntegration.generateReport(jasperObj);
+			downloadReport(generatedPDFName[0], generatedPDFName[1]);
+			System.out.println("Done Download");
+			int result = fileManager.deleteFileByPath(generatedPDFName[1]);
+			if (result == 0) {
+				System.out.println("Done Deleteing File");
+				return true;
+			} else {
+				Constants.showMessage("File Not exists To Delete", true);
+				return false;
+			}
+
+		} catch (Exception e) {
+			throw e;
+		}
+
+	}
+
+	private boolean downloadReport(String fileName, String fullPath) throws Exception {
+		StreamedContent content = null;
+		boolean result = false;
+		if (fileManager == null) {
+			fileManager = new FileManger(null);
+		}
+		try {
+			if (fileName != null && fullPath != null) {
+				content = fileManager.handleFiledownload(fileName, fullPath);
+				fileManager.setDownloadedFile(content);
+				result = true;
+			} else {
+				throw new Exception("error while download no file name or file path");
+			}
+		} catch (Exception ex) {
+			throw ex;
+		}
+		return result;
 	}
 
 	public List<Daily_Workout> getDayOneWorkout() {
@@ -485,6 +546,46 @@ public class WorkoutBean {
 
 	public void setSelectedStratgey(String selectedStratgey) {
 		this.selectedStratgey = selectedStratgey;
+	}
+
+	public FolderPathService getFolderPathService() {
+		return folderPathService;
+	}
+
+	public void setFolderPathService(FolderPathService folderPathService) {
+		this.folderPathService = folderPathService;
+	}
+
+	public JasperIntegration getJasperIntegration() {
+		return jasperIntegration;
+	}
+
+	public void setJasperIntegration(JasperIntegration jasperIntegration) {
+		this.jasperIntegration = jasperIntegration;
+	}
+
+	public ReportService getReportService() {
+		return reportService;
+	}
+
+	public void setReportService(ReportService reportService) {
+		this.reportService = reportService;
+	}
+
+	public List<Client_DailyWorkout> getOldClintDailyWorkouts() {
+		return oldClintDailyWorkouts;
+	}
+
+	public void setOldClintDailyWorkouts(List<Client_DailyWorkout> oldClintDailyWorkouts) {
+		this.oldClintDailyWorkouts = oldClintDailyWorkouts;
+	}
+
+	public FileManger getFileManager() {
+		return fileManager;
+	}
+
+	public void setFileManager(FileManger fileManager) {
+		this.fileManager = fileManager;
 	}
 
 }

@@ -4,11 +4,13 @@
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<parameter name="dayId" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[0]]></defaultValueExpression>
+	</parameter>
+	<parameter name="ClientId" class="java.lang.String" isForPrompting="false">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
-	<parameter name="ClientId" class="java.lang.String" isForPrompting="false"/>
 	<queryString>
-		<![CDATA[select folderpath.FolderPath,workout.name,muscle.name as muscleName,daily_workout.workout_strategy,`set`.number,workout.videoLink from client_dailyworkout c join daily_workout ON daily_workout.id = c.dailyWorkout_id join `set` ON `set`.id = daily_workout.set_id join workout ON workout.id = daily_workout.workout_id join muscle ON muscle.id = workout.muscleId join folderpath where daily_workout.day_id=1 and c.client_id=12 and folderpath.Id=4;]]>
+		<![CDATA[select folderpath.FolderPath,workout.name,muscle.name as muscleName,daily_workout.workout_strategy,`set`.number,workout.videoLink from client_dailyworkout c join daily_workout ON daily_workout.id = c.dailyWorkout_id join `set` ON `set`.id = daily_workout.set_id join workout ON workout.id = daily_workout.workout_id join muscle ON muscle.id = workout.muscleId join folderpath where daily_workout.day_id=$P{dayId} and c.client_id=$P{ClientId} and folderpath.Id=4;]]>
 	</queryString>
 	<field name="FolderPath" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>

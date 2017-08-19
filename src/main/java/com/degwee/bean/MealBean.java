@@ -714,7 +714,7 @@ public class MealBean {
 			jasperObj.setClient(clientBean.getClient());
 			jasperObj.setJasperXmlFolder(folderPathService.findFolderPathById(2));
 			jasperObj.setJasperReportFolder(folderPathService.findFolderPathById(3));
-			generatedPDFName = jasperIntegration.generateReport(jasperObj);
+			generatedPDFName = jasperIntegration.generateReport(jasperObj,false);
 			downloadReport(generatedPDFName[0], generatedPDFName[1]);
 			System.out.println("Done Download");
 			int result = fileManager.deleteFileByPath(generatedPDFName[1]);

@@ -26,13 +26,20 @@ public class JasperIntegration {
 	@Autowired
 	DriverManagerDataSource datasource;
 
-	public String[] generateReport(JasperParam jasperParamObj) throws JRException,Exception {
+	public String[] generateReport(JasperParam jasperParamObj, boolean isWorkout) throws JRException, Exception {
 		HashMap parameters = null;
 		SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy hh_mm_ss");
 		String[] fileParams = null;
+		String jrxmlFileName = null;
+		String jasperFileName = null;
 		try {
-			String jrxmlFileName = jasperParamObj.getJasperXmlFolder().getFolderPath() + "DegweeMealsReport.jrxml";
-			String jasperFileName = jasperParamObj.getJasperXmlFolder().getFolderPath() + "DegweeMealsReport.jasper";
+			if (isWorkout) {
+				jrxmlFileName = jasperParamObj.getJasperXmlFolder().getFolderPath() + "DegweeWorkoutsReport.jrxml";
+				jasperFileName = jasperParamObj.getJasperXmlFolder().getFolderPath() + "DegweeWorkoutsReport.jasper";
+			} else {
+				jrxmlFileName = jasperParamObj.getJasperXmlFolder().getFolderPath() + "DegweeMealsReport.jrxml";
+				jasperFileName = jasperParamObj.getJasperXmlFolder().getFolderPath() + "DegweeMealsReport.jasper";
+			}
 			String fileName = jasperParamObj.getClient().getFirstName() + "_" + jasperParamObj.getClient().getLastName()
 					+ "_" + sdf.format(new Date()) + ".pdf";
 
@@ -44,7 +51,7 @@ public class JasperIntegration {
 
 			JasperCompileManager.compileReportToFile(jrxmlFileName, jasperFileName);
 			System.out.println("After Compiling");
-			
+
 			// Generate jasper print
 			@SuppressWarnings("unchecked")
 			JasperPrint jprint = (JasperPrint) JasperFillManager.fillReport(jasperFileName, parameters,
@@ -59,8 +66,7 @@ public class JasperIntegration {
 
 		} catch (JRException e) {
 			throw e;
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			throw e;
 		}
 		return fileParams;

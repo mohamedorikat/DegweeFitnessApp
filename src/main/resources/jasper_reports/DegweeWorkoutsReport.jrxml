@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="DegweeMealsReport" pageWidth="535" pageHeight="1850" columnWidth="535" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" whenResourceMissingType="Empty" uuid="cc7629f5-d99b-443c-a261-746b398dfb6e">
 	<property name="ireport.zoom" value="1.5"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="382"/>
+	<property name="ireport.y" value="0"/>
 	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
 		<defaultValueExpression><![CDATA["C:\\Users\\orikat\\Documents\\DegweeWorkspace\\NutritionFitnessApp\\src\\main\\resources\\jasper_reports\\"]]></defaultValueExpression>
 	</parameter>
@@ -47,79 +47,79 @@
 		<band height="71" splitType="Stretch">
 			<subreport isUsingCache="true" runToBottom="false">
 				<reportElement positionType="Float" mode="Opaque" x="1" y="1" width="535" height="70" isRemoveLineWhenBlank="true" uuid="b72f5d88-78dd-452f-b8f8-43f43c71c6e1"/>
-				<subreportParameter name="mealId">
+				<subreportParameter name="dayId">
 					<subreportParameterExpression><![CDATA["1"]]></subreportParameterExpression>
 				</subreportParameter>
 				<subreportParameter name="ClientId">
 					<subreportParameterExpression><![CDATA[$P{ClientId}]]></subreportParameterExpression>
 				</subreportParameter>
 				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
-				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "MealReport.jasper"]]></subreportExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "WorkoutReport.jasper"]]></subreportExpression>
 			</subreport>
 		</band>
 		<band height="70" splitType="Stretch">
 			<subreport isUsingCache="true" runToBottom="false">
 				<reportElement positionType="Float" mode="Opaque" x="1" y="0" width="535" height="70" isRemoveLineWhenBlank="true" forecolor="#000000" backcolor="#FFFFFF" uuid="64cd9431-6445-4147-855c-1a3da835ae4f"/>
-				<subreportParameter name="mealId">
+				<subreportParameter name="dayId">
 					<subreportParameterExpression><![CDATA["2"]]></subreportParameterExpression>
 				</subreportParameter>
 				<subreportParameter name="ClientId">
 					<subreportParameterExpression><![CDATA[$P{ClientId}]]></subreportParameterExpression>
 				</subreportParameter>
 				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
-				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "MealReport.jasper"]]></subreportExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "WorkoutReport.jasper"]]></subreportExpression>
 			</subreport>
 		</band>
 		<band height="70" splitType="Stretch">
 			<subreport runToBottom="false">
 				<reportElement positionType="Float" mode="Opaque" x="0" y="0" width="535" height="70" isRemoveLineWhenBlank="true" uuid="f0f4dd27-4509-4e89-ada2-8cc5a604f79d"/>
-				<subreportParameter name="mealId">
+				<subreportParameter name="dayId">
 					<subreportParameterExpression><![CDATA["3"]]></subreportParameterExpression>
 				</subreportParameter>
 				<subreportParameter name="ClientId">
 					<subreportParameterExpression><![CDATA[$P{ClientId}]]></subreportParameterExpression>
 				</subreportParameter>
 				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
-				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "MealReport.jasper"]]></subreportExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "WorkoutReport.jasper"]]></subreportExpression>
 			</subreport>
 		</band>
 		<band height="70" splitType="Stretch">
 			<subreport runToBottom="false">
 				<reportElement positionType="Float" mode="Opaque" x="1" y="0" width="535" height="70" isRemoveLineWhenBlank="true" uuid="46adcbee-3ec8-48a5-93cc-ec6ef0a07e1f"/>
-				<subreportParameter name="mealId">
+				<subreportParameter name="dayId">
 					<subreportParameterExpression><![CDATA["4"]]></subreportParameterExpression>
 				</subreportParameter>
 				<subreportParameter name="ClientId">
 					<subreportParameterExpression><![CDATA[$P{ClientId}]]></subreportParameterExpression>
 				</subreportParameter>
 				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
-				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "MealReport.jasper"]]></subreportExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "WorkoutReport.jasper"]]></subreportExpression>
 			</subreport>
 		</band>
 		<band height="70">
 			<subreport runToBottom="false">
 				<reportElement positionType="Float" mode="Opaque" x="0" y="0" width="535" height="70" isRemoveLineWhenBlank="true" uuid="77043419-34c5-4fe5-ae4d-5e653189d5ed"/>
-				<subreportParameter name="mealId">
-					<subreportParameterExpression><![CDATA["4"]]></subreportParameterExpression>
+				<subreportParameter name="dayId">
+					<subreportParameterExpression><![CDATA["5"]]></subreportParameterExpression>
 				</subreportParameter>
 				<subreportParameter name="ClientId">
 					<subreportParameterExpression><![CDATA[$P{ClientId}]]></subreportParameterExpression>
 				</subreportParameter>
 				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
-				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "MealReport.jasper"]]></subreportExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "WorkoutReport.jasper"]]></subreportExpression>
 			</subreport>
 		</band>
 		<band height="70">
 			<subreport runToBottom="false">
 				<reportElement positionType="Float" mode="Opaque" x="1" y="0" width="535" height="70" isRemoveLineWhenBlank="true" uuid="4fbe21c7-6f05-46eb-b26e-9f09eb5a1215"/>
-				<subreportParameter name="mealId">
-					<subreportParameterExpression><![CDATA["4"]]></subreportParameterExpression>
+				<subreportParameter name="dayId">
+					<subreportParameterExpression><![CDATA["6"]]></subreportParameterExpression>
 				</subreportParameter>
 				<subreportParameter name="ClientId">
 					<subreportParameterExpression><![CDATA[$P{ClientId}]]></subreportParameterExpression>
 				</subreportParameter>
 				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
-				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "MealReport.jasper"]]></subreportExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} +"WorkoutReport.jasper"]]></subreportExpression>
 			</subreport>
 		</band>
 	</detail>

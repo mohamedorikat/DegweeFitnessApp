@@ -85,6 +85,7 @@ public class WorkoutBean {
 	int selectedSetId;
 	int selectedWorkoutId;
 	String selectedStratgey;
+	boolean isAddWorkout = false;
 
 	public WorkoutBean() {
 
@@ -110,14 +111,6 @@ public class WorkoutBean {
 
 		// initialize all static lists
 		allDays = dayService.findAllDays();
-		allMuscles = muscleService.findAllMuscles();
-		allStratgies = stratgeyService.findAllStratgeys();
-		allSets = setService.findAllSets();
-
-	}
-
-	public void reloadstaticLists() {
-
 		allMuscles = muscleService.findAllMuscles();
 		allStratgies = stratgeyService.findAllStratgeys();
 		allSets = setService.findAllSets();
@@ -172,6 +165,7 @@ public class WorkoutBean {
 			break;
 
 		}
+		isAddWorkout = true;
 
 	}
 
@@ -206,6 +200,7 @@ public class WorkoutBean {
 
 		}
 		// reset selected values
+		isAddWorkout = true;
 		selectedDayId = 0;
 		selectedSetId = 0;
 		selectedWorkoutId = 0;
@@ -214,25 +209,26 @@ public class WorkoutBean {
 	}
 
 	public void saveDailyWorkouts() {
-
+		List<Daily_Workout> daily_WorkoutList = new ArrayList<>();
 		if (dayOneWorkout != null && dayOneWorkout.size() > 0) {
-			addClientDailyWorkout(dayOneWorkout);
+			daily_WorkoutList.addAll(dayOneWorkout);
 		}
 		if (dayTwoWorkout != null && dayTwoWorkout.size() > 0) {
-			addClientDailyWorkout(dayTwoWorkout);
+			daily_WorkoutList.addAll(dayTwoWorkout);
 		}
 		if (dayThreeWorkout != null && dayThreeWorkout.size() > 0) {
-			addClientDailyWorkout(dayThreeWorkout);
+			daily_WorkoutList.addAll(dayThreeWorkout);
 		}
 		if (dayFourWorkout != null && dayFourWorkout.size() > 0) {
-			addClientDailyWorkout(dayFourWorkout);
+			daily_WorkoutList.addAll(dayFourWorkout);
 		}
 		if (dayFiveWorkout != null && dayFiveWorkout.size() > 0) {
-			addClientDailyWorkout(dayFiveWorkout);
+			daily_WorkoutList.addAll(dayFiveWorkout);
 		}
 		if (daySixWorkout != null && daySixWorkout.size() > 0) {
-			addClientDailyWorkout(daySixWorkout);
+			daily_WorkoutList.addAll(daySixWorkout);
 		}
+		addClientDailyWorkout(daily_WorkoutList);
 
 	}
 
@@ -249,6 +245,8 @@ public class WorkoutBean {
 			client_DailyWorkout.setClient(clientBean.getClient());
 			clientDailyWorkoutService.save(client_DailyWorkout);
 		}
+		fillClientDailyWorkouts();
+		isAddWorkout = false;
 		Constants.showMessage("Workout Added Successfully", false);
 
 	}
@@ -271,6 +269,13 @@ public class WorkoutBean {
 
 		oldClintDailyWorkouts = clientDailyWorkoutService
 				.findClientDailyWorkoutByClientId(clientBean.getClient().getClientId());
+
+		dayOneWorkout = new ArrayList<>();
+		dayTwoWorkout = new ArrayList<>();
+		dayThreeWorkout = new ArrayList<>();
+		dayFourWorkout = new ArrayList<>();
+		dayFiveWorkout = new ArrayList<>();
+		daySixWorkout = new ArrayList<>();
 
 		if (oldClintDailyWorkouts != null && oldClintDailyWorkouts.size() > 0) {
 			for (Client_DailyWorkout client_DailyWorkout : oldClintDailyWorkouts) {
@@ -354,6 +359,9 @@ public class WorkoutBean {
 	}
 
 	public List<Daily_Workout> getDayOneWorkout() {
+		if (!isAddWorkout) {
+			fillClientDailyWorkouts();
+		}
 		return dayOneWorkout;
 	}
 
@@ -541,6 +549,7 @@ public class WorkoutBean {
 	}
 
 	public String getSelectedStratgey() {
+		stratgeyService.findStratgeyById(clientBean.getSelectedStrategyId()).getValue();
 		return selectedStratgey;
 	}
 

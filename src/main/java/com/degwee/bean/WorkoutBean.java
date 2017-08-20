@@ -97,7 +97,14 @@ public class WorkoutBean {
 		ServletContext servletContext = (ServletContext) externalContext.getContext();
 		WebApplicationContextUtils.getRequiredWebApplicationContext(servletContext).getAutowireCapableBeanFactory()
 				.autowireBean(this);
+	}
 
+	public String initWorkout() {
+		if (clientBean.getClient() == null || clientBean.getClient().getStrategyId() == null)
+		{
+			Constants.showMessage("Please Select Strategy First before Going to Workout Page", true);
+			return null;
+		}
 		dayOneWorkout = new ArrayList<>();
 		dayTwoWorkout = new ArrayList<>();
 		dayThreeWorkout = new ArrayList<>();
@@ -106,15 +113,13 @@ public class WorkoutBean {
 		daySixWorkout = new ArrayList<>();
 
 		fillClientDailyWorkouts();
-
-		selectedStratgey = stratgeyService.findStratgeyById(clientBean.getSelectedStrategyId()).getValue();
-
+		selectedStratgey = clientBean.getClient().getStrategyId().getValue();
 		// initialize all static lists
 		allDays = dayService.findAllDays();
 		allMuscles = muscleService.findAllMuscles();
 		allStratgies = stratgeyService.findAllStratgeys();
 		allSets = setService.findAllSets();
-
+		return "workout";
 	}
 
 	public void getWorkoutsByMusleId() {
@@ -209,26 +214,31 @@ public class WorkoutBean {
 	}
 
 	public void saveDailyWorkouts() {
-		List<Daily_Workout> daily_WorkoutList = new ArrayList<>();
-		if (dayOneWorkout != null && dayOneWorkout.size() > 0) {
-			daily_WorkoutList.addAll(dayOneWorkout);
+		try {
+			List<Daily_Workout> daily_WorkoutList = new ArrayList<>();
+			if (dayOneWorkout != null && dayOneWorkout.size() > 0) {
+				daily_WorkoutList.addAll(dayOneWorkout);
+			}
+			if (dayTwoWorkout != null && dayTwoWorkout.size() > 0) {
+				daily_WorkoutList.addAll(dayTwoWorkout);
+			}
+			if (dayThreeWorkout != null && dayThreeWorkout.size() > 0) {
+				daily_WorkoutList.addAll(dayThreeWorkout);
+			}
+			if (dayFourWorkout != null && dayFourWorkout.size() > 0) {
+				daily_WorkoutList.addAll(dayFourWorkout);
+			}
+			if (dayFiveWorkout != null && dayFiveWorkout.size() > 0) {
+				daily_WorkoutList.addAll(dayFiveWorkout);
+			}
+			if (daySixWorkout != null && daySixWorkout.size() > 0) {
+				daily_WorkoutList.addAll(daySixWorkout);
+			}
+			addClientDailyWorkout(daily_WorkoutList);
+			generateReport();
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
-		if (dayTwoWorkout != null && dayTwoWorkout.size() > 0) {
-			daily_WorkoutList.addAll(dayTwoWorkout);
-		}
-		if (dayThreeWorkout != null && dayThreeWorkout.size() > 0) {
-			daily_WorkoutList.addAll(dayThreeWorkout);
-		}
-		if (dayFourWorkout != null && dayFourWorkout.size() > 0) {
-			daily_WorkoutList.addAll(dayFourWorkout);
-		}
-		if (dayFiveWorkout != null && dayFiveWorkout.size() > 0) {
-			daily_WorkoutList.addAll(dayFiveWorkout);
-		}
-		if (daySixWorkout != null && daySixWorkout.size() > 0) {
-			daily_WorkoutList.addAll(daySixWorkout);
-		}
-		addClientDailyWorkout(daily_WorkoutList);
 
 	}
 
@@ -320,7 +330,7 @@ public class WorkoutBean {
 			jasperObj.setClient(clientBean.getClient());
 			jasperObj.setJasperXmlFolder(folderPathService.findFolderPathById(2));
 			jasperObj.setJasperReportFolder(folderPathService.findFolderPathById(3));
-			generatedPDFName = jasperIntegration.generateReport(jasperObj,true);
+			generatedPDFName = jasperIntegration.generateReport(jasperObj, true);
 			downloadReport(generatedPDFName[0], generatedPDFName[1]);
 			System.out.println("Done Download");
 			int result = fileManager.deleteFileByPath(generatedPDFName[1]);
@@ -450,7 +460,6 @@ public class WorkoutBean {
 	}
 
 	public List<Stratgey> getAllStratgies() {
-		allStratgies = stratgeyService.findAllStratgeys();
 		return allStratgies;
 	}
 
@@ -459,7 +468,6 @@ public class WorkoutBean {
 	}
 
 	public List<Muscle> getAllMuscles() {
-		allMuscles = muscleService.findAllMuscles();
 		return allMuscles;
 	}
 
@@ -549,7 +557,6 @@ public class WorkoutBean {
 	}
 
 	public String getSelectedStratgey() {
-		stratgeyService.findStratgeyById(clientBean.getSelectedStrategyId()).getValue();
 		return selectedStratgey;
 	}
 
@@ -595,6 +602,10 @@ public class WorkoutBean {
 
 	public void setFileManager(FileManger fileManager) {
 		this.fileManager = fileManager;
+	}
+
+	public String goBackToClientInfo() {
+		return clientBean.goToEditClient();
 	}
 
 }

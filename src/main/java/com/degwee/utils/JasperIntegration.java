@@ -36,10 +36,19 @@ public class JasperIntegration {
 			if (isWorkout) {
 				jrxmlFileName = jasperParamObj.getJasperXmlFolder().getFolderPath() + "DegweeWorkoutsReport.jrxml";
 				jasperFileName = jasperParamObj.getJasperXmlFolder().getFolderPath() + "DegweeWorkoutsReport.jasper";
+				parameters = new HashMap();
 			} else {
 				jrxmlFileName = jasperParamObj.getJasperXmlFolder().getFolderPath() + "DegweeMealsReport.jrxml";
 				jasperFileName = jasperParamObj.getJasperXmlFolder().getFolderPath() + "DegweeMealsReport.jasper";
+				parameters = new HashMap();
+				parameters.put("proteins",jasperParamObj.getTotalMealStatsProteins().toString());
+				parameters.put("fats", jasperParamObj.getTotalMealStatsFats().toString());
+				parameters.put("carbohydrates", jasperParamObj.getTotalMealStatsCarbs().toString());
+				parameters.put("caloires", jasperParamObj.getTotalMealStatsCalories().toString());
 			}
+			parameters.put("ClientId", jasperParamObj.getClient().getClientId().toString());
+			
+			
 			String fileName = jasperParamObj.getClient().getFirstName() + "_" + jasperParamObj.getClient().getLastName()
 					+ "_" + sdf.format(new Date()) + ".pdf";
 
@@ -49,9 +58,13 @@ public class JasperIntegration {
 			System.out.println(pdfFileName);
 			System.out.println("Before Compiling");
 
+			
+		
+			
+			
 			JasperCompileManager.compileReportToFile(jrxmlFileName, jasperFileName);
 			System.out.println("After Compiling");
-
+			
 			// Generate jasper print
 			@SuppressWarnings("unchecked")
 			JasperPrint jprint = (JasperPrint) JasperFillManager.fillReport(jasperFileName, parameters,

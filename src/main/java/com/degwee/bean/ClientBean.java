@@ -213,13 +213,5 @@ public class ClientBean {
 				.autowireBean(this);
 	}
 
-	public String goToWorkoutSelection() {
-		if (client != null && client.getStrategyId() != null)
-			return "workout";
-		else {
-			Constants.showMessage("Please Select Strategy First before Going to Workout Page", true);
-			return null;
-		}
-	}
 
 }

@@ -283,7 +283,7 @@
 						update=":growlForm:growl " style="width:10%;height:40px;" />
 						<p:commandButton id="workoutpage" value="Workouts"
 						disabled="#{!clientBean.enableMealWorkoutPages}"
-						action="#{clientBean.goToWorkoutSelection()}"
+						action="#{workoutBean.initWorkout()}"
 						update=":growlForm:growl" style="width:10%;height:40px;" />
 
 					<p:commandButton id="gotoHome" value="Home" action="home"

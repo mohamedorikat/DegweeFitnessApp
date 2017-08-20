@@ -6,10 +6,6 @@
 	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
 		<defaultValueExpression><![CDATA["C:\\Users\\orikat\\Documents\\DegweeWorkspace\\NutritionFitnessApp\\src\\main\\resources\\jasper_reports\\"]]></defaultValueExpression>
 	</parameter>
-	<parameter name="fats" class="java.lang.String" isForPrompting="false"/>
-	<parameter name="proteins" class="java.lang.String" isForPrompting="false"/>
-	<parameter name="carbohydrates" class="java.lang.String" isForPrompting="false"/>
-	<parameter name="caloires" class="java.lang.String" isForPrompting="false"/>
 	<parameter name="ClientId" class="java.lang.String" isForPrompting="false">
 		<defaultValueExpression><![CDATA["12"]]></defaultValueExpression>
 	</parameter>

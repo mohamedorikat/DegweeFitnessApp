@@ -351,13 +351,13 @@
 		<p:panelGrid>
 			<p:row>
 				<p:column style="text-align:center;">
-
-					<p:commandButton id="saveButton" style="width:211px;height:40px;"
-						immediate="true" value="Save Workouts" icon="ui-icon-create"
-						action="#{workoutBean.saveDailyWorkouts}" ajax="false" />
 					<p:commandButton id="generateReport" value="Generate Report"
-						action="#{workoutBean.generateReport}" style="width:10%;height:40px;" ajax="false" />
-					<p:commandButton id="gotoBack" value="Back" action="clientInfo"
+						action="#{workoutBean.saveDailyWorkouts}"
+						style="width:10%;height:40px;" ajax="false">
+						<p:fileDownload value="#{workoutBean.fileManager.downloadedFile}" />
+					</p:commandButton>
+					<p:commandButton id="gotoBack" value="Back"
+						action="#{workoutBean.goBackToClientInfo()}"
 						style="width:10%;height:40px;" ajax="false" immediate="true" />
 					<p:commandButton id="gotoHome" value="Home" action="home"
 						style="width:10%;height:40px;" ajax="false" immediate="true" />

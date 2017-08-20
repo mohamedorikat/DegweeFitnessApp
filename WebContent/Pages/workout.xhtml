@@ -12,7 +12,6 @@
 </h:head>
 
 <h:body>
-
 	<h:form prependId="false" id="growlForm">
 		<p:growl id="growl" showDetail="false" />
 	</h:form>
@@ -22,7 +21,6 @@
 				<h:outputText value="Standard Workout List" />
 			</f:facet>
 			<p:panelGrid styleClass="noBorderGrid">
-
 				<p:row>
 					<p:column>
 						<p:outputLabel value="Select Day" />
@@ -103,7 +101,10 @@
 				</p:row>
 			</p:panelGrid>
 		</p:panel>
+		<br></br>
 	</h:form>
+
+
 	<h:form id="dataForm">
 		<h:panelGrid id="daysPanel" columns="3" styleClass="noBorderGrid">
 			<p:panel id="day1Panel" style="height:300px;width:450px;">
@@ -315,7 +316,6 @@
 					rows="4" paginator="true"
 					style="padding-top:10px;padding-bottom:10px"
 					tableStyle="width:auto; table-layout: auto">
-
 					<p:column headerText="Day">
 						<h:outputText value="#{workout.day.number}" />
 					</p:column>
@@ -350,24 +350,22 @@
 		<br></br>
 		<p:panelGrid>
 			<p:row>
-
 				<p:column style="text-align:center;">
 
 					<p:commandButton id="saveButton" style="width:211px;height:40px;"
 						immediate="true" value="Save Workouts" icon="ui-icon-create"
 						action="#{workoutBean.saveDailyWorkouts}" ajax="false" />
-					<p:commandButton id="gotoHome" value="Back" action="home"
-						style="width:10%;height:40px;" ajax="false" immediate="true" />
 					<p:commandButton id="generateReport" value="Generate Report"
-						action="#{workoutBean.generateReport}"
-						style="width:10%;height:40px;" ajax="false">
-						<p:fileDownload value="#{workoutBean.fileManager.downloadedFile}" />
-					</p:commandButton>
-
+						action="#{workoutBean.generateReport}" style="width:10%;height:40px;" ajax="false" />
+					<p:commandButton id="gotoBack" value="Back" action="clientInfo"
+						style="width:10%;height:40px;" ajax="false" immediate="true" />
+					<p:commandButton id="gotoHome" value="Home" action="home"
+						style="width:10%;height:40px;" ajax="false" immediate="true" />
 				</p:column>
 
 			</p:row>
 		</p:panelGrid>
+
 	</h:form>
 
 

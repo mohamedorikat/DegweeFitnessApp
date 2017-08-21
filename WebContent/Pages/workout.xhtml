@@ -352,7 +352,7 @@
 			<p:row>
 				<p:column style="text-align:center;">
 					<p:commandButton id="generateReport" value="Generate Report"
-						action="#{workoutBean.saveDailyWorkouts}"
+						actionListener="#{workoutBean.saveDailyWorkouts}"
 						style="width:10%;height:40px;" ajax="false">
 						<p:fileDownload value="#{workoutBean.fileManager.downloadedFile}" />
 					</p:commandButton>

@@ -119,6 +119,10 @@ public class WorkoutBean {
 		allMuscles = muscleService.findAllMuscles();
 		allStratgies = stratgeyService.findAllStratgeys();
 		allSets = setService.findAllSets();
+		selectedDayId = 0;
+		selectedSetId = 0;
+		selectedWorkoutId = 0;
+		selectedMusleId = 0;
 		return "workout";
 	}
 
@@ -171,6 +175,7 @@ public class WorkoutBean {
 
 		}
 		isAddWorkout = true;
+		
 
 	}
 
@@ -237,7 +242,7 @@ public class WorkoutBean {
 			addClientDailyWorkout(daily_WorkoutList);
 			generateReport();
 		} catch (Exception e) {
-			e.printStackTrace();
+			System.out.println("Error In Save daily workouts: "+e);
 		}
 
 	}

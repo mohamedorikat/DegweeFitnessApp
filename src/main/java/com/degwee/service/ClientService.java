@@ -42,9 +42,17 @@ public class ClientService {
 	}
 
 	@Transactional
-	public void update(Client client) {
+	public boolean update(Client client) {
+		Client existedClient = null;
+		existedClient = clientDao.findClientByEmail(client.getEmail());
+		if (existedClient != null && existedClient.getClientId() != client.getClientId()) {
+			//client already exist with this email
+			return true;
+		} else {
 		clientNutritionService.update(client.getNutritionInfo());
 		clientDao.update(client);
+		return false;
+		}
 	}
 
 	public void delete(Client client) {

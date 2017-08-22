@@ -150,7 +150,15 @@ public class ClientBean {
 					client.setStrategyId(null);
 
 				if (client.getClientId() != null && mode == Constants.editMode) {
-					clientService.update(client);
+					boolean alreadyExist =clientService.update(client);
+					if (alreadyExist) {
+						FacesMessage facesMessage = new FacesMessage("Client Already Exist with this Email");
+						facesMessage.setSeverity(FacesMessage.SEVERITY_ERROR);
+						FacesContext.getCurrentInstance().addMessage(null, facesMessage);
+						goToMealInfo = false;
+						enableMealWorkoutPages = false;
+						return null;
+					}
 					FacesMessage facesMessage = new FacesMessage("Client Updated Successfully");
 					facesMessage.setSeverity(FacesMessage.SEVERITY_INFO);
 					FacesContext.getCurrentInstance().addMessage(null, facesMessage);
@@ -185,6 +193,7 @@ public class ClientBean {
 
 	public void checkGoal() {
 		resetNutritionValues();
+		enableMealWorkoutPages=false;
 		if (client.getNutritionInfo().getGoal() == Constants.toCut)
 			toCutFlag = true;
 		else

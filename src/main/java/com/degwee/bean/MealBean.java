@@ -503,40 +503,44 @@ public class MealBean {
 
 	}
 
-	public void removeSubMealFromMealList1(SubMeal subMeal) {
+	public String removeSubMealFromMealList1(SubMeal subMeal) {
 		if (meal1 != null && !meal1.isEmpty()) {
 			if (subMeal.getId() != null)
 				subMealService.delete(subMeal, clientBean.getClient());
 			meal1.remove(subMeal);
 			updateNutritionInfoCounters(Constants.mealOne, meal1);
 		}
+		return "mealSelection";
 	}
 
-	public void removeSubMealFromMealList2(SubMeal subMeal) {
+	public String removeSubMealFromMealList2(SubMeal subMeal) {
 		if (meal2 != null && !meal2.isEmpty()) {
 			if (subMeal.getId() != null)
 				subMealService.delete(subMeal, clientBean.getClient());
 			meal2.remove(subMeal);
 			updateNutritionInfoCounters(Constants.mealTwo, meal2);
 		}
+		return "mealSelection";
 	}
 
-	public void removeSubMealFromMealList3(SubMeal subMeal) {
+	public String removeSubMealFromMealList3(SubMeal subMeal) {
 		if (meal3 != null && !meal3.isEmpty()) {
 			if (subMeal.getId() != null)
 				subMealService.delete(subMeal, clientBean.getClient());
 			meal3.remove(subMeal);
 			updateNutritionInfoCounters(Constants.mealThree, meal3);
 		}
+		return "mealSelection";
 	}
 
-	public void removeSubMealFromMealList4(SubMeal subMeal) {
+	public String removeSubMealFromMealList4(SubMeal subMeal) {
 		if (meal4 != null && !meal4.isEmpty()) {
 			if (subMeal.getId() != null)
 				subMealService.delete(subMeal, clientBean.getClient());
 			meal4.remove(subMeal);
 			updateNutritionInfoCounters(Constants.mealFour, meal4);
 		}
+		return "mealSelection";
 	}
 
 	public String initMealSelection(boolean goToMealSelection) {

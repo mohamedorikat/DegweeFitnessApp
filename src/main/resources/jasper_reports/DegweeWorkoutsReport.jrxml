@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="DegweeMealsReport" pageWidth="535" pageHeight="1850" columnWidth="535" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" whenResourceMissingType="Empty" uuid="cc7629f5-d99b-443c-a261-746b398dfb6e">
-	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.zoom" value="2.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.y" value="7"/>
 	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
 		<defaultValueExpression><![CDATA["C:\\Users\\orikat\\Documents\\DegweeWorkspace\\NutritionFitnessApp\\src\\main\\resources\\jasper_reports\\"]]></defaultValueExpression>
 	</parameter>
@@ -10,9 +10,9 @@
 		<defaultValueExpression><![CDATA["12"]]></defaultValueExpression>
 	</parameter>
 	<queryString>
-		<![CDATA[select number from meal where Id=1]]>
+		<![CDATA[select folderpath.FolderPath from folderpath where id=5;]]>
 	</queryString>
-	<field name="number" class="java.lang.Long">
+	<field name="FolderPath" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
 	<title>
@@ -35,14 +35,14 @@
 			</textField>
 			<image>
 				<reportElement x="96" y="9" width="433" height="152" uuid="d6b04461-362f-4ad8-83f1-70893a6b7e29"/>
-				<imageExpression><![CDATA["C:\\Users\\orikat\\Documents\\DegweeWorkspace\\NutritionFitnessApp\\WebContent\\resources\\images\\degwelogosmall.png"]]></imageExpression>
+				<imageExpression><![CDATA[$F{FolderPath}]]></imageExpression>
 			</image>
 		</band>
 	</title>
 	<detail>
 		<band height="71" splitType="Stretch">
 			<subreport isUsingCache="true" runToBottom="false">
-				<reportElement positionType="Float" mode="Opaque" x="1" y="1" width="535" height="70" isRemoveLineWhenBlank="true" uuid="b72f5d88-78dd-452f-b8f8-43f43c71c6e1"/>
+				<reportElement positionType="Float" mode="Opaque" x="0" y="1" width="539" height="70" isRemoveLineWhenBlank="true" uuid="b72f5d88-78dd-452f-b8f8-43f43c71c6e1"/>
 				<subreportParameter name="dayId">
 					<subreportParameterExpression><![CDATA["1"]]></subreportParameterExpression>
 				</subreportParameter>
@@ -55,7 +55,7 @@
 		</band>
 		<band height="70" splitType="Stretch">
 			<subreport isUsingCache="true" runToBottom="false">
-				<reportElement positionType="Float" mode="Opaque" x="1" y="0" width="535" height="70" isRemoveLineWhenBlank="true" forecolor="#000000" backcolor="#FFFFFF" uuid="64cd9431-6445-4147-855c-1a3da835ae4f"/>
+				<reportElement positionType="Float" mode="Opaque" x="0" y="0" width="540" height="70" isRemoveLineWhenBlank="true" forecolor="#000000" backcolor="#FFFFFF" uuid="64cd9431-6445-4147-855c-1a3da835ae4f"/>
 				<subreportParameter name="dayId">
 					<subreportParameterExpression><![CDATA["2"]]></subreportParameterExpression>
 				</subreportParameter>
@@ -81,7 +81,7 @@
 		</band>
 		<band height="70" splitType="Stretch">
 			<subreport runToBottom="false">
-				<reportElement positionType="Float" mode="Opaque" x="1" y="0" width="535" height="70" isRemoveLineWhenBlank="true" uuid="46adcbee-3ec8-48a5-93cc-ec6ef0a07e1f"/>
+				<reportElement positionType="Float" mode="Opaque" x="0" y="0" width="536" height="70" isRemoveLineWhenBlank="true" uuid="46adcbee-3ec8-48a5-93cc-ec6ef0a07e1f"/>
 				<subreportParameter name="dayId">
 					<subreportParameterExpression><![CDATA["4"]]></subreportParameterExpression>
 				</subreportParameter>
@@ -107,7 +107,7 @@
 		</band>
 		<band height="70">
 			<subreport runToBottom="false">
-				<reportElement positionType="Float" mode="Opaque" x="1" y="0" width="535" height="70" isRemoveLineWhenBlank="true" uuid="4fbe21c7-6f05-46eb-b26e-9f09eb5a1215"/>
+				<reportElement positionType="Float" mode="Opaque" x="0" y="0" width="536" height="70" isRemoveLineWhenBlank="true" uuid="4fbe21c7-6f05-46eb-b26e-9f09eb5a1215"/>
 				<subreportParameter name="dayId">
 					<subreportParameterExpression><![CDATA["6"]]></subreportParameterExpression>
 				</subreportParameter>
@@ -119,4 +119,19 @@
 			</subreport>
 		</band>
 	</detail>
+	<summary>
+		<band height="70">
+			<subreport runToBottom="false">
+				<reportElement positionType="Float" mode="Opaque" x="0" y="0" width="536" height="70" isRemoveLineWhenBlank="true" uuid="0e8b5ef8-0212-43b6-b6e3-e79543851a56"/>
+				<subreportParameter name="dayId">
+					<subreportParameterExpression><![CDATA["6"]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="ClientId">
+					<subreportParameterExpression><![CDATA[$P{ClientId}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} +"SummeryWorkoutReport.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</summary>
 </jasperReport>

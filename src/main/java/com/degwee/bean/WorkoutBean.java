@@ -102,7 +102,7 @@ public class WorkoutBean {
 	public String initWorkout() {
 		if (clientBean.getClient() == null || clientBean.getClient().getStrategyId() == null)
 		{
-			Constants.showMessage("Please Select Strategy First before Going to Workout Page", true);
+			Constants.showMessage("Please Select Strategy First before Going to Workout Page,if already selected press save before going to workout page", true);
 			return null;
 		}
 		dayOneWorkout = new ArrayList<>();
@@ -175,7 +175,6 @@ public class WorkoutBean {
 
 		}
 		isAddWorkout = true;
-		
 
 	}
 

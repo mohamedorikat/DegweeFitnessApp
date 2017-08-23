@@ -118,6 +118,7 @@ public class WorkoutBean {
 		allDays = dayService.findAllDays();
 		allMuscles = muscleService.findAllMuscles();
 		allStratgies = stratgeyService.findAllStratgeys();
+		musleWorkouts=new ArrayList<>();
 		allSets = setService.findAllSets();
 		selectedDayId = 0;
 		selectedSetId = 0;

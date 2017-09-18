@@ -211,10 +211,7 @@ public class WorkoutBean {
 		}
 		// reset selected values
 		isAddWorkout = true;
-		selectedDayId = 0;
 		selectedSetId = 0;
-		selectedWorkoutId = 0;
-		selectedMusleId = 0;
 		selectedStratgey = stratgeyService.findStratgeyById(clientBean.getSelectedStrategyId()).getValue();
 	}
 

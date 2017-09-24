@@ -18,20 +18,12 @@
 	<title>
 		<band height="185">
 			<textField>
-				<reportElement mode="Opaque" x="0" y="161" width="158" height="24" forecolor="#000000" backcolor="#CCCCCC" uuid="7109d43e-26b2-496d-abcc-86b3fd1d3790"/>
+				<reportElement mode="Opaque" x="0" y="161" width="535" height="24" forecolor="#000000" backcolor="#CCCCCC" uuid="7109d43e-26b2-496d-abcc-86b3fd1d3790"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Microsoft JhengHei"/>
 					<paragraph leftIndent="6"/>
 				</textElement>
 				<textFieldExpression><![CDATA["WORKOUT PLAN"]]></textFieldExpression>
-			</textField>
-			<textField pattern="EEEEE dd MMMMM yyyy">
-				<reportElement mode="Opaque" x="154" y="161" width="381" height="24" backcolor="#CCCCCC" uuid="ca758197-dc30-4a0d-ab28-ff5c4ffb0612"/>
-				<textElement textAlignment="Right" verticalAlignment="Middle">
-					<font fontName="Microsoft JhengHei"/>
-					<paragraph rightIndent="6"/>
-				</textElement>
-				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 			</textField>
 			<image>
 				<reportElement x="96" y="9" width="433" height="152" uuid="d6b04461-362f-4ad8-83f1-70893a6b7e29"/>

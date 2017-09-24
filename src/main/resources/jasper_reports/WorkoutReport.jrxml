@@ -10,7 +10,7 @@
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
 	<queryString>
-		<![CDATA[select folderpath.FolderPath,workout.name,muscle.name as muscleName,daily_workout.workout_strategy,`set`.number,workout.videoLink from client_dailyworkout c join daily_workout ON daily_workout.id = c.dailyWorkout_id join `set` ON `set`.id = daily_workout.set_id join workout ON workout.id = daily_workout.workout_id join muscle ON muscle.id = workout.muscleId join folderpath where daily_workout.day_id=$P{dayId} and c.client_id=$P{ClientId} and folderpath.Id=4 order by muscle.name,`set`.number Desc;]]>
+		<![CDATA[select folderpath.FolderPath,workout.name,muscle.name as muscleName,daily_workout.workout_strategy,`set`.number,workout.videoLink from client_dailyworkout c join daily_workout ON daily_workout.id = c.dailyWorkout_id join `set` ON `set`.id = daily_workout.set_id join workout ON workout.id = daily_workout.workout_id join muscle ON muscle.id = workout.muscleId join folderpath where daily_workout.day_id=$P{dayId} and c.client_id=$P{ClientId} and folderpath.Id=4 order by c.id asc;]]>
 	</queryString>
 	<field name="FolderPath" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
